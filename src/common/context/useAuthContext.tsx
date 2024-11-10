@@ -40,7 +40,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const saveSession = useCallback(
     (user: User) => {
-      localStorage.setItem(authSessionKey, JSON.stringify(user))
+      console.log(user)
+      localStorage.setItem(authSessionKey, JSON.stringify(user?.token))
       setUser(user)
     },
     [setUser],
@@ -73,8 +74,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
               isAuthenticated: Boolean(user),
               saveSession,
               removeSession,
-            }}
-          >
+            }}>
             {children}
           </AuthContext.Provider>
         </Suspense>

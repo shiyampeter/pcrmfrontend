@@ -1,22 +1,30 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { Link, Navigate } from 'react-router-dom'
 import { useAuthContext } from '@/common'
 import AuthLayout from '@/Layouts/AuthLayout'
 import TitleHelmet from '@/components/Common/TitleHelmet'
 import { Button, Form, Stack } from 'react-bootstrap'
-import useLogin from '../useAuth/useLogin'
 import AuthMinmal from './AuthMinmal'
+import { useDispatch } from 'react-redux'
+import { userLogin } from '@/redux/api/public/authService'
+import toast from 'react-hot-toast'
+import { useLocation, useNavigate } from 'react-router-dom'
 
 const Login = () => {
   const { removeSession } = useAuthContext()
-  const { loading, login, redirectUrl, isAuthenticated } = useLogin()
-  const [email, setEmail] = useState<string>('admin@email.com')
-  const [password, setPassword] = useState<string>('12345678')
+  const location = useLocation()
+  const navigate = useNavigate()
+  const [username, setUsername] = useState<string>('admin')
+  const [password, setPassword] = useState<string>('123456')
   const [rememberMe, setRememberMe] = useState<boolean>(false)
   const [showPassword, setShowPassword] = useState<boolean>(false)
-  const [emailError, setEmailError] = useState<string | null>(null)
-  const [passwordError, setPasswordError] = useState<string | null>(null)
+  const { isAuthenticated, saveSession } = useAuthContext()
+  const redirectUrl = useMemo(
+    () => (location.state && location.state.from ? location.state.from.pathname : '/'),
+    [location.state],
+  )
 
+  console.log(redirectUrl)
   useEffect(() => {
     removeSession()
   }, [removeSession])
@@ -25,34 +33,21 @@ const Login = () => {
     setShowPassword(!showPassword)
   }
 
-  const validateEmail = (input: string) => {
-    if (!input) {
-      setEmailError('Email is required')
-      return false
-    } else {
-      setEmailError(null)
-      return true
-    }
-  }
-
-  const validatePassword = (input: string) => {
-    if (!input) {
-      setPasswordError('Password is required')
-      return false
-    } else {
-      setPasswordError(null)
-      return true
-    }
-  }
-
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-
-    const isEmailValid = validateEmail(email)
-    const isPasswordValid = validatePassword(password)
-
-    if (isEmailValid && isPasswordValid) {
-      login(e, { email, password })
+  const dispatch = useDispatch()
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    try {
+      e.preventDefault()
+      const response = await dispatch(userLogin({ user_username: username, password })).unwrap()
+      toast.success(response?.message)
+      setTimeout(() => {
+        if (response?.data?.token) {
+          saveSession({ ...(response.user ?? {}), token: response?.data?.token })
+          navigate(redirectUrl)
+        }
+      }, 1500)
+      navigate(redirectUrl)
+    } catch (error) {
+      toast.error(error.message)
     }
   }
 
@@ -69,17 +64,16 @@ const Login = () => {
           <Form onSubmit={handleSubmit}>
             <Form.Group className="mb-3">
               <Form.Control
-                type="email"
-                placeholder="Email"
-                value={email}
+                type="text"
+                placeholder="UserName"
+                value={username}
                 onChange={(e) => {
-                  setEmail(e.target.value)
-                  validateEmail(e.target.value)
+                  setUsername(e.target.value)
                 }}
-                isInvalid={!!emailError}
+                // isInvalid={!!emailError}
                 required
               />
-              <Form.Control.Feedback type="invalid">{emailError}</Form.Control.Feedback>
+              {/* <Form.Control.Feedback type="invalid">{emailError}</Form.Control.Feedback> */}
             </Form.Group>
             <Form.Group className="mb-3 position-relative">
               <Form.Control
@@ -88,17 +82,15 @@ const Login = () => {
                 value={password}
                 onChange={(e) => {
                   setPassword(e.target.value)
-                  validatePassword(e.target.value)
                 }}
-                isInvalid={!!passwordError}
+                // isInvalid={!!passwordError}
                 required
               />
-              <Form.Control.Feedback type="invalid">{passwordError}</Form.Control.Feedback>
+              {/* <Form.Control.Feedback type="invalid">{passwordError}</Form.Control.Feedback> */}
               <span
                 className="btn btn-icon position-absolute translate-middle top-50"
                 style={{ right: '-1rem' }}
-                onClick={togglePasswordVisibility}
-              >
+                onClick={togglePasswordVisibility}>
                 <i className={`fi ${showPassword ? 'fi-rr-eye-crossed' : 'fi-rr-eye'}`}></i>
               </span>
             </Form.Group>
@@ -120,21 +112,19 @@ const Login = () => {
                 variant="primary"
                 size="lg"
                 type="submit"
-                disabled={loading}
-                className="text-white"
-              >
-                {loading ? (
+                // disabled={loading}
+                className="text-white">
+                {/* {loading ? (
                   <>
                     <span
                       className="spinner-border spinner-border-sm me-2"
                       role="status"
-                      aria-hidden="true"
-                    ></span>
+                      aria-hidden="true"></span>
                     Loading...
                   </>
-                ) : (
-                  'Login'
-                )}
+                ) : ( */}
+                Login
+                {/* )} */}
               </Button>
             </div>
             <div>
