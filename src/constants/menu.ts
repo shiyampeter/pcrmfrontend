@@ -60,6 +60,51 @@ const MENU_ITEMS: MenuItemTypes[] = [
       // },
     ],
   },
+  {
+    key: 'master',
+    label: 'Masters',
+    isTitle: false,
+    icon: 'fi fi-rr-dashboard',
+    children: [
+      {
+        key: 'ecommerce',
+        label: 'eCommerce',
+        url: '/',
+        parentKey: 'master',
+      },
+      {
+        key: 'work-category',
+        label: 'Work Category',
+        url: '/master/work-category',
+        parentKey: 'master',
+      },
+      {
+        key: 'work-subcategory',
+        label: 'Work SubCategory',
+        url: '/master/work-subcategory',
+        parentKey: 'master',
+      },
+
+      // {
+      //   key: 'pos',
+      //   label: 'POS',
+      //   url: '#!',
+      //   parentKey: 'dashboards',
+      // },
+      // {
+      //   key: 'nft',
+      //   label: 'NFT',
+      //   url: '#!',
+      //   parentKey: 'dashboards',
+      // },
+      // {
+      //   key: 'project',
+      //   label: 'Project',
+      //   url: '#!',
+      //   parentKey: 'dashboards',
+      // },
+    ],
+  },
   // Apps
   {
     key: 'apps',
@@ -1034,6 +1079,46 @@ const HORIZONTAL_MENU_ITEMS: MenuItemTypes[] = [
         url: '/dashboards/crm',
         parentKey: 'dashboard',
       },
+      // {
+      //   key: 'pos',
+      //   label: 'POS',
+      //   url: '#!',
+      //   parentKey: 'dashboards',
+      // },
+      // {
+      //   key: 'nft',
+      //   label: 'NFT',
+      //   url: '#!',
+      //   parentKey: 'dashboards',
+      // },
+      // {
+      //   key: 'project',
+      //   label: 'Project',
+      //   url: '#!',
+      //   parentKey: 'dashboards',
+      // },
+    ],
+  },
+
+  {
+    key: 'master',
+    label: 'Masters',
+    isTitle: true,
+    icon: 'fi fi-rr-dashboard',
+    children: [
+      {
+        key: 'ecommerce',
+        label: 'eCommerce',
+        url: '/',
+        parentKey: 'master',
+      },
+      {
+        key: 'work-category',
+        label: 'Work Category',
+        url: '/master/work-category',
+        parentKey: 'master',
+      },
+
       // {
       //   key: 'pos',
       //   label: 'POS',

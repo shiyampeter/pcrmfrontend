@@ -24,6 +24,7 @@ authCases.forEach((cases) => {
 export const authSlice = createSlice({
   name: 'publicAuth',
   initialState,
+  reducers: {},
   extraReducers: (builder) => {
     authCases.forEach((cases) => {
       builder

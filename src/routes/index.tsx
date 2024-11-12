@@ -69,6 +69,10 @@ const DaterangePicker = React.lazy(() => import('./../views/uielements/pickers/D
 // Maps
 const VectorMaps = React.lazy(() => import('./../views/uielements/maps/VectorMaps'))
 
+// Master
+const WorkCategory = React.lazy(() => import('../views/master/work-category'))
+const WorkSubCategory = React.lazy(() => import('../views/master/work-subcategory'))
+
 // Extended
 const ReactSelect = React.lazy(() => import('./../views/uielements/extended/ReactSelect'))
 const SweetAlert2 = React.lazy(() => import('./../views/uielements/extended/SweetAlert2'))
@@ -225,6 +229,33 @@ const dashboardRoutes: RoutesProps = {
       path: '/dashboards/crm',
       name: 'CRM',
       element: <CRM />,
+      route: PrivateRoute,
+    },
+  ],
+}
+
+// Dashboards
+const masterRoutes: RoutesProps = {
+  path: '/master',
+  name: 'Master',
+  header: 'Navigation',
+  children: [
+    {
+      path: '/',
+      name: 'Root',
+      element: <Ecommerce />,
+      route: PrivateRoute,
+    },
+    {
+      path: '/master/work-category',
+      name: 'WorkCategory',
+      element: <WorkCategory />,
+      route: PrivateRoute,
+    },
+    {
+      path: '/master/work-subcategory',
+      name: 'WorkSubCategory',
+      element: <WorkSubCategory />,
       route: PrivateRoute,
     },
   ],
@@ -1092,7 +1123,13 @@ const flattenRoutes = (routes: RoutesProps[]) => {
 }
 
 // All routes
-const authProtectedRoutes = [dashboardRoutes, appsRoutes, pagesRoutes, componentsRoutes]
+const authProtectedRoutes = [
+  dashboardRoutes,
+  appsRoutes,
+  pagesRoutes,
+  componentsRoutes,
+  masterRoutes,
+]
 const publicRoutes = [...authRoutes, ...errorRoutes, ...emailRoutes, ...docsRoutes]
 
 const authProtectedFlattenRoutes = flattenRoutes([...authProtectedRoutes])
