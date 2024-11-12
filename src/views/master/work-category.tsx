@@ -29,13 +29,17 @@ import DeleteIcon from '@mui/icons-material/Delete'
 import AddCategoryForm from './category/addCategoryform'
 import DialogTitle from '@mui/material/DialogTitle'
 import { Link } from 'react-router-dom'
+import { workCategoryDelete, workCategoryList } from '@/redux/api/public/workCategoryService'
+import Switch from '@mui/material/Switch'
+import toast from 'react-hot-toast'
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />
 })
-
+const label = { inputProps: { 'aria-label': 'Switch demo' } }
 function WorkCategory() {
   const [open, setOpen] = React.useState(false)
   const [delid, setDelId] = useState(null)
+  const [categoryListData, setCategoryListData] = useState([])
   const [searchKey, setSearchKey] = useState('')
   const [searchValue] = useDebounce(searchKey, 1000)
   const [page, setPage] = useState(1)
@@ -57,7 +61,7 @@ function WorkCategory() {
   const cancelSearch = () => {
     setSearchKey('')
   }
-
+  console.log(delid)
   //on search
   const onSearch = (e) => {
     setSearchKey(e.target.value)
@@ -65,14 +69,13 @@ function WorkCategory() {
 
   //list api
   const categoryListApi = async () => {
-    // const parameters = {
-    //   url: `${authEndPoints.category.list}?per_page=10&page=${page}&search=${searchKey}`,
-    // }
-    // try {
-    //   await dispatch(categoryListDatas(parameters)).unwrap()
-    // } catch (errors) {
-    //   errorAlert(errors?.error)
-    // }
+    try {
+      const res = await dispatch(workCategoryList()).unwrap()
+      console.log(res)
+      setCategoryListData(res)
+    } catch (errors) {
+      toast.error(errors?.error)
+    }
   }
 
   const handlePageChanges = (_event, pageValue) => {
@@ -101,17 +104,14 @@ function WorkCategory() {
   }
 
   const delteApiFn = async () => {
-    // const parameters = {
-    //   url: `${authEndPoints.category.removeCategory(delid)}`,
-    // }
-    // try {
-    //   const response = await dispatch(deleteCategoryData(parameters)).unwrap()
-    //   // setDeleteModalOpen(false);
-    //   successAlert(response.message)
-    //   categoryListApi()
-    // } catch (errors) {
-    //   errorAlert(errors?.error)
-    // }
+    try {
+      const response = await dispatch(workCategoryDelete(delid)).unwrap()
+      toast.success(response.message)
+      setDeleteModalOpen(false)
+      categoryListApi()
+    } catch (errors) {
+      toast.error(errors?.message)
+    }
   }
 
   const handleClose = () => {
@@ -132,7 +132,7 @@ function WorkCategory() {
   }, [page, searchValue])
 
   return (
-    <Box>
+    <Box sx={{ overflowY: 'auto', maxHeight: '600px' }}>
       <Box className="indexBox">
         <TopBreaccrumb title={'Categories'} to={`/admin/dashboard`} />
         <Box sx={{ my: 3 }}>
@@ -181,63 +181,60 @@ function WorkCategory() {
           <Table size="small" aria-label="a dense table" className="order-table-list">
             <TableHeader />
             <TableBody>
-              {/* {categoryListData?.loading ? ( */}
-              {/* <TableRowsLoader rowsNum={1} colsNum={3} /> */}
-              {/* ) : ( */}
-              {/* categoryListData?.data?.data?.data?.map((row, i) => ( */}
-              <TableRow>
-                <TableCell style={{ textAlign: 'center' }}>1</TableCell>
+              {categoryListData?.loading ? (
+                <TableRowsLoader rowsNum={5} colsNum={5} />
+              ) : (
+                categoryListData?.data?.map((row, i) => (
+                  <TableRow>
+                    <TableCell style={{ textAlign: 'center' }}>{i + 1}</TableCell>
 
-                <TableCell style={{ textAlign: 'center' }}>
-                  <Link
-                    // to={`/admin/category/${row.unique_label}`}
-                    to=""
-                    style={{
-                      background: 'white',
-                      color: '#951e76',
-                      textDecoration: 'underline',
-                    }}>
-                    {' '}
-                    {/* {row.label}{' '} */}
-                    New
-                  </Link>
-                </TableCell>
+                    <TableCell style={{ textAlign: 'center' }}>{row.work_name}</TableCell>
+                    <TableCell style={{ textAlign: 'center' }}>
+                      {row.work_type == 0 ? 'Mini' : 'Online'}
+                    </TableCell>
+                    <TableCell style={{ textAlign: 'center' }}>{row.work_tracking_no}</TableCell>
+                    <TableCell style={{ textAlign: 'center' }}>
+                      {row.work_tracking_website}
+                    </TableCell>
+                    <TableCell style={{ textAlign: 'center' }}>
+                      <Switch
+                        checked={row.work_completed}
+                        onChange={() => handleSwitchChange(row.id)}
+                        {...label}
+                      />
+                    </TableCell>
 
-                {/* <TableCell>{row.parent}</TableCell>
-                    <TableCell>description</TableCell> */}
+                    <TableCell align="center">
+                      <Stack
+                        direction={'row'}
+                        gap={2}
+                        style={{
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                        }}>
+                        <Link
+                          // to={`/admin/category/${row.unique_label}`}
+                          to="">
+                          <VisibilityIcon className="table-icons" sx={{ color: 'green' }} />
+                        </Link>
 
-                <TableCell align="center">
-                  <Stack
-                    direction={'row'}
-                    gap={2}
-                    style={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                    }}>
-                    <Link
-                      // to={`/admin/category/${row.unique_label}`}
-                      to="">
-                      <VisibilityIcon className="table-icons" sx={{ color: 'green' }} />
-                    </Link>
-
-                    <EditIcon
-                      sx={{ color: 'blue' }}
-                      className="table-icons"
-                      // onClick={() => editDirectory(row.unique_label)}
-                      onClick={() => editDirectory()}
-                    />
-                    <DeleteIcon
-                      className="table-icons"
-                      sx={{ color: 'red' }}
-                      //  onClick={() => deleteDirectory(row.id)}
-                      onClick={() => deleteDirectory()}
-                    />
-                  </Stack>
-                </TableCell>
-              </TableRow>
-              {/* )) */}
-              {/* )} */}
+                        <EditIcon
+                          sx={{ color: 'blue' }}
+                          className="table-icons"
+                          // onClick={() => editDirectory(row.unique_label)}
+                          onClick={() => editDirectory()}
+                        />
+                        <DeleteIcon
+                          className="table-icons"
+                          sx={{ color: 'red' }}
+                          onClick={() => deleteDirectory(row.work_id)}
+                        />
+                      </Stack>
+                    </TableCell>
+                  </TableRow>
+                ))
+              )}
             </TableBody>
           </Table>
         </TableContainer>
@@ -256,7 +253,7 @@ function WorkCategory() {
           <DeleteModal
             open={deleteModalOpen}
             close={() => deleteDirectoryModalClose()}
-            title={'Delete Category'}
+            title={'Delete Work Category'}
             content={'Are you sure want to delete this category?'}
             submit={delteApiFn}
             // loading={stateValues.deleteLoading}

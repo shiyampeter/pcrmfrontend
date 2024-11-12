@@ -25,9 +25,6 @@ const Login = () => {
   )
 
   console.log(redirectUrl)
-  useEffect(() => {
-    removeSession()
-  }, [removeSession])
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword)
@@ -41,6 +38,7 @@ const Login = () => {
       toast.success(response?.message)
       setTimeout(() => {
         if (response?.data?.token) {
+          localStorage.setItem('token', response?.data?.token)
           saveSession({ ...(response.user ?? {}), token: response?.data?.token })
           navigate(redirectUrl)
         }

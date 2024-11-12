@@ -193,7 +193,6 @@ const AppMenu = ({ menuItems }: AppMenuProps) => {
     <>
       <ul className="side-nav" ref={menuRef} id="main-menu">
         {(menuItems || []).map((item, idx) => {
-          console.log(menuItems, 'menuItems')
           return (
             <React.Fragment key={idx}>
               {item.isTitle ? (

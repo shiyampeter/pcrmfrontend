@@ -10,6 +10,8 @@ import { LoadingButton } from '@mui/lab'
 import SelectField from '@/components/components/reusableFormFields/selectField'
 import TextFormField from '@/components/components/reusableFormFields/TextField'
 import ImageUploadComponent from '@/components/components/reusableFormFields/ImageUpload'
+import { workCategoryAdd } from '@/redux/api/public/workCategoryService'
+import toast from 'react-hot-toast'
 // import { categoryForm } from '../../../../helpers/validate'
 // import {
 //   addCategoryData,
@@ -53,19 +55,13 @@ const AddCategoryForm = (props, disabled) => {
   // Add Directory Api
   const handleAddCategory = async (values) => {
     console.log(values)
-
-    // const parameters = {
-    //   url: `${authEndPoints.category.categoryAdd}`,
-    //   data: values,
-    // };
-    // try {
-    //   const response = await dispatch(addCategoryData(parameters)).unwrap();
-    //   onClick();
-    //   successAlert(response.message);
-    // } catch (error) {
-    //   errorAlert(error.error);
-    //   console.log(errors);
-    // }
+    try {
+      const response = await dispatch(workCategoryAdd(values)).unwrap()
+      toast.success(response.message)
+      onClick()
+    } catch (error) {
+      toast.error(error.message)
+    }
   }
 
   const handleEditCategory = async (values) => {
@@ -162,14 +158,13 @@ const AddCategoryForm = (props, disabled) => {
         <FormLoader />
       ) : ( */}
       <form
-      // onSubmit={
-      //   type === 'add' ? handleSubmit(handleAddCategory) : handleSubmit(handleEditCategory)
-      // }
-      >
+        onSubmit={
+          type === 'add' ? handleSubmit(handleAddCategory) : handleSubmit(handleEditCategory)
+        }>
         <Grid container spacing={5} sx={{ mb: 2 }}>
           <Grid item xs={6} direction={'column'}>
             <TextFormField
-              name="label"
+              name="work_name"
               control={control}
               Controller={Controller}
               label="Work Name"
@@ -178,7 +173,7 @@ const AddCategoryForm = (props, disabled) => {
           </Grid>
           <Grid item xs={6} direction={'column'}>
             <TextFormField
-              name="label"
+              name="work_type"
               control={control}
               Controller={Controller}
               label="Work Type"
@@ -189,7 +184,7 @@ const AddCategoryForm = (props, disabled) => {
         <Grid container spacing={5} sx={{ mb: 2 }}>
           <Grid item xs={6} direction={'column'}>
             <TextFormField
-              name="label"
+              name="work_tracking_no"
               control={control}
               Controller={Controller}
               label="Tracking No"
@@ -198,7 +193,7 @@ const AddCategoryForm = (props, disabled) => {
           </Grid>
           <Grid item xs={6} direction={'column'}>
             <TextFormField
-              name="label"
+              name="work_tracking_website"
               control={control}
               Controller={Controller}
               label="Tracking Site"
@@ -235,7 +230,7 @@ const AddCategoryForm = (props, disabled) => {
             /> */}
             <Typography variant="subtitle1">Work Completed</Typography>
             <Controller
-              name="checkbox"
+              name="work_completed"
               control={control}
               defaultValue={false}
               render={({ field }) => (

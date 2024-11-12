@@ -16,7 +16,7 @@ const PUBLICSERVER = axios.create({
 
 PUBLICSERVER.interceptors.request.use(function (config) {
   const authSessionKey = 'WINDOW_AUTH_SESSION'
-  const TOKEN = localStorage.getItem(authSessionKey)
+  const TOKEN = localStorage.getItem('token')
   console.log(TOKEN)
   if (TOKEN) {
     config.headers[TOKEN_PAYLOAD_KEY] = `Bearer ${TOKEN}`

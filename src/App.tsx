@@ -16,9 +16,9 @@ function App() {
   return (
     <ThemeProvider>
       <Provider store={store}>
-        <AuthProvider>
-          <ThemeRoutes />
-        </AuthProvider>
+        {/* <AuthProvider> */}
+        <ThemeRoutes />
+        {/* </AuthProvider> */}
       </Provider>
     </ThemeProvider>
   )
