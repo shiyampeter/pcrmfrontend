@@ -1118,7 +1118,12 @@ const HORIZONTAL_MENU_ITEMS: MenuItemTypes[] = [
         url: '/master/work-category',
         parentKey: 'master',
       },
-
+      {
+        key: 'work-subcategory',
+        label: 'Work SubCategory',
+        url: '/master/work-subcategory',
+        parentKey: 'master',
+      },
       // {
       //   key: 'pos',
       //   label: 'POS',
