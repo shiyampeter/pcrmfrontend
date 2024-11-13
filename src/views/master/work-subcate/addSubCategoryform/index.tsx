@@ -10,6 +10,9 @@ import { LoadingButton } from '@mui/lab'
 import SelectField from '@/components/components/reusableFormFields/selectField'
 import TextFormField from '@/components/components/reusableFormFields/TextField'
 import ImageUploadComponent from '@/components/components/reusableFormFields/ImageUpload'
+import CheckboxTextField from '@/components/components/reusableFormFields/CheckboxTextField'
+import CheckboxSelectTextField from '@/components/components/reusableFormFields/CheckboxSelectTextField'
+import CheckboxSelectTextFieldDays from '@/components/components/reusableFormFields/CheckboxSelectTextFieldDays'
 // import { categoryForm } from '../../../../helpers/validate'
 // import {
 //   addCategoryData,
@@ -19,7 +22,7 @@ import ImageUploadComponent from '@/components/components/reusableFormFields/Ima
 // import { commonListData } from '../../../../redux/api/admin/productService'
 // import { errorAlert, successAlert } from '../../../../helpers/globalFunctions'
 
-const AddCategoryForm = (props, disabled) => {
+const AddSubCtegoryForm = (props, disabled) => {
   const { onClick, initialData = null, type } = props
 
   const [showPassword, setShowPassword] = useState(false)
@@ -155,6 +158,27 @@ const AddCategoryForm = (props, disabled) => {
   //     reset()
   //   }
   // }, [initialvalue])
+  const data = [
+    {
+      id: 1,
+      label: 'one',
+    },
+  ]
+
+  const percentageAmountOptions = [
+    { value: 'Percentage', label: 'Percentage' },
+    { value: 'Amount', label: 'Amount' },
+  ]
+  const alterOptions = [
+    { value: 'before', label: 'Before' },
+    { value: 'after', label: 'After' },
+  ]
+  const timeOptions = [
+    { value: 'day', label: 'Days' },
+    { value: 'week', label: 'Weeks' },
+    { value: 'month', label: 'Months' },
+    { value: 'year', label: 'Years' },
+  ]
 
   return (
     <Box sx={{ mx: 2 }}>
@@ -162,89 +186,130 @@ const AddCategoryForm = (props, disabled) => {
         <FormLoader />
       ) : ( */}
       <form
-      // onSubmit={
-      //   type === 'add' ? handleSubmit(handleAddCategory) : handleSubmit(handleEditCategory)
-      // }
-      >
+        // onSubmit={
+        //   type === 'add' ? handleSubmit(handleAddCategory) : handleSubmit(handleEditCategory)
+        // }
+        onSubmit={handleSubmit(handleAddCategory)}>
         <Grid container spacing={5} sx={{ mb: 2 }}>
           <Grid item xs={6} direction={'column'}>
-            <TextFormField
-              name="label"
+            <SelectField
+              name="work_name"
               control={control}
+              label="Select Work Category"
               Controller={Controller}
-              label="Work Name"
-              error={errors?.label?.message}
+              data={data}
+              error={errors?.category?.message}
+              // disabled={type === "edit" && true}
             />
           </Grid>
           <Grid item xs={6} direction={'column'}>
             <TextFormField
-              name="label"
+              name="sub_work_cate_name"
               control={control}
               Controller={Controller}
-              label="Work Type"
+              label="Select Work Category Name"
               error={errors?.label?.message}
             />
           </Grid>
         </Grid>
         <Grid container spacing={5} sx={{ mb: 2 }}>
           <Grid item xs={6} direction={'column'}>
-            <TextFormField
-              name="label"
+            <CheckboxTextField
+              label="Work Price"
+              checkboxLabel="Fixed"
+              placeholder="Work Price"
               control={control}
               Controller={Controller}
-              label="Tracking No"
-              error={errors?.label?.message}
+              name="myFielde" // this will be the key in form output
             />
           </Grid>
           <Grid item xs={6} direction={'column'}>
-            <TextFormField
-              name="label"
+            <CheckboxTextField
+              label="Online Price"
+              checkboxLabel="Fixed"
+              placeholder="Online Price"
               control={control}
               Controller={Controller}
-              label="Tracking Site"
-              error={errors?.label?.message}
+              name="myFieldt" // this will be the key in form output
             />
           </Grid>
         </Grid>
 
         <Grid container spacing={5} sx={{ mb: 2 }}>
           <Grid item xs={6}>
-            {/* {essential?.category && ( */}
-            {/* <SelectField
-              name="parent_id"
-              control={control}
-              label="Category"
-              Controller={Controller}
-              // data={essential?.category}
-              error={errors?.category?.message}
-              // disabled={type === "edit" && true}
-            /> */}
-            {/* )} */}
-          </Grid>
-        </Grid>
-
-        <Grid container spacing={2} sx={{ mb: 2 }}>
-          <Grid item xs={12} md={12} className="address-employee">
-            {/* <ImageUploadComponent
+            <CheckboxTextField
+              label="Expense Price"
+              checkboxLabel="Fixed"
+              placeholder="Expense Price"
               control={control}
               Controller={Controller}
-              name="category_image"
-              label=" Image"
-              watch={watch}
-              setValue={setValue}
-            /> */}
-            <Typography variant="subtitle1">Work Completed</Typography>
-            <Controller
-              name="checkbox"
-              control={control}
-              defaultValue={false}
-              render={({ field }) => (
-                <FormControlLabel control={<Checkbox {...field} />} label="Work Completed" />
-              )}
+              name="myFieldh" // this will be the key in form output
             />
           </Grid>
         </Grid>
 
+        <Grid container spacing={2} sx={{ mb: 2 }}>
+          <Grid item xs={6} md={6} className="address-employee">
+            <CheckboxSelectTextField
+              label="Discount Type"
+              selectLabel="Discount Type"
+              control={control}
+              Controller={Controller}
+              textLabel="Discount Value"
+              selectOptions={percentageAmountOptions}
+              name="myField1" // this will store data as { isFixed, type, value } in form output
+            />
+          </Grid>
+          <Grid item xs={6} md={6} className="address-employee">
+            <CheckboxSelectTextField
+              label="Incentive Type"
+              selectLabel="Incentive Type"
+              control={control}
+              Controller={Controller}
+              textLabel="Incentive Value"
+              selectOptions={percentageAmountOptions}
+              name="myField2" // this will store data as { isFixed, type, value } in form output
+            />
+          </Grid>
+        </Grid>
+        <Grid container spacing={2} sx={{ mb: 2 }}>
+          <Grid item xs={6} md={6} className="address-employee">
+            <CheckboxSelectTextField
+              label="Validity Type"
+              selectLabel="Validity Type"
+              control={control}
+              Controller={Controller}
+              selectOptions={timeOptions}
+              textLabel="Validity  Value"
+              name="myFieldg" // this will store data as { isFixed, type, value } in form output
+            />
+          </Grid>
+          <Grid item xs={6} md={6} className="address-employee">
+            <CheckboxSelectTextField
+              label="Alter Before/After"
+              selectLabel="Alter Before/After"
+              control={control}
+              Controller={Controller}
+              selectOptions={alterOptions}
+              textLabel="Incentive Value"
+              name="myFieldn" // this will store data as { isFixed, type, value } in form output
+            />
+          </Grid>
+        </Grid>
+
+        <Grid container spacing={2} sx={{ mb: 2 }}>
+          <Grid item xs={6} md={6} className="address-employee">
+            <SelectField
+              name="select_status"
+              control={control}
+              label="Select Status"
+              Controller={Controller}
+              data={data}
+              error={errors?.category?.message}
+              // disabled={type === "edit" && true}
+            />
+          </Grid>
+        </Grid>
         <Stack
           direction={'row'}
           alignItems={'flex-end'}
@@ -269,4 +334,4 @@ const AddCategoryForm = (props, disabled) => {
   )
 }
 
-export default AddCategoryForm
+export default AddSubCtegoryForm

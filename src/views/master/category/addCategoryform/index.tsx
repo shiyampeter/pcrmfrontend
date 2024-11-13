@@ -179,6 +179,15 @@ const AddCategoryForm = (props, disabled) => {
               label="Work Type"
               error={errors?.label?.message}
             />
+            <SelectField
+              name="work_type"
+              control={control}
+              label="Work Type"
+              Controller={Controller}
+              // data={essential?.category}
+              error={errors?.category?.message}
+              // disabled={type === "edit" && true}
+            />
           </Grid>
         </Grid>
         <Grid container spacing={5} sx={{ mb: 2 }}>

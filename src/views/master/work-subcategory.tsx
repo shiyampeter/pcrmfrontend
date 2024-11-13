@@ -26,9 +26,10 @@ import TablePagination from '@/components/components/Pagination'
 import DeleteModal from '@/components/components/deleteModal'
 import EditIcon from '@mui/icons-material/Edit'
 import DeleteIcon from '@mui/icons-material/Delete'
-import AddCategoryForm from './category/addCategoryform'
+
 import DialogTitle from '@mui/material/DialogTitle'
 import { Link } from 'react-router-dom'
+import AddSubCtegoryForm from './work-subcate/addSubCategoryform'
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />
 })
@@ -280,7 +281,11 @@ function WorkSubCategory() {
                 </IconButton>
               </Stack>
             </DialogTitle>
-            <AddCategoryForm onClick={handleButtonClick} initialData={singleData} type={addType} />
+            <AddSubCtegoryForm
+              onClick={handleButtonClick}
+              initialData={singleData}
+              type={addType}
+            />
           </Dialog>
         ) : null}
       </Box>
