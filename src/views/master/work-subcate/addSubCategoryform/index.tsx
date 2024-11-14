@@ -190,8 +190,11 @@ const AddSubCtegoryForm = (props, disabled) => {
         //   type === 'add' ? handleSubmit(handleAddCategory) : handleSubmit(handleEditCategory)
         // }
         onSubmit={handleSubmit(handleAddCategory)}>
+        <Typography sx={{ fontSize: '20px', fontWeight: 'bold', mb: 2 }}>
+          Category Section
+        </Typography>
         <Grid container spacing={5} sx={{ mb: 2 }}>
-          <Grid item xs={6} direction={'column'}>
+          <Grid item xs={4} direction={'column'}>
             <SelectField
               name="work_name"
               control={control}
@@ -202,7 +205,7 @@ const AddSubCtegoryForm = (props, disabled) => {
               // disabled={type === "edit" && true}
             />
           </Grid>
-          <Grid item xs={6} direction={'column'}>
+          <Grid item xs={4} direction={'column'}>
             <TextFormField
               name="sub_work_cate_name"
               control={control}
@@ -212,8 +215,9 @@ const AddSubCtegoryForm = (props, disabled) => {
             />
           </Grid>
         </Grid>
+        <Typography sx={{ fontSize: '20px', fontWeight: 'bold', mb: 2 }}>Price Section</Typography>
         <Grid container spacing={5} sx={{ mb: 2 }}>
-          <Grid item xs={6} direction={'column'}>
+          <Grid item xs={4} direction={'column'}>
             <CheckboxTextField
               label="Work Price"
               checkboxLabel="Fixed"
@@ -223,7 +227,7 @@ const AddSubCtegoryForm = (props, disabled) => {
               name="myFielde" // this will be the key in form output
             />
           </Grid>
-          <Grid item xs={6} direction={'column'}>
+          <Grid item xs={4} direction={'column'}>
             <CheckboxTextField
               label="Online Price"
               checkboxLabel="Fixed"
@@ -233,10 +237,7 @@ const AddSubCtegoryForm = (props, disabled) => {
               name="myFieldt" // this will be the key in form output
             />
           </Grid>
-        </Grid>
-
-        <Grid container spacing={5} sx={{ mb: 2 }}>
-          <Grid item xs={6}>
+          <Grid item xs={4}>
             <CheckboxTextField
               label="Expense Price"
               checkboxLabel="Fixed"
@@ -247,9 +248,23 @@ const AddSubCtegoryForm = (props, disabled) => {
             />
           </Grid>
         </Grid>
-
+        {/* <Grid container spacing={5} sx={{ mb: 2 }}>
+          <Grid item xs={6}>
+            <CheckboxTextField
+              label="Expense Price"
+              checkboxLabel="Fixed"
+              placeholder="Expense Price"
+              control={control}
+              Controller={Controller}
+              name="myFieldh" // this will be the key in form output
+            />
+          </Grid>
+        </Grid> */}
+        <Typography sx={{ fontSize: '20px', fontWeight: 'bold', mb: 2 }}>
+          Discount Section
+        </Typography>
         <Grid container spacing={2} sx={{ mb: 2 }}>
-          <Grid item xs={6} md={6} className="address-employee">
+          <Grid item xs={12} md={4} className="address-employee">
             <CheckboxSelectTextField
               label="Discount Type"
               selectLabel="Discount Type"
@@ -260,7 +275,7 @@ const AddSubCtegoryForm = (props, disabled) => {
               name="myField1" // this will store data as { isFixed, type, value } in form output
             />
           </Grid>
-          <Grid item xs={6} md={6} className="address-employee">
+          <Grid item xs={12} md={4} className="address-employee">
             <CheckboxSelectTextField
               label="Incentive Type"
               selectLabel="Incentive Type"
@@ -271,9 +286,12 @@ const AddSubCtegoryForm = (props, disabled) => {
               name="myField2" // this will store data as { isFixed, type, value } in form output
             />
           </Grid>
-        </Grid>
+        </Grid>{' '}
+        <Typography sx={{ fontSize: '20px', fontWeight: 'bold', mb: 2 }}>
+          Validity Section
+        </Typography>
         <Grid container spacing={2} sx={{ mb: 2 }}>
-          <Grid item xs={6} md={6} className="address-employee">
+          <Grid item xs={6} md={4} className="address-employee">
             <CheckboxSelectTextField
               label="Validity Type"
               selectLabel="Validity Type"
@@ -284,7 +302,7 @@ const AddSubCtegoryForm = (props, disabled) => {
               name="myFieldg" // this will store data as { isFixed, type, value } in form output
             />
           </Grid>
-          <Grid item xs={6} md={6} className="address-employee">
+          <Grid item xs={6} md={4} className="address-employee">
             <CheckboxSelectTextField
               label="Alter Before/After"
               selectLabel="Alter Before/After"
@@ -296,9 +314,9 @@ const AddSubCtegoryForm = (props, disabled) => {
             />
           </Grid>
         </Grid>
-
+        <Typography sx={{ fontSize: '20px', fontWeight: 'bold', mb: 2 }}>Status Section</Typography>
         <Grid container spacing={2} sx={{ mb: 2 }}>
-          <Grid item xs={6} md={6} className="address-employee">
+          <Grid item xs={6} md={4} className="address-employee">
             <SelectField
               name="select_status"
               control={control}
@@ -316,16 +334,16 @@ const AddSubCtegoryForm = (props, disabled) => {
           justifyContent={'flex-end'}
           gap={5}
           sx={{ p: 3 }}>
-          <Button className="submitBtnn" variant="contained">
+          {/* <Button className="submitBtnn" variant="contained" onClick={handleClose}>
             Cancel
-          </Button>
+          </Button> */}
           <LoadingButton
             loadingPosition="center"
             loading={isSubmitting}
             variant="contained"
             type="submit"
             className="submitBtnn">
-            Add Row
+            Save
           </LoadingButton>
         </Stack>
       </form>

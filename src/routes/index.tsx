@@ -262,498 +262,498 @@ const masterRoutes: RoutesProps = {
 }
 
 // Apps
-const appsRoutes: RoutesProps = {
-  path: '/apps',
-  name: 'Apps',
-  children: [
-    {
-      path: '/apps/chat',
-      name: 'Chat',
-      element: <Chat />,
-      route: PrivateRoute,
-    },
-    {
-      path: '/apps/email',
-      name: 'Email',
-      element: <Email />,
-      route: PrivateRoute,
-    },
-    {
-      path: '/apps/contact',
-      name: 'Contact',
-      element: <Contact />,
-      route: PrivateRoute,
-    },
-    {
-      path: '/apps/invoice',
-      name: 'Invoice',
-      element: <Invoice />,
-      route: PrivateRoute,
-    },
-    {
-      path: '/apps/kanban',
-      name: 'Kanban',
-      element: <Kanban />,
-      route: PrivateRoute,
-    },
-    {
-      path: '/apps/calendar',
-      name: 'Calendar',
-      element: <Calendar />,
-      route: PrivateRoute,
-    },
-  ],
-}
+// const appsRoutes: RoutesProps = {
+//   path: '/apps',
+//   name: 'Apps',
+//   children: [
+//     {
+//       path: '/apps/chat',
+//       name: 'Chat',
+//       element: <Chat />,
+//       route: PrivateRoute,
+//     },
+//     {
+//       path: '/apps/email',
+//       name: 'Email',
+//       element: <Email />,
+//       route: PrivateRoute,
+//     },
+//     {
+//       path: '/apps/contact',
+//       name: 'Contact',
+//       element: <Contact />,
+//       route: PrivateRoute,
+//     },
+//     {
+//       path: '/apps/invoice',
+//       name: 'Invoice',
+//       element: <Invoice />,
+//       route: PrivateRoute,
+//     },
+//     {
+//       path: '/apps/kanban',
+//       name: 'Kanban',
+//       element: <Kanban />,
+//       route: PrivateRoute,
+//     },
+//     {
+//       path: '/apps/calendar',
+//       name: 'Calendar',
+//       element: <Calendar />,
+//       route: PrivateRoute,
+//     },
+//   ],
+// }
 
 // Components
-const componentsRoutes: RoutesProps = {
-  path: '/components',
-  name: 'Components',
-  header: 'UI Elements',
-  children: [
-    {
-      path: '/components/base',
-      name: 'Base UI',
-      children: [
-        {
-          path: '/components/base/accordions',
-          name: 'Accordions',
-          element: <Accordions />,
-          route: PrivateRoute,
-        },
-        {
-          path: '/components/base/avatars',
-          name: 'Avatars',
-          element: <Avatars />,
-          route: PrivateRoute,
-        },
-        {
-          path: '/components/base/buttons',
-          name: 'Buttons',
-          element: <Buttons />,
-          route: PrivateRoute,
-        },
-        {
-          path: '/components/base/cards',
-          name: 'Cards',
-          element: <Cards />,
-          route: PrivateRoute,
-        },
-        {
-          path: '/components/base/carousel',
-          name: 'Carousels',
-          element: <Carousels />,
-          route: PrivateRoute,
-        },
-        {
-          path: '/components/base/dropdowns',
-          name: 'Dropdowns',
-          element: <Dropdowns />,
-          route: PrivateRoute,
-        },
-        {
-          path: '/components/base/modals',
-          name: 'Modals',
-          element: <Modals />,
-          route: PrivateRoute,
-        },
-        {
-          path: '/components/base/navtabs',
-          name: 'NavTabs',
-          element: <NavTabs />,
-          route: PrivateRoute,
-        },
-        {
-          path: '/components/base/toasts',
-          name: 'Toasts',
-          element: <Toasts />,
-          route: PrivateRoute,
-        },
-        {
-          path: '/components/base/miscellaneous',
-          name: 'Miscellaneous',
-          element: <Miscellaneous />,
-          route: PrivateRoute,
-        },
-      ],
-    },
-    {
-      path: '/components/icons',
-      name: 'Icons',
-      children: [
-        {
-          path: '/components/icons/flaticon',
-          name: 'Flaticon',
-          element: <Flaticon />,
-          route: PrivateRoute,
-        },
-        {
-          path: '/components/icons/feather',
-          name: 'Feather',
-          element: <Feather />,
-          route: PrivateRoute,
-        },
-        {
-          path: '/components/icons/bootstrap',
-          name: 'Bootstrap',
-          element: <Bootstrap />,
-          route: PrivateRoute,
-        },
-        {
-          path: '/components/icons/boxicons',
-          name: 'BoxIcons',
-          element: <BoxIcons />,
-          route: PrivateRoute,
-        },
-        {
-          path: '/components/icons/fontawesome',
-          name: 'FontAwesome',
-          element: <FontAwesome />,
-          route: PrivateRoute,
-        },
-        {
-          path: '/components/icons/lucide',
-          name: 'Lucide',
-          element: <Lucide />,
-          route: PrivateRoute,
-        },
-        {
-          path: '/components/icons/tabler',
-          name: 'Tabler',
-          element: <Tabler />,
-          route: PrivateRoute,
-        },
-        {
-          path: '/components/icons/weather',
-          name: 'Weather',
-          element: <Weather />,
-          route: PrivateRoute,
-        },
-      ],
-    },
-    {
-      path: '/components/tables',
-      name: 'Tables',
-      children: [
-        {
-          path: '/components/tables/bootstap-table',
-          name: 'Bootstap',
-          element: <BootstapTable />,
-          route: PrivateRoute,
-        },
-        {
-          path: '/components/tables/react-table',
-          name: 'ReactTable',
-          element: <ReactTable />,
-          route: PrivateRoute,
-        },
-      ],
-    },
-    {
-      path: '/components/charts',
-      name: 'Charts',
-      children: [
-        {
-          path: '/components/charts/apexcharts',
-          name: 'ApexCharts',
-          element: <ApexCharts />,
-          route: PrivateRoute,
-        },
-        {
-          path: '/components/charts/chartjs',
-          name: 'ChartJS',
-          element: <ChartJs />,
-          route: PrivateRoute,
-        },
-        {
-          path: '/components/charts/recharts',
-          name: 'Recharts',
-          element: <Recharts />,
-          route: PrivateRoute,
-        },
-        {
-          path: '/components/charts/progressbar',
-          name: 'Progressbar',
-          element: <Progressbar />,
-          route: PrivateRoute,
-        },
-      ],
-    },
-    {
-      path: '/components/forms',
-      name: 'Forms',
-      children: [
-        {
-          path: '/components/forms/adv-radio',
-          name: 'Radios',
-          element: <AdvRadio />,
-          route: PrivateRoute,
-        },
-        {
-          path: '/components/forms/adv-checkbox',
-          name: 'Checkboxs',
-          element: <AdvCheckbox />,
-          route: PrivateRoute,
-        },
-        {
-          path: '/components/forms/adv-switch',
-          name: 'Switchs',
-          element: <AdvSwitch />,
-          route: PrivateRoute,
-        },
-        {
-          path: '/components/forms/elements',
-          name: 'Elements',
-          element: <Elements />,
-          route: PrivateRoute,
-        },
-        {
-          path: '/components/forms/validation',
-          name: 'Validation',
-          element: <Validation />,
-          route: PrivateRoute,
-        },
-        {
-          path: '/components/forms/inputmask',
-          name: 'InputMask',
-          element: <InputMask />,
-          route: PrivateRoute,
-        },
-        {
-          path: '/components/forms/nouislider',
-          name: 'noUiSlider',
-          element: <NoUiSlider />,
-          route: PrivateRoute,
-        },
-      ],
-    },
-    {
-      path: '/components/editors',
-      name: 'Editors',
-      children: [
-        {
-          path: '/components/editors/quill',
-          name: 'Quill',
-          element: <EditorQuill />,
-          route: PrivateRoute,
-        },
-        {
-          path: '/components/editors/tinymce',
-          name: 'TinyMCE',
-          element: <EditorTinyMCE />,
-          route: PrivateRoute,
-        },
-      ],
-    },
-    {
-      path: '/components/pickers',
-      name: 'Pickers',
-      children: [
-        {
-          path: '/components/pickers/flatpickr',
-          name: 'Flatpickr',
-          element: <Flatpickr />,
-          route: PrivateRoute,
-        },
-        {
-          path: '/components/pickers/daterangepicker',
-          name: 'Daterange',
-          element: <DaterangePicker />,
-          route: PrivateRoute,
-        },
-      ],
-    },
-    {
-      path: '/components/maps',
-      name: 'Maps',
-      children: [
-        {
-          path: '/components/maps/vector-maps',
-          name: 'Vector Maps',
-          element: <VectorMaps />,
-          route: PrivateRoute,
-        },
-      ],
-    },
-    {
-      path: '/components/extended',
-      name: 'Extended',
-      children: [
-        {
-          path: '/components/extended/select2',
-          name: 'React2',
-          element: <ReactSelect />,
-          route: PrivateRoute,
-        },
-        {
-          path: '/components/extended/sweetalert2',
-          name: 'SweetAlert2',
-          element: <SweetAlert2 />,
-          route: PrivateRoute,
-        },
-        {
-          path: '/components/extended/react-slick',
-          name: 'React Slick',
-          element: <ReactSlick />,
-          route: PrivateRoute,
-        },
-        {
-          path: '/components/extended/dropzone',
-          name: 'Dropzone',
-          element: <Dropzone />,
-          route: PrivateRoute,
-        },
-        {
-          path: '/components/extended/hottoast',
-          name: 'HotToast',
-          element: <HotToast />,
-          route: PrivateRoute,
-        },
-        {
-          path: '/components/extended/toastify',
-          name: 'Toastify',
-          element: <Toastify />,
-          route: PrivateRoute,
-        },
-      ],
-    },
-  ],
-}
+// const componentsRoutes: RoutesProps = {
+//   path: '/components',
+//   name: 'Components',
+//   header: 'UI Elements',
+//   children: [
+//     {
+//       path: '/components/base',
+//       name: 'Base UI',
+//       children: [
+//         {
+//           path: '/components/base/accordions',
+//           name: 'Accordions',
+//           element: <Accordions />,
+//           route: PrivateRoute,
+//         },
+//         {
+//           path: '/components/base/avatars',
+//           name: 'Avatars',
+//           element: <Avatars />,
+//           route: PrivateRoute,
+//         },
+//         {
+//           path: '/components/base/buttons',
+//           name: 'Buttons',
+//           element: <Buttons />,
+//           route: PrivateRoute,
+//         },
+//         {
+//           path: '/components/base/cards',
+//           name: 'Cards',
+//           element: <Cards />,
+//           route: PrivateRoute,
+//         },
+//         {
+//           path: '/components/base/carousel',
+//           name: 'Carousels',
+//           element: <Carousels />,
+//           route: PrivateRoute,
+//         },
+//         {
+//           path: '/components/base/dropdowns',
+//           name: 'Dropdowns',
+//           element: <Dropdowns />,
+//           route: PrivateRoute,
+//         },
+//         {
+//           path: '/components/base/modals',
+//           name: 'Modals',
+//           element: <Modals />,
+//           route: PrivateRoute,
+//         },
+//         {
+//           path: '/components/base/navtabs',
+//           name: 'NavTabs',
+//           element: <NavTabs />,
+//           route: PrivateRoute,
+//         },
+//         {
+//           path: '/components/base/toasts',
+//           name: 'Toasts',
+//           element: <Toasts />,
+//           route: PrivateRoute,
+//         },
+//         {
+//           path: '/components/base/miscellaneous',
+//           name: 'Miscellaneous',
+//           element: <Miscellaneous />,
+//           route: PrivateRoute,
+//         },
+//       ],
+//     },
+//     {
+//       path: '/components/icons',
+//       name: 'Icons',
+//       children: [
+//         {
+//           path: '/components/icons/flaticon',
+//           name: 'Flaticon',
+//           element: <Flaticon />,
+//           route: PrivateRoute,
+//         },
+//         {
+//           path: '/components/icons/feather',
+//           name: 'Feather',
+//           element: <Feather />,
+//           route: PrivateRoute,
+//         },
+//         {
+//           path: '/components/icons/bootstrap',
+//           name: 'Bootstrap',
+//           element: <Bootstrap />,
+//           route: PrivateRoute,
+//         },
+//         {
+//           path: '/components/icons/boxicons',
+//           name: 'BoxIcons',
+//           element: <BoxIcons />,
+//           route: PrivateRoute,
+//         },
+//         {
+//           path: '/components/icons/fontawesome',
+//           name: 'FontAwesome',
+//           element: <FontAwesome />,
+//           route: PrivateRoute,
+//         },
+//         {
+//           path: '/components/icons/lucide',
+//           name: 'Lucide',
+//           element: <Lucide />,
+//           route: PrivateRoute,
+//         },
+//         {
+//           path: '/components/icons/tabler',
+//           name: 'Tabler',
+//           element: <Tabler />,
+//           route: PrivateRoute,
+//         },
+//         {
+//           path: '/components/icons/weather',
+//           name: 'Weather',
+//           element: <Weather />,
+//           route: PrivateRoute,
+//         },
+//       ],
+//     },
+//     {
+//       path: '/components/tables',
+//       name: 'Tables',
+//       children: [
+//         {
+//           path: '/components/tables/bootstap-table',
+//           name: 'Bootstap',
+//           element: <BootstapTable />,
+//           route: PrivateRoute,
+//         },
+//         {
+//           path: '/components/tables/react-table',
+//           name: 'ReactTable',
+//           element: <ReactTable />,
+//           route: PrivateRoute,
+//         },
+//       ],
+//     },
+//     {
+//       path: '/components/charts',
+//       name: 'Charts',
+//       children: [
+//         {
+//           path: '/components/charts/apexcharts',
+//           name: 'ApexCharts',
+//           element: <ApexCharts />,
+//           route: PrivateRoute,
+//         },
+//         {
+//           path: '/components/charts/chartjs',
+//           name: 'ChartJS',
+//           element: <ChartJs />,
+//           route: PrivateRoute,
+//         },
+//         {
+//           path: '/components/charts/recharts',
+//           name: 'Recharts',
+//           element: <Recharts />,
+//           route: PrivateRoute,
+//         },
+//         {
+//           path: '/components/charts/progressbar',
+//           name: 'Progressbar',
+//           element: <Progressbar />,
+//           route: PrivateRoute,
+//         },
+//       ],
+//     },
+//     {
+//       path: '/components/forms',
+//       name: 'Forms',
+//       children: [
+//         {
+//           path: '/components/forms/adv-radio',
+//           name: 'Radios',
+//           element: <AdvRadio />,
+//           route: PrivateRoute,
+//         },
+//         {
+//           path: '/components/forms/adv-checkbox',
+//           name: 'Checkboxs',
+//           element: <AdvCheckbox />,
+//           route: PrivateRoute,
+//         },
+//         {
+//           path: '/components/forms/adv-switch',
+//           name: 'Switchs',
+//           element: <AdvSwitch />,
+//           route: PrivateRoute,
+//         },
+//         {
+//           path: '/components/forms/elements',
+//           name: 'Elements',
+//           element: <Elements />,
+//           route: PrivateRoute,
+//         },
+//         {
+//           path: '/components/forms/validation',
+//           name: 'Validation',
+//           element: <Validation />,
+//           route: PrivateRoute,
+//         },
+//         {
+//           path: '/components/forms/inputmask',
+//           name: 'InputMask',
+//           element: <InputMask />,
+//           route: PrivateRoute,
+//         },
+//         {
+//           path: '/components/forms/nouislider',
+//           name: 'noUiSlider',
+//           element: <NoUiSlider />,
+//           route: PrivateRoute,
+//         },
+//       ],
+//     },
+//     {
+//       path: '/components/editors',
+//       name: 'Editors',
+//       children: [
+//         {
+//           path: '/components/editors/quill',
+//           name: 'Quill',
+//           element: <EditorQuill />,
+//           route: PrivateRoute,
+//         },
+//         {
+//           path: '/components/editors/tinymce',
+//           name: 'TinyMCE',
+//           element: <EditorTinyMCE />,
+//           route: PrivateRoute,
+//         },
+//       ],
+//     },
+//     {
+//       path: '/components/pickers',
+//       name: 'Pickers',
+//       children: [
+//         {
+//           path: '/components/pickers/flatpickr',
+//           name: 'Flatpickr',
+//           element: <Flatpickr />,
+//           route: PrivateRoute,
+//         },
+//         {
+//           path: '/components/pickers/daterangepicker',
+//           name: 'Daterange',
+//           element: <DaterangePicker />,
+//           route: PrivateRoute,
+//         },
+//       ],
+//     },
+//     {
+//       path: '/components/maps',
+//       name: 'Maps',
+//       children: [
+//         {
+//           path: '/components/maps/vector-maps',
+//           name: 'Vector Maps',
+//           element: <VectorMaps />,
+//           route: PrivateRoute,
+//         },
+//       ],
+//     },
+//     {
+//       path: '/components/extended',
+//       name: 'Extended',
+//       children: [
+//         {
+//           path: '/components/extended/select2',
+//           name: 'React2',
+//           element: <ReactSelect />,
+//           route: PrivateRoute,
+//         },
+//         {
+//           path: '/components/extended/sweetalert2',
+//           name: 'SweetAlert2',
+//           element: <SweetAlert2 />,
+//           route: PrivateRoute,
+//         },
+//         {
+//           path: '/components/extended/react-slick',
+//           name: 'React Slick',
+//           element: <ReactSlick />,
+//           route: PrivateRoute,
+//         },
+//         {
+//           path: '/components/extended/dropzone',
+//           name: 'Dropzone',
+//           element: <Dropzone />,
+//           route: PrivateRoute,
+//         },
+//         {
+//           path: '/components/extended/hottoast',
+//           name: 'HotToast',
+//           element: <HotToast />,
+//           route: PrivateRoute,
+//         },
+//         {
+//           path: '/components/extended/toastify',
+//           name: 'Toastify',
+//           element: <Toastify />,
+//           route: PrivateRoute,
+//         },
+//       ],
+//     },
+//   ],
+// }
 
 // Pages
-const pagesRoutes = {
-  path: '/pages',
-  name: 'Pages',
-  header: 'Custom',
-  children: [
-    {
-      path: '/pages/user-profile',
-      name: 'User Profile',
-      children: [
-        {
-          path: '/user-profile/overview',
-          name: 'Overview',
-          element: <Overview />,
-          route: PrivateRoute,
-        },
-        {
-          path: '/user-profile/activity',
-          name: 'Activity',
-          element: <Activity />,
-          route: PrivateRoute,
-        },
-        {
-          path: '/user-profile/followers',
-          name: 'Followers',
-          element: <Followers />,
-          route: PrivateRoute,
-        },
-        {
-          path: '/user-profile/contacts',
-          name: 'Contacts',
-          element: <Contacts />,
-          route: PrivateRoute,
-        },
-        {
-          path: '/user-profile/projects',
-          name: 'Projects',
-          element: <Projects />,
-          route: PrivateRoute,
-        },
-        {
-          path: '/user-profile/gallery',
-          name: 'Gallery',
-          element: <Gallery />,
-          route: PrivateRoute,
-        },
-      ],
-    },
-    {
-      path: '/pages/account-settings',
-      name: 'Account Settings',
-      children: [
-        {
-          path: '/account-settings/account',
-          name: 'Account',
-          element: <Account />,
-          route: PrivateRoute,
-        },
-        {
-          path: '/account-settings/security',
-          name: 'Security',
-          element: <Security />,
-          route: PrivateRoute,
-        },
-        {
-          path: '/account-settings/notifications',
-          name: 'Notifications',
-          element: <Notifications />,
-          route: PrivateRoute,
-        },
-        {
-          path: '/account-settings/billing',
-          name: 'Plan & Billing',
-          element: <Billing />,
-          route: PrivateRoute,
-        },
-        {
-          path: '/account-settings/integrations',
-          name: 'Integrations',
-          element: <Integrations />,
-          route: PrivateRoute,
-        },
-      ],
-    },
-    {
-      path: '/pages/other-pages',
-      name: 'Other Pages',
-      children: [
-        {
-          path: '/other-pages/starter',
-          name: 'Starter',
-          element: <StarterPage />,
-          route: PrivateRoute,
-        },
-        {
-          path: '/other-pages/faqs',
-          name: 'FAQs',
-          element: <FAQs />,
-          route: PrivateRoute,
-        },
-        {
-          path: '/other-pages/pricing',
-          name: 'Pricing',
-          element: <Pricing />,
-          route: PrivateRoute,
-        },
-        {
-          path: '/other-pages/about-us',
-          name: 'About Us',
-          element: <AboutUs />,
-          route: PrivateRoute,
-        },
-        {
-          path: '/other-pages/contact-us',
-          name: 'Contact Us',
-          element: <ContactUs />,
-          route: PrivateRoute,
-        },
-        {
-          path: '/other-pages/privacy-policy',
-          name: 'Privacy & Policy',
-          element: <PrivacyPolicy />,
-          route: PrivateRoute,
-        },
-        {
-          path: '/other-pages/terms-services',
-          name: 'Terms of Services',
-          element: <TermsServices />,
-          route: PrivateRoute,
-        },
-      ],
-    },
-  ],
-}
+// const pagesRoutes = {
+//   path: '/pages',
+//   name: 'Pages',
+//   header: 'Custom',
+//   children: [
+//     {
+//       path: '/pages/user-profile',
+//       name: 'User Profile',
+//       children: [
+//         {
+//           path: '/user-profile/overview',
+//           name: 'Overview',
+//           element: <Overview />,
+//           route: PrivateRoute,
+//         },
+//         {
+//           path: '/user-profile/activity',
+//           name: 'Activity',
+//           element: <Activity />,
+//           route: PrivateRoute,
+//         },
+//         {
+//           path: '/user-profile/followers',
+//           name: 'Followers',
+//           element: <Followers />,
+//           route: PrivateRoute,
+//         },
+//         {
+//           path: '/user-profile/contacts',
+//           name: 'Contacts',
+//           element: <Contacts />,
+//           route: PrivateRoute,
+//         },
+//         {
+//           path: '/user-profile/projects',
+//           name: 'Projects',
+//           element: <Projects />,
+//           route: PrivateRoute,
+//         },
+//         {
+//           path: '/user-profile/gallery',
+//           name: 'Gallery',
+//           element: <Gallery />,
+//           route: PrivateRoute,
+//         },
+//       ],
+//     },
+//     {
+//       path: '/pages/account-settings',
+//       name: 'Account Settings',
+//       children: [
+//         {
+//           path: '/account-settings/account',
+//           name: 'Account',
+//           element: <Account />,
+//           route: PrivateRoute,
+//         },
+//         {
+//           path: '/account-settings/security',
+//           name: 'Security',
+//           element: <Security />,
+//           route: PrivateRoute,
+//         },
+//         {
+//           path: '/account-settings/notifications',
+//           name: 'Notifications',
+//           element: <Notifications />,
+//           route: PrivateRoute,
+//         },
+//         {
+//           path: '/account-settings/billing',
+//           name: 'Plan & Billing',
+//           element: <Billing />,
+//           route: PrivateRoute,
+//         },
+//         {
+//           path: '/account-settings/integrations',
+//           name: 'Integrations',
+//           element: <Integrations />,
+//           route: PrivateRoute,
+//         },
+//       ],
+//     },
+//     {
+//       path: '/pages/other-pages',
+//       name: 'Other Pages',
+//       children: [
+//         {
+//           path: '/other-pages/starter',
+//           name: 'Starter',
+//           element: <StarterPage />,
+//           route: PrivateRoute,
+//         },
+//         {
+//           path: '/other-pages/faqs',
+//           name: 'FAQs',
+//           element: <FAQs />,
+//           route: PrivateRoute,
+//         },
+//         {
+//           path: '/other-pages/pricing',
+//           name: 'Pricing',
+//           element: <Pricing />,
+//           route: PrivateRoute,
+//         },
+//         {
+//           path: '/other-pages/about-us',
+//           name: 'About Us',
+//           element: <AboutUs />,
+//           route: PrivateRoute,
+//         },
+//         {
+//           path: '/other-pages/contact-us',
+//           name: 'Contact Us',
+//           element: <ContactUs />,
+//           route: PrivateRoute,
+//         },
+//         {
+//           path: '/other-pages/privacy-policy',
+//           name: 'Privacy & Policy',
+//           element: <PrivacyPolicy />,
+//           route: PrivateRoute,
+//         },
+//         {
+//           path: '/other-pages/terms-services',
+//           name: 'Terms of Services',
+//           element: <TermsServices />,
+//           route: PrivateRoute,
+//         },
+//       ],
+//     },
+//   ],
+// }
 
 // Auth
 const authRoutes: RoutesProps[] = [
@@ -1053,60 +1053,60 @@ const errorRoutes: RoutesProps[] = [
 ]
 
 // Email Templates
-const emailRoutes: RoutesProps[] = [
-  {
-    path: '/email-template/et-welcome-message',
-    name: 'Welcome Message',
-    element: <EmailTemplateWelcomeMessage />,
-    route: Route,
-  },
-  {
-    path: '/email-template/et-confirm-account',
-    name: 'Confirm Account',
-    element: <EmailTemplateConfirmAccount />,
-    route: Route,
-  },
-  {
-    path: '/email-template/et-reset-password',
-    name: 'Reset Password',
-    element: <EmailTemplateResetPassword />,
-    route: Route,
-  },
-  {
-    path: '/email-template/et-expired-card',
-    name: 'Expired Card',
-    element: <EmailTemplateExpiredCard />,
-    route: Route,
-  },
-  {
-    path: '/email-template/et-coupon-sale',
-    name: 'Coupon Sale',
-    element: <EmailTemplateCouponSale />,
-    route: Route,
-  },
-  {
-    path: '/email-template/et-latest-update',
-    name: 'Latest Update',
-    element: <EmailTemplateLatestUpdate />,
-    route: Route,
-  },
-]
+// const emailRoutes: RoutesProps[] = [
+//   {
+//     path: '/email-template/et-welcome-message',
+//     name: 'Welcome Message',
+//     element: <EmailTemplateWelcomeMessage />,
+//     route: Route,
+//   },
+//   {
+//     path: '/email-template/et-confirm-account',
+//     name: 'Confirm Account',
+//     element: <EmailTemplateConfirmAccount />,
+//     route: Route,
+//   },
+//   {
+//     path: '/email-template/et-reset-password',
+//     name: 'Reset Password',
+//     element: <EmailTemplateResetPassword />,
+//     route: Route,
+//   },
+//   {
+//     path: '/email-template/et-expired-card',
+//     name: 'Expired Card',
+//     element: <EmailTemplateExpiredCard />,
+//     route: Route,
+//   },
+//   {
+//     path: '/email-template/et-coupon-sale',
+//     name: 'Coupon Sale',
+//     element: <EmailTemplateCouponSale />,
+//     route: Route,
+//   },
+//   {
+//     path: '/email-template/et-latest-update',
+//     name: 'Latest Update',
+//     element: <EmailTemplateLatestUpdate />,
+//     route: Route,
+//   },
+// ]
 
 // Docs
-const docsRoutes: RoutesProps[] = [
-  {
-    path: '../docs/support.html',
-    name: 'Support',
-  },
-  {
-    path: '../docs/changelog.html',
-    name: 'Changelog',
-  },
-  {
-    path: '../docs/documentation.html',
-    name: 'Documentation',
-  },
-]
+// const docsRoutes: RoutesProps[] = [
+//   {
+//     path: '../docs/support.html',
+//     name: 'Support',
+//   },
+//   {
+//     path: '../docs/changelog.html',
+//     name: 'Changelog',
+//   },
+//   {
+//     path: '../docs/documentation.html',
+//     name: 'Documentation',
+//   },
+// ]
 
 // flatten the list of all nested routes
 const flattenRoutes = (routes: RoutesProps[]) => {
@@ -1125,12 +1125,16 @@ const flattenRoutes = (routes: RoutesProps[]) => {
 // All routes
 const authProtectedRoutes = [
   dashboardRoutes,
-  appsRoutes,
-  pagesRoutes,
-  componentsRoutes,
+  // appsRoutes,
+  // pagesRoutes,
+  // componentsRoutes,
   masterRoutes,
 ]
-const publicRoutes = [...authRoutes, ...errorRoutes, ...emailRoutes, ...docsRoutes]
+const publicRoutes = [
+  ...authRoutes,
+  ...errorRoutes,
+  // ...emailRoutes, ...docsRoutes
+]
 
 const authProtectedFlattenRoutes = flattenRoutes([...authProtectedRoutes])
 const publicProtectedFlattenRoutes = flattenRoutes([...publicRoutes])

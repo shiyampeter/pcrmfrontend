@@ -271,7 +271,7 @@ function WorkCategory() {
             aria-describedby="alert-dialog-slide-description">
             <DialogTitle>
               <Stack direction={'row'} alignItems={'center'} justifyContent={'space-between'}>
-                <Box> {singleData ? 'Edit Category' : 'Add Work'}</Box>
+                <Box> {singleData ? 'Edit Category' : 'Add Category'}</Box>
                 <IconButton onClick={handleClose}>
                   <CloseIcon />
                 </IconButton>

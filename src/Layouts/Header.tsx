@@ -120,8 +120,7 @@ const Header = ({ toggleMenu, navOpen }: HeaderProps) => {
               className={`navbar-toggle ${navOpen ? 'open' : ''}`}
               data-bs-toggle="collapse"
               data-bs-target="#topnav-menu-content"
-              onClick={toggleMenu}
-            >
+              onClick={toggleMenu}>
               <div className="lines">
                 <span />
                 <span />
@@ -132,16 +131,16 @@ const Header = ({ toggleMenu, navOpen }: HeaderProps) => {
           </div>
           {/* header-right */}
           <div className="header-right d-flex align-items-center justify-content-center">
-            <Search />
-            <DarkLight />
-            <Languages />
-            <span className="d-none d-sm-flex">
+            {/* <Search /> */}
+            {/* <DarkLight /> */}
+            {/* <Languages /> */}
+            {/* <span className="d-none d-sm-flex">
               <Activity />
               <Helpdesk />
               <Applications />
-            </span>
+            </span> */}
             <Notifications />
-            <Profile />
+            {/* <Profile /> */}
             <div className="header-btn pe-md-0 d-lg-none" onClick={handleMegaMenuClick}>
               <i className="fi fi-rr-menu-burger"></i>
             </div>

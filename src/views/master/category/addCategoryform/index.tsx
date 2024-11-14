@@ -255,16 +255,16 @@ const AddCategoryForm = (props, disabled) => {
           justifyContent={'flex-end'}
           gap={5}
           sx={{ p: 3 }}>
-          <Button className="submitBtnn" variant="contained">
+          {/* <Button className="submitBtnn" variant="contained">
             Cancel
-          </Button>
+          </Button> */}
           <LoadingButton
             loadingPosition="center"
             loading={isSubmitting}
             variant="contained"
             type="submit"
             className="submitBtnn">
-            Add Row
+            Save
           </LoadingButton>
         </Stack>
       </form>

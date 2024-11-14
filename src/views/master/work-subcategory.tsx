@@ -272,10 +272,16 @@ function WorkSubCategory() {
             TransitionComponent={Transition}
             keepMounted
             onClose={handleClose}
-            aria-describedby="alert-dialog-slide-description">
+            aria-describedby="alert-dialog-slide-description"
+            sx={{
+              '& .MuiDialog-paper': {
+                width: '100%',
+                maxWidth: '1000px!important',
+              },
+            }}>
             <DialogTitle>
               <Stack direction={'row'} alignItems={'center'} justifyContent={'space-between'}>
-                <Box> {singleData ? 'Edit Category' : 'Add Work'}</Box>
+                <Box> {singleData ? 'Edit Sub Category' : 'Add Sub Category'}</Box>
                 <IconButton onClick={handleClose}>
                   <CloseIcon />
                 </IconButton>
