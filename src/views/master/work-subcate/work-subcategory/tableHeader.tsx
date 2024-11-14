@@ -1,9 +1,9 @@
 import React from 'react'
 import { TableHead, TableRow, TableCell } from '@mui/material'
-import { CATEGORY_HEADER } from '../../../../components/constants/tableHeader'
+import { CATEGORY_SUB_HEADER } from '../../../../components/constants/tableHeader'
 
 function TableHeader() {
-  const header = CATEGORY_HEADER
+  const header = CATEGORY_SUB_HEADER
   return (
     <>
       {!!header.length && (

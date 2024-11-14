@@ -102,6 +102,21 @@ export const CATEGORY_HEADER = [
   { label: 'Actions', align: 'left', id: 'actions' },
 ]
 
+export const CATEGORY_SUB_HEADER = [
+  { label: 'S.No', align: 'left', id: 'id' },
+  { label: 'Category', align: 'left', id: 'category' },
+  { label: 'Sub Category Name', align: 'left', id: 'sub_category' },
+  { label: 'Work Price', align: 'left', id: 'work_price' },
+  { label: 'Online Price', align: 'left', id: 'online_price' },
+  { label: 'Expense Price', align: 'left', id: 'expense_price' },
+  { label: 'Discount Type', align: 'left', id: 'discount_type' },
+  { label: 'Incentive type', align: 'left', id: 'incentive_type' },
+  { label: 'Validity Type', align: 'left', id: 'validity_type' },
+  { label: 'Alter Days', align: 'left', id: 'alter_days' },
+  { label: 'Status', align: 'left', id: 'status' },
+  { label: 'Actions', align: 'left', id: 'actions' },
+]
+
 export const ORDER_HEADER = [
   { label: 'S.No', align: 'left', id: 'id' },
   { label: 'Date', align: 'left', id: 'date' },

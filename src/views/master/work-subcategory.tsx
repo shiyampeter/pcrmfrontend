@@ -16,7 +16,7 @@ import {
 } from '@mui/material'
 import TopBreaccrumb from '@/components/components/TopBreadcrumb'
 import SearchInput from '@/components/components/searchInput'
-import TableHeader from './category/work-category/tableHeader'
+
 import TableRowsLoader from '@/components/components/TableLoader'
 import { useDebounce } from 'use-debounce'
 import CloseIcon from '@mui/icons-material/Close'
@@ -30,6 +30,7 @@ import DeleteIcon from '@mui/icons-material/Delete'
 import DialogTitle from '@mui/material/DialogTitle'
 import { Link } from 'react-router-dom'
 import AddSubCtegoryForm from './work-subcate/addSubCategoryform'
+import TableHeader from './work-subcate/work-subcategory/tableHeader'
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />
 })
