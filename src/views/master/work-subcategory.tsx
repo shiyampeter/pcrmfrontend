@@ -31,6 +31,12 @@ import DialogTitle from '@mui/material/DialogTitle'
 import { Link } from 'react-router-dom'
 import AddSubCtegoryForm from './work-subcate/addSubCategoryform'
 import TableHeader from './work-subcate/work-subcategory/tableHeader'
+import {
+  workSubCategoryDelete,
+  workSubCategoryList,
+} from '@/redux/api/public/WorkSubCategoryService'
+import toast from 'react-hot-toast'
+import { essentials } from '@/redux/api/public/commonService'
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />
 })
@@ -45,7 +51,10 @@ function WorkSubCategory() {
   const [singleData, setSingleData] = useState(null)
   const [addType, setAddType] = useState(null)
   const dispatch = useDispatch()
-  // const categoryListData = useSelector((state) => state.adminCategory.categoryList)
+  const subCategoryListData = useSelector(
+    (state) => state?.subWorkCategory?.workSubCategoryList?.data,
+  )
+
   const [directoryPage, setDirectoryPage] = useState('admin')
   // const role = localStorage.getItem("roleName");
 
@@ -67,14 +76,11 @@ function WorkSubCategory() {
 
   //list api
   const categoryListApi = async () => {
-    // const parameters = {
-    //   url: `${authEndPoints.category.list}?per_page=10&page=${page}&search=${searchKey}`,
-    // }
-    // try {
-    //   await dispatch(categoryListDatas(parameters)).unwrap()
-    // } catch (errors) {
-    //   errorAlert(errors?.error)
-    // }
+    try {
+      const res = await dispatch(workSubCategoryList({ page, search: searchValue })).unwrap()
+    } catch (errors) {
+      errorAlert(errors?.error)
+    }
   }
 
   const handlePageChanges = (_event, pageValue) => {
@@ -89,6 +95,7 @@ function WorkSubCategory() {
 
   const deleteDirectory = (id) => {
     setDelId(id)
+    console.log(id)
     setDeleteModalOpen(true)
   }
 
@@ -103,17 +110,14 @@ function WorkSubCategory() {
   }
 
   const delteApiFn = async () => {
-    // const parameters = {
-    //   url: `${authEndPoints.category.removeCategory(delid)}`,
-    // }
-    // try {
-    //   const response = await dispatch(deleteCategoryData(parameters)).unwrap()
-    //   // setDeleteModalOpen(false);
-    //   successAlert(response.message)
-    //   categoryListApi()
-    // } catch (errors) {
-    //   errorAlert(errors?.error)
-    // }
+    try {
+      const response = await dispatch(workSubCategoryDelete(delid)).unwrap()
+      setDeleteModalOpen(false)
+      toast.success(response.message)
+      categoryListApi()
+    } catch (errors) {
+      toast.error(response?.error)
+    }
   }
 
   const handleClose = () => {
@@ -183,63 +187,77 @@ function WorkSubCategory() {
           <Table size="small" aria-label="a dense table" className="order-table-list">
             <TableHeader />
             <TableBody>
-              {/* {categoryListData?.loading ? ( */}
-              {/* <TableRowsLoader rowsNum={1} colsNum={3} /> */}
-              {/* ) : ( */}
-              {/* categoryListData?.data?.data?.data?.map((row, i) => ( */}
-              <TableRow>
-                <TableCell style={{ textAlign: 'center' }}>1</TableCell>
+              {subCategoryListData?.loading ? (
+                <TableRowsLoader rowsNum={1} colsNum={3} />
+              ) : (
+                subCategoryListData?.data?.map((row, i) => (
+                  <TableRow>
+                    {console.log(row)}
+                    <TableCell style={{ textAlign: 'center' }}>{i + 1}</TableCell>
+                    <TableCell style={{ textAlign: 'center' }}>
+                      {row?.sub_work_cate_name}{' '}
+                    </TableCell>
+                    <TableCell style={{ textAlign: 'center' }}>
+                      {row?.sub_work_cate_name}{' '}
+                    </TableCell>
+                    <TableCell style={{ textAlign: 'center' }}>
+                      {row?.sub_work_work_price?.amount}{' '}
+                    </TableCell>
+                    <TableCell style={{ textAlign: 'center' }}>
+                      {row?.sub_work_online_price?.amount}{' '}
+                    </TableCell>
+                    <TableCell style={{ textAlign: 'center' }}>
+                      {row?.sub_work_expense_price?.amount}{' '}
+                    </TableCell>
+                    <TableCell style={{ textAlign: 'center' }}>
+                      {row?.sub_work_discount_price?.value}{' '}
+                    </TableCell>
+                    <TableCell style={{ textAlign: 'center' }}>
+                      {row?.sub_work_incentive_price?.value}{' '}
+                    </TableCell>
+                    <TableCell style={{ textAlign: 'center' }}>
+                      {row?.sub_work_validity?.type}{' '}
+                    </TableCell>
+                    <TableCell style={{ textAlign: 'center' }}>
+                      {row?.sub_work_validity?.count}{' '}
+                    </TableCell>
+                    <TableCell style={{ textAlign: 'center' }}>
+                      {row?.sub_work_alert_days_type == 0 ? 'Before' : 'After'}{' '}
+                    </TableCell>{' '}
+                    <TableCell style={{ textAlign: 'center' }}>
+                      {row?.sub_work_alert_days}{' '}
+                    </TableCell>
+                    <TableCell style={{ textAlign: 'center' }}>{row?.status_id} </TableCell>
+                    <TableCell align="center">
+                      <Stack
+                        direction={'row'}
+                        gap={2}
+                        style={{
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                        }}>
+                        {/* <Link
+                          // to={`/admin/category/${row.unique_label}`}
+                          to="">
+                          <VisibilityIcon className="table-icons" sx={{ color: 'green' }} />
+                        </Link> */}
 
-                <TableCell style={{ textAlign: 'center' }}>
-                  <Link
-                    // to={`/admin/category/${row.unique_label}`}
-                    to=""
-                    style={{
-                      background: 'white',
-                      color: '#951e76',
-                      textDecoration: 'underline',
-                    }}>
-                    {' '}
-                    {/* {row.label}{' '} */}
-                    New
-                  </Link>
-                </TableCell>
-
-                {/* <TableCell>{row.parent}</TableCell>
-                    <TableCell>description</TableCell> */}
-
-                <TableCell align="center">
-                  <Stack
-                    direction={'row'}
-                    gap={2}
-                    style={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                    }}>
-                    <Link
-                      // to={`/admin/category/${row.unique_label}`}
-                      to="">
-                      <VisibilityIcon className="table-icons" sx={{ color: 'green' }} />
-                    </Link>
-
-                    <EditIcon
-                      sx={{ color: 'blue' }}
-                      className="table-icons"
-                      // onClick={() => editDirectory(row.unique_label)}
-                      onClick={() => editDirectory()}
-                    />
-                    <DeleteIcon
-                      className="table-icons"
-                      sx={{ color: 'red' }}
-                      //  onClick={() => deleteDirectory(row.id)}
-                      onClick={() => deleteDirectory()}
-                    />
-                  </Stack>
-                </TableCell>
-              </TableRow>
-              {/* )) */}
-              {/* )} */}
+                        <EditIcon
+                          sx={{ color: 'blue' }}
+                          className="table-icons"
+                          onClick={() => editDirectory(row?.sub_work_id)}
+                        />
+                        <DeleteIcon
+                          className="table-icons"
+                          sx={{ color: 'red' }}
+                          onClick={() => deleteDirectory(row?.sub_work_id)}
+                        />
+                      </Stack>
+                    </TableCell>
+                  </TableRow>
+                ))
+              )}
             </TableBody>
           </Table>
         </TableContainer>

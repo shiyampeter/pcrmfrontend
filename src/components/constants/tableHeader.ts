@@ -112,7 +112,9 @@ export const CATEGORY_SUB_HEADER = [
   { label: 'Discount Type', align: 'left', id: 'discount_type' },
   { label: 'Incentive type', align: 'left', id: 'incentive_type' },
   { label: 'Validity Type', align: 'left', id: 'validity_type' },
-  { label: 'Alter Days', align: 'left', id: 'alter_days' },
+  { label: 'Validity Count', align: 'left', id: 'validity_count' },
+  { label: 'Alter Type', align: 'left', id: 'alert_type' },
+  { label: 'Alter Days', align: 'left', id: 'alert_days' },
   { label: 'Status', align: 'left', id: 'status' },
   { label: 'Actions', align: 'left', id: 'actions' },
 ]

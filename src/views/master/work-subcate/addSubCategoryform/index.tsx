@@ -1,4 +1,14 @@
-import { Box, Button, Checkbox, FormControlLabel, Grid, Stack, Typography } from '@mui/material'
+import {
+  Autocomplete,
+  Box,
+  Button,
+  Checkbox,
+  FormControlLabel,
+  Grid,
+  Stack,
+  TextField,
+  Typography,
+} from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import * as yup from 'yup'
 import { Controller, get, useFieldArray, useForm } from 'react-hook-form'
@@ -13,6 +23,8 @@ import ImageUploadComponent from '@/components/components/reusableFormFields/Ima
 import CheckboxTextField from '@/components/components/reusableFormFields/CheckboxTextField'
 import CheckboxSelectTextField from '@/components/components/reusableFormFields/CheckboxSelectTextField'
 import CheckboxSelectTextFieldDays from '@/components/components/reusableFormFields/CheckboxSelectTextFieldDays'
+import { essentials } from '@/redux/api/public/commonService'
+import { useDebounce } from 'use-debounce'
 // import { categoryForm } from '../../../../helpers/validate'
 // import {
 //   addCategoryData,
@@ -28,15 +40,26 @@ const AddSubCtegoryForm = (props, disabled) => {
   const [showPassword, setShowPassword] = useState(false)
   const [adminsrole, setadminsRole] = useState(null)
   const [isLoading, setIsLoading] = useState(false)
+  const [searchKey, setSearchKey] = useState('')
+  const [searchValue] = useDebounce(searchKey, 1000)
   const [images, setImages] = useState('')
   const dispatch = useDispatch()
   // const initialvalue = useSelector((state) => state?.adminCategory?.viewCategory?.data?.data)
   // console.log(initialvalue)
 
   // const formLoading = useSelector((state) => state?.adminCategory?.viewCategory?.loading)
-  const [essential, setEssential] = useState({
-    cateLists: [],
-  })
+
+  const essential = useSelector((state) => state?.common?.essentials?.data)
+  console.log('essential', essential)
+  // cancel search
+  const cancelSearch = () => {
+    setSearchKey('')
+  }
+
+  //on search
+  const onSearch = (e) => {
+    setSearchKey(e.target.value)
+  }
 
   const {
     register,
@@ -99,17 +122,13 @@ const AddSubCtegoryForm = (props, disabled) => {
   }
 
   //Essential Api
-  const essentialListApi = async () => {
-    // const value = "category";
-    // const parameters = {
-    //   url: `${authEndPoints.product.listCommon(value)}`,
-    // };
-    // try {
-    //   const response = await dispatch(commonListData(parameters)).unwrap();
-    //   setEssential(response.data);
-    // } catch (errors) {
-    //   errorAlert(errors?.error);
-    // }
+  const essentialApi = async () => {
+    try {
+      const res = await dispatch(essentials({ type: 'workCategory', search: searchValue })).unwrap()
+      console.log(res, 'res')
+    } catch (errors) {
+      toast.error(errors?.error)
+    }
   }
 
   // visibility
@@ -124,8 +143,9 @@ const AddSubCtegoryForm = (props, disabled) => {
   }
 
   useEffect(() => {
-    essentialListApi()
-  }, [])
+    essentialApi()
+    console.log('test')
+  }, [type, searchValue])
 
   useEffect(() => {
     if (initialData) {
@@ -195,14 +215,28 @@ const AddSubCtegoryForm = (props, disabled) => {
         </Typography>
         <Grid container spacing={5} sx={{ mb: 2 }}>
           <Grid item xs={4} direction={'column'}>
-            <SelectField
+            <Controller
               name="work_name"
               control={control}
-              label="Select Work Category"
-              Controller={Controller}
-              data={data}
-              error={errors?.category?.message}
-              // disabled={type === "edit" && true}
+              render={({ field }) => (
+                <Autocomplete
+                  {...field}
+                  freeSolo
+                  options={essential || []}
+                  getOptionLabel={(option) => option.label || ''}
+                  value={essential?.find((item) => item.value === field.value) || null}
+                  onChange={(_, newValue) => field.onChange(newValue ? newValue.value : '')}
+                  onInputChange={(event, newInputValue) => onSearch(newInputValue)}
+                  renderInput={(params) => (
+                    <TextField
+                      {...params}
+                      label="Select Work Category"
+                      error={!!errors?.work_name}
+                      helperText={errors?.work_name?.message}
+                    />
+                  )}
+                />
+              )}
             />
           </Grid>
           <Grid item xs={4} direction={'column'}>

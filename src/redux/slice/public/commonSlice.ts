@@ -1,31 +1,10 @@
+import { essentials } from '@/redux/api/public/commonService'
 import { createSlice } from '@reduxjs/toolkit'
-import {
-  workSubCategoryAdd,
-  workSubCategoryEdit,
-  workSubCategoryList,
-  workSubCategoryDelete,
-  workSubCategoryView,
-} from '@/redux/api/public/WorkSubCategoryService'
-const workSubCategoryCases = [
+
+const commonCases = [
   {
-    api: workSubCategoryAdd,
-    name: 'workSubCategoryAdd',
-  },
-  {
-    api: workSubCategoryEdit,
-    name: 'workSubCategoryEdit',
-  },
-  {
-    api: workSubCategoryList,
-    name: 'workSubCategoryList',
-  },
-  {
-    api: workSubCategoryView,
-    name: 'workSubCategoryView',
-  },
-  {
-    api: workSubCategoryDelete,
-    name: 'workSubCategoryDelete',
+    api: essentials,
+    name: 'essentials',
   },
 ]
 
@@ -33,7 +12,7 @@ const initialState = {
   authProducts: [],
 }
 
-workSubCategoryCases.forEach((cases) => {
+commonCases.forEach((cases) => {
   initialState[cases.name] = {
     loading: false,
     data: undefined,
@@ -41,12 +20,12 @@ workSubCategoryCases.forEach((cases) => {
   }
 })
 
-export const workSubCategorySlice = createSlice({
+export const commonSlice = createSlice({
   name: 'publicAuth',
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    workSubCategoryCases.forEach((cases) => {
+    commonCases.forEach((cases) => {
       builder
         .addCase(cases.api.fulfilled, (state, { payload }) => {
           state[cases.name].loading = false
@@ -67,4 +46,4 @@ export const workSubCategorySlice = createSlice({
   },
 })
 
-export default workSubCategorySlice.reducer
+export default commonSlice.reducer

@@ -17,19 +17,28 @@ export const workCategoryEdit = createAsyncThunk(
   'workCategoryEdit',
   async (params: any, thunkAPI) => {
     try {
-      const response = await PUBLICSERVER.post(`/workCategory/${id}`, params)
-      return response?.data
+      const response = await PUBLICSERVER.put(`/workCategory/${params?.work_id}`, params)
+      return response
     } catch (error) {
       return thunkAPI.rejectWithValue(error)
     }
   },
 )
 
-export const workCategoryList = createAsyncThunk(
-  'workCategoryList',
+export const workCategoryList = createAsyncThunk('workCategoryList', async (params, thunkAPI) => {
+  try {
+    const response = await PUBLICSERVER.get(`/workCategory`, { params })
+    return response?.data
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error)
+  }
+})
+
+export const workCategoryView = createAsyncThunk(
+  'workCategoryView',
   async (id: string, thunkAPI) => {
     try {
-      const response = await PUBLICSERVER.get(`/workCategory`)
+      const response = await PUBLICSERVER.get(`/workCategory/${id}`)
       return response?.data
     } catch (error) {
       return thunkAPI.rejectWithValue(error)

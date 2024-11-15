@@ -5,8 +5,8 @@ export const workSubCategoryAdd = createAsyncThunk(
   'workSubCategoryAdd',
   async (params: any, thunkAPI) => {
     try {
-      const response = await PUBLICSERVER.post(`/artist/save`, params)
-      return response?.data
+      const response = await PUBLICSERVER.post(`/subWorkCategory`, params)
+      return response
     } catch (error) {
       return thunkAPI.rejectWithValue(error)
     }
@@ -17,8 +17,8 @@ export const workSubCategoryEdit = createAsyncThunk(
   'workSubCategoryEdit',
   async (params: any, thunkAPI) => {
     try {
-      const response = await PUBLICSERVER.post(`/artist/save`, params)
-      return response?.data
+      const response = await PUBLICSERVER.post(`/subWorkCategory/${id}`, params)
+      return response
     } catch (error) {
       return thunkAPI.rejectWithValue(error)
     }
@@ -27,9 +27,21 @@ export const workSubCategoryEdit = createAsyncThunk(
 
 export const workSubCategoryList = createAsyncThunk(
   'workSubCategoryList',
-  async (id: string, thunkAPI) => {
+  async (params, thunkAPI) => {
     try {
-      const response = await PUBLICSERVER.get(`/artist`)
+      const response = await PUBLICSERVER.get(`/subWorkCategory`, { params })
+      return response?.data
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error)
+    }
+  },
+)
+
+export const workSubCategoryView = createAsyncThunk(
+  'workSubCategoryView',
+  async (params, thunkAPI) => {
+    try {
+      const response = await PUBLICSERVER.get(`/subWorkCategory/${id}`)
       return response?.data
     } catch (error) {
       return thunkAPI.rejectWithValue(error)
@@ -41,8 +53,8 @@ export const workSubCategoryDelete = createAsyncThunk(
   'workSubCategoryDelete',
   async (id: string, thunkAPI) => {
     try {
-      const response = await PUBLICSERVER.delete(`/artist`)
-      return response?.data
+      const response = await PUBLICSERVER.delete(`/subWorkCategory/${id}`)
+      return response
     } catch (error) {
       return thunkAPI.rejectWithValue(error)
     }

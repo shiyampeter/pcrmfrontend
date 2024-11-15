@@ -70,7 +70,7 @@ function WorkCategory() {
   //list api
   const categoryListApi = async () => {
     try {
-      const res = await dispatch(workCategoryList()).unwrap()
+      const res = await dispatch(workCategoryList({ page, search: searchValue })).unwrap()
       console.log(res)
       setCategoryListData(res)
     } catch (errors) {
@@ -93,8 +93,8 @@ function WorkCategory() {
     setDeleteModalOpen(true)
   }
 
-  const editDirectory = (row) => {
-    setSingleData(row)
+  const editDirectory = (id) => {
+    setSingleData(id)
     setOpen(true)
     setAddType('edit')
   }
@@ -213,17 +213,17 @@ function WorkCategory() {
                           alignItems: 'center',
                           justifyContent: 'center',
                         }}>
-                        <Link
+                        {/* <Link
                           // to={`/admin/category/${row.unique_label}`}
                           to="">
                           <VisibilityIcon className="table-icons" sx={{ color: 'green' }} />
-                        </Link>
+                        </Link> */}
 
                         <EditIcon
                           sx={{ color: 'blue' }}
                           className="table-icons"
                           // onClick={() => editDirectory(row.unique_label)}
-                          onClick={() => editDirectory()}
+                          onClick={() => editDirectory(row.work_id)}
                         />
                         <DeleteIcon
                           className="table-icons"
@@ -238,17 +238,17 @@ function WorkCategory() {
             </TableBody>
           </Table>
         </TableContainer>
-        {/* {categoryListData?.data?.data?.data?.length === 0 ? ( */}
-        {/* <Box sx={{ my: 2 }}>
-          <Typography>No Data Found</Typography>
-        </Box> */}
-        {/* ) : ( */}
-        <TablePagination
-          // totalRecords={categoryListData?.data?.data?.total}
-          handlePageChanges={handlePageChanges}
-          page={page}
-        />
-        {/* )} */}
+        {categoryListData?.data?.length === 0 ? (
+          <Box sx={{ my: 2 }}>
+            <Typography>No Data Found</Typography>
+          </Box>
+        ) : (
+          <TablePagination
+            totalRecords={categoryListData?.data?.total}
+            handlePageChanges={handlePageChanges}
+            page={page}
+          />
+        )}
         {deleteModalOpen && (
           <DeleteModal
             open={deleteModalOpen}

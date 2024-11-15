@@ -10,7 +10,11 @@ import { LoadingButton } from '@mui/lab'
 import SelectField from '@/components/components/reusableFormFields/selectField'
 import TextFormField from '@/components/components/reusableFormFields/TextField'
 import ImageUploadComponent from '@/components/components/reusableFormFields/ImageUpload'
-import { workCategoryAdd } from '@/redux/api/public/workCategoryService'
+import {
+  workCategoryAdd,
+  workCategoryEdit,
+  workCategoryView,
+} from '@/redux/api/public/workCategoryService'
 import toast from 'react-hot-toast'
 // import { categoryForm } from '../../../../helpers/validate'
 // import {
@@ -29,8 +33,8 @@ const AddCategoryForm = (props, disabled) => {
   const [isLoading, setIsLoading] = useState(false)
   const [images, setImages] = useState('')
   const dispatch = useDispatch()
-  // const initialvalue = useSelector((state) => state?.adminCategory?.viewCategory?.data?.data)
-  // console.log(initialvalue)
+  const initialvalue = useSelector((state) => state?.workCategory?.workCategoryView?.data)
+  console.log(initialvalue)
 
   // const formLoading = useSelector((state) => state?.adminCategory?.viewCategory?.loading)
   const [essential, setEssential] = useState({
@@ -47,7 +51,7 @@ const AddCategoryForm = (props, disabled) => {
     reset,
     formState: { errors, isSubmitting },
   } = useForm({
-    // defaultValues: type === 'add' ? {} : initialvalue,
+    defaultValues: type === 'add' ? {} : initialvalue,
     // resolver: yupResolver(categoryForm),
     mode: 'onChange',
   })
@@ -65,30 +69,23 @@ const AddCategoryForm = (props, disabled) => {
   }
 
   const handleEditCategory = async (values) => {
-    // const parameters = {
-    //   url: `${authEndPoints.category.editCategory(initialvalue?.id)}`,
-    //   data: values,
-    // };
-    // try {
-    //   const response = await dispatch(editCategoryData(parameters)).unwrap();
-    //   onClick();
-    //   successAlert(response.message);
-    // } catch (error) {
-    //   errorAlert(error.error);
-    //   console.log(errors);
-    // }
+    try {
+      const response = await dispatch(workCategoryEdit(values)).unwrap()
+      toast.success(response.message)
+      onClick()
+    } catch (error) {
+      toast.error(error.message)
+      console.log(errors)
+    }
   }
 
   // view product
-  const viewCategoryList = async () => {
-    // const parameters = {
-    //   url: `${authEndPoints.category.categoryView(initialData)}`,
-    // };
-    // try {
-    //   const res = await dispatch(viewCategoryData(parameters)).unwrap();
-    // } catch (errors) {
-    //   errorAlert(errors?.error);
-    // }
+  const viewCategoryList = async (id) => {
+    try {
+      const res = await dispatch(workCategoryView(id)).unwrap()
+    } catch (errors) {
+      errorAlert(errors?.error)
+    }
   }
 
   //Essential Api
@@ -129,28 +126,28 @@ const AddCategoryForm = (props, disabled) => {
 
   useEffect(() => {
     if (type === 'edit') {
-      viewCategoryList()
+      viewCategoryList(initialData)
     }
   }, [type])
 
-  // useEffect(() => {
-  //   if (type !== 'add') {
-  //     if (initialvalue) {
-  //       // const { date, start_time, end_time, created_by, created_at, ...others } = initialValue;
-  //       // const prevData = {
-  //       // 	...others,
-  //       // 	date: dayjs(date, "YYYY-MM-DD"),
-  //       // 	start_time: dayjs(start_time, "hh:mm A"),
-  //       // 	end_time: dayjs(end_time, "hh:mm A"),
-  //       // };
-  //       reset(initialvalue)
-  //     } else {
-  //       reset()
-  //     }
-  //   } else {
-  //     reset()
-  //   }
-  // }, [initialvalue])
+  useEffect(() => {
+    if (type !== 'add') {
+      if (initialvalue) {
+        // const { date, start_time, end_time, created_by, created_at, ...others } = initialValue;
+        // const prevData = {
+        // 	...others,
+        // 	date: dayjs(date, "YYYY-MM-DD"),
+        // 	start_time: dayjs(start_time, "hh:mm A"),
+        // 	end_time: dayjs(end_time, "hh:mm A"),
+        // };
+        reset(initialvalue)
+      } else {
+        reset()
+      }
+    } else {
+      reset()
+    }
+  }, [initialvalue])
 
   return (
     <Box sx={{ mx: 2 }}>
@@ -172,19 +169,15 @@ const AddCategoryForm = (props, disabled) => {
             />
           </Grid>
           <Grid item xs={6} direction={'column'}>
-            <TextFormField
-              name="work_type"
-              control={control}
-              Controller={Controller}
-              label="Work Type"
-              error={errors?.label?.message}
-            />
             <SelectField
               name="work_type"
               control={control}
               label="Work Type"
               Controller={Controller}
-              // data={essential?.category}
+              data={[
+                { value: 0, label: 'mini' },
+                { value: 1, label: 'online' },
+              ]}
               error={errors?.category?.message}
               // disabled={type === "edit" && true}
             />
@@ -211,39 +204,18 @@ const AddCategoryForm = (props, disabled) => {
           </Grid>
         </Grid>
 
-        <Grid container spacing={5} sx={{ mb: 2 }}>
-          <Grid item xs={6}>
-            {/* {essential?.category && ( */}
-            {/* <SelectField
-              name="parent_id"
-              control={control}
-              label="Category"
-              Controller={Controller}
-              // data={essential?.category}
-              error={errors?.category?.message}
-              // disabled={type === "edit" && true}
-            /> */}
-            {/* )} */}
-          </Grid>
-        </Grid>
-
         <Grid container spacing={2} sx={{ mb: 2 }}>
           <Grid item xs={12} md={12} className="address-employee">
-            {/* <ImageUploadComponent
-              control={control}
-              Controller={Controller}
-              name="category_image"
-              label=" Image"
-              watch={watch}
-              setValue={setValue}
-            /> */}
             <Typography variant="subtitle1">Work Completed</Typography>
             <Controller
               name="work_completed"
               control={control}
               defaultValue={false}
               render={({ field }) => (
-                <FormControlLabel control={<Checkbox {...field} />} label="Work Completed" />
+                <FormControlLabel
+                  control={<Checkbox {...field} checked={field.value} />}
+                  label="Work Completed"
+                />
               )}
             />
           </Grid>
@@ -255,9 +227,6 @@ const AddCategoryForm = (props, disabled) => {
           justifyContent={'flex-end'}
           gap={5}
           sx={{ p: 3 }}>
-          {/* <Button className="submitBtnn" variant="contained">
-            Cancel
-          </Button> */}
           <LoadingButton
             loadingPosition="center"
             loading={isSubmitting}

@@ -3,6 +3,7 @@ import {
   workCategoryDelete,
   workCategoryEdit,
   workCategoryList,
+  workCategoryView,
 } from '@/redux/api/public/workCategoryService'
 import { createSlice } from '@reduxjs/toolkit'
 
@@ -18,6 +19,10 @@ const workCategoryCases = [
   {
     api: workCategoryList,
     name: 'workCategoryList',
+  },
+  {
+    api: workCategoryView,
+    name: 'workCategoryView',
   },
   {
     api: workCategoryDelete,
