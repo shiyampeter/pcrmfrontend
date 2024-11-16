@@ -3,40 +3,31 @@ import React, { useEffect, useState } from 'react'
 import * as yup from 'yup'
 import { Controller, get, useFieldArray, useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
-// import { authEndPoints } from '../../../../helpers/endpoints'
+
 import { useDispatch, useSelector } from 'react-redux'
-import AddIcon from '@mui/icons-material/Add'
+
 import { LoadingButton } from '@mui/lab'
 import SelectField from '@/components/components/reusableFormFields/selectField'
 import TextFormField from '@/components/components/reusableFormFields/TextField'
-import ImageUploadComponent from '@/components/components/reusableFormFields/ImageUpload'
+
 import {
   workCategoryAdd,
   workCategoryEdit,
   workCategoryView,
 } from '@/redux/api/public/workCategoryService'
 import toast from 'react-hot-toast'
-// import { categoryForm } from '../../../../helpers/validate'
-// import {
-//   addCategoryData,
-//   editCategoryData,
-//   viewCategoryData,
-// } from '../../../../redux/api/admin/categoryService'
-// import { commonListData } from '../../../../redux/api/admin/productService'
-// import { errorAlert, successAlert } from '../../../../helpers/globalFunctions'
 
 const AddCategoryForm = (props, disabled) => {
   const { onClick, initialData = null, type } = props
 
   const [showPassword, setShowPassword] = useState(false)
-  const [adminsrole, setadminsRole] = useState(null)
+
   const [isLoading, setIsLoading] = useState(false)
-  const [images, setImages] = useState('')
+
   const dispatch = useDispatch()
   const initialvalue = useSelector((state) => state?.workCategory?.workCategoryView?.data)
   console.log(initialvalue)
 
-  // const formLoading = useSelector((state) => state?.adminCategory?.viewCategory?.loading)
   const [essential, setEssential] = useState({
     cateLists: [],
   })
@@ -133,13 +124,6 @@ const AddCategoryForm = (props, disabled) => {
   useEffect(() => {
     if (type !== 'add') {
       if (initialvalue) {
-        // const { date, start_time, end_time, created_by, created_at, ...others } = initialValue;
-        // const prevData = {
-        // 	...others,
-        // 	date: dayjs(date, "YYYY-MM-DD"),
-        // 	start_time: dayjs(start_time, "hh:mm A"),
-        // 	end_time: dayjs(end_time, "hh:mm A"),
-        // };
         reset(initialvalue)
       } else {
         reset()

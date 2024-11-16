@@ -20,15 +20,15 @@ import TableHeader from './category/work-category/tableHeader'
 import TableRowsLoader from '@/components/components/TableLoader'
 import { useDebounce } from 'use-debounce'
 import CloseIcon from '@mui/icons-material/Close'
-import VisibilityIcon from '@mui/icons-material/Visibility'
-import { useDispatch, useSelector } from 'react-redux'
+
+import { useDispatch } from 'react-redux'
 import TablePagination from '@/components/components/Pagination'
 import DeleteModal from '@/components/components/deleteModal'
 import EditIcon from '@mui/icons-material/Edit'
 import DeleteIcon from '@mui/icons-material/Delete'
 import AddCategoryForm from './category/addCategoryform'
 import DialogTitle from '@mui/material/DialogTitle'
-import { Link } from 'react-router-dom'
+
 import { workCategoryDelete, workCategoryList } from '@/redux/api/public/workCategoryService'
 import Switch from '@mui/material/Switch'
 import toast from 'react-hot-toast'
@@ -47,15 +47,6 @@ function WorkCategory() {
   const [singleData, setSingleData] = useState(null)
   const [addType, setAddType] = useState(null)
   const dispatch = useDispatch()
-  // const categoryListData = useSelector((state) => state.adminCategory.categoryList)
-  const [directoryPage, setDirectoryPage] = useState('admin')
-  // const role = localStorage.getItem("roleName");
-
-  // const stateValues = useSelector((state) => {
-  //   return {
-  //     deleteLoading: state.adminCategory.deleteCategory.loading,
-  //   }
-  // })
 
   // cancel search
   const cancelSearch = () => {
@@ -123,10 +114,6 @@ function WorkCategory() {
     await categoryListApi() // Call handleAddDirectory to add directory data
   }
 
-  const handleChange = (event) => {
-    setDirectoryPage(event.target.value)
-  }
-
   useEffect(() => {
     categoryListApi()
   }, [page, searchValue])
@@ -156,25 +143,9 @@ function WorkCategory() {
               onChange={(e) => onSearch(e)}
               cancelSearch={cancelSearch}
             />
-            <Button
-              className="AddBtn"
-              onClick={handleClickOpen}
-              // sx={{ display: "flex", justifyContent: "flex-end" }}
-            >
+            <Button className="AddBtn" onClick={handleClickOpen}>
               Add New Category
             </Button>
-
-            {/* <FormControl size="small" className="directorySelect">
-                                <Select
-                                    labelId="demo-select-small-label"
-                                    id="demo-select-small"
-                                    value={directoryPage}
-                                    onChange={handleChange}
-                                >
-                                    <MenuItem value={'admin'}>Admin</MenuItem>
-                                    <MenuItem value={'employee'}>Employee</MenuItem>
-                                </Select>
-                            </FormControl> */}
           </Stack>
         </Box>
         <TableContainer className="rolesPageTable">
@@ -222,7 +193,6 @@ function WorkCategory() {
                         <EditIcon
                           sx={{ color: 'blue' }}
                           className="table-icons"
-                          // onClick={() => editDirectory(row.unique_label)}
                           onClick={() => editDirectory(row.work_id)}
                         />
                         <DeleteIcon
