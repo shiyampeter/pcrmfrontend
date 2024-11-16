@@ -31,6 +31,7 @@ import {
   workSubCategoryView,
 } from '@/redux/api/public/WorkSubCategoryService'
 import toast from 'react-hot-toast'
+import SelectTextField from '@/components/components/reusableFormFields/SelectTextField'
 // import { categoryForm } from '../../../../helpers/validate'
 // import {
 //   addCategoryData,
@@ -50,7 +51,7 @@ const AddSubCtegoryForm = (props, disabled) => {
   const [searchValue] = useDebounce(searchKey, 1000)
   const [images, setImages] = useState('')
   const dispatch = useDispatch()
-  // const initialvalue = useSelector((state) => state?.adminCategory?.viewCategory?.data?.data)
+  const initialvalue = useSelector((state) => state?.subWorkCategory?.workSubCategoryView?.data)
   // console.log(initialvalue)
 
   // const formLoading = useSelector((state) => state?.adminCategory?.viewCategory?.loading)
@@ -86,14 +87,14 @@ const AddSubCtegoryForm = (props, disabled) => {
   const handleAddCategory = async (values: any) => {
     console.log(values)
 
-    // try {
-    //   const response = await dispatch(workSubCategoryAdd(values)).unwrap()
-    //   onClick()
-    //   toast.success(response.message)
-    // } catch (error) {
-    //   toast.error(error.error)
-    //   console.log(errors)
-    // }
+    try {
+      const response = await dispatch(workSubCategoryAdd(values)).unwrap()
+      onClick()
+      toast.success(response.message)
+    } catch (error) {
+      toast.error(error.error)
+      console.log(errors)
+    }
   }
 
   const handleEditCategory = async (values) => {
@@ -175,7 +176,7 @@ const AddSubCtegoryForm = (props, disabled) => {
   }, [initialvalue])
   const data = [
     {
-      id: 1,
+      value: 1,
       label: 'one',
     },
   ]
@@ -185,8 +186,8 @@ const AddSubCtegoryForm = (props, disabled) => {
     { value: 'Amount', label: 'Amount' },
   ]
   const alterOptions = [
-    { value: 'before', label: 'Before' },
-    { value: 'after', label: 'After' },
+    { value: 0, label: 'Before' },
+    { value: 1, label: 'After' },
   ]
   const timeOptions = [
     { value: 'day', label: 'Days' },
@@ -194,40 +195,40 @@ const AddSubCtegoryForm = (props, disabled) => {
     { value: 'month', label: 'Months' },
     { value: 'year', label: 'Years' },
   ]
-
+  const [isAlertEnabled, setIsAlertEnabled] = useState(false)
   return (
     <Box sx={{ mx: 2 }}>
       {/* {formLoading ? (
         <FormLoader />
       ) : ( */}
       <form
-        // onSubmit={
-        //   type === 'add' ? handleSubmit(handleAddCategory) : handleSubmit(handleEditCategory)
-        // }
-        onSubmit={handleSubmit(handleAddCategory)}>
+        onSubmit={
+          type === 'add' ? handleSubmit(handleAddCategory) : handleSubmit(handleEditCategory)
+        }>
         <Typography sx={{ fontSize: '20px', fontWeight: 'bold', mb: 2 }}>
           Category Section
         </Typography>
         <Grid container spacing={5} sx={{ mb: 2 }}>
           <Grid item xs={4} direction={'column'}>
             <Controller
-              name="sub_work_cate_name"
+              name="sub_work_cate_id"
               control={control}
+              defaultValue="" // Ensure it has a default value
               render={({ field }) => (
                 <Autocomplete
                   {...field}
-                  freeSolo
-                  options={essential || []}
-                  getOptionLabel={(option) => option.label || ''}
-                  value={essential?.find((item) => item.value === field.value) || null}
-                  onChange={(_, newValue) => field.onChange(newValue ? newValue.value : '')}
-                  onInputChange={(event, newInputValue) => onSearch(newInputValue)}
+                  options={essential || []} // Array of options
+                  getOptionLabel={(option) => option?.label || ''} // Display the label in the dropdown
+                  value={essential?.find((item) => item.value === field.value) || null} // Match selected value
+                  onChange={(_, newValue) => {
+                    field.onChange(newValue?.value || '') // Update form field with the selected value
+                  }}
                   renderInput={(params) => (
                     <TextField
                       {...params}
-                      label="Select Work Category"
-                      error={!!errors?.work_name}
-                      helperText={errors?.work_name?.message}
+                      label="Select Work Category" // Label for the input
+                      error={!!errors?.sub_work_cate_id} // Show error if validation fails
+                      helperText={errors?.sub_work_cate_id?.message} // Display error message
                     />
                   )}
                 />
@@ -252,7 +253,7 @@ const AddSubCtegoryForm = (props, disabled) => {
               checkboxLabel="Fixed"
               placeholder="Work Price"
               control={control}
-              Controller={Controller}
+              // Controller={Controller}
               name="sub_work_work_price" // this will be the key in form output
             />
           </Grid>
@@ -262,7 +263,7 @@ const AddSubCtegoryForm = (props, disabled) => {
               checkboxLabel="Fixed"
               placeholder="Online Price"
               control={control}
-              Controller={Controller}
+              // Controller={Controller}
               name="sub_work_online_price" // this will be the key in form output
             />
           </Grid>
@@ -321,25 +322,66 @@ const AddSubCtegoryForm = (props, disabled) => {
         </Typography>
         <Grid container spacing={2} sx={{ mb: 2 }}>
           <Grid item xs={6} md={4} className="address-employee">
-            <CheckboxSelectTextField
+            <Controller
+              name="sub_work_validity_status"
+              control={control}
+              defaultValue={false}
+              render={({ field }) => (
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      {...field}
+                      checked={field.value}
+                      onChange={(e) => {
+                        field.onChange(e.target.checked)
+                        setIsAlertEnabled(e.target.checked) // Update state when checkbox is toggled
+                      }}
+                    />
+                  }
+                  label="Valididty Status"
+                />
+              )}
+            />
+
+            <SelectTextField
               label="Validity Type"
               selectLabel="Validity Type"
-              control={control}
               Controller={Controller}
+              textLabel="Validity Value"
+              control={control} // Pass control from react-hook-form
+              name="sub_work_validity"
               selectOptions={timeOptions}
-              textLabel="Validity  Value"
-              name="sub_work_validity" // this will store data as { isFixed, type, value } in form output
+              disabled={!isAlertEnabled}
+              // error={formErrors.exampleField?.value}
             />
           </Grid>
           <Grid item xs={6} md={4} className="address-employee">
-            <CheckboxSelectTextField
-              label="Alert Before/After"
-              selectLabel="Alert Before/After"
+            <Controller
+              name="sub_work_alert_status"
+              control={control}
+              defaultValue={false}
+              render={({ field }) => (
+                <FormControlLabel
+                  control={<Checkbox {...field} checked={field.value} />}
+                  label="Alert Status"
+                />
+              )}
+            />
+            <SelectField
+              name="sub_work_alert_days_type"
+              control={control}
+              label="Select Status"
+              Controller={Controller}
+              data={alterOptions}
+              error={errors?.status_id?.message}
+              // disabled={type === "edit" && true}
+            />
+            <TextFormField
+              name="sub_work_alert_days"
               control={control}
               Controller={Controller}
-              selectOptions={alterOptions}
-              textLabel="No of Days"
-              name="sub_work_alert_days_type" // this will store data as { isFixed, type, value } in form output
+              label="Enter Work Alert days"
+              error={errors?.label?.message}
             />
           </Grid>
         </Grid>

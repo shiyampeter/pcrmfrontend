@@ -99,7 +99,7 @@
 // export default CheckboxSelectTextField
 
 import React, { useState } from 'react'
-import { Controller } from 'react-hook-form'
+import { Controller, useWatch } from 'react-hook-form'
 import {
   TextField,
   Checkbox,
@@ -126,6 +126,13 @@ function CheckboxSelectTextField(props) {
   } = props
 
   const [selectedType, setSelectedType] = useState('')
+
+  // Watch the value of the checkbox
+  const isFixed = useWatch({
+    control,
+    name: `${name}.isFixed`, // Watching the isFixed field
+    defaultValue: false,
+  })
 
   return (
     <Box display="flex" flexDirection="column" gap={1}>
@@ -161,7 +168,7 @@ function CheckboxSelectTextField(props) {
               field.onChange(e)
               setSelectedType(e.target.value)
             }}
-            disabled={disabled}
+            disabled={!isFixed}
             sx={{ mb: 1, ...sx }}>
             <MenuItem value="" disabled>
               {selectLabel}
