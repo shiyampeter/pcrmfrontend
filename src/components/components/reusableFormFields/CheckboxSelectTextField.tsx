@@ -126,6 +126,8 @@ function CheckboxSelectTextField(props) {
   } = props
 
   const [selectedType, setSelectedType] = useState('')
+    const [isFixed, setIsFixed] = useState(false)
+
 
   // Watch the value of the checkbox
   const isFixed = useWatch({
@@ -146,9 +148,11 @@ function CheckboxSelectTextField(props) {
             <FormControlLabel
               control={
                 <Checkbox
-                  {...field}
-                  checked={field.value === 1}
-                  onChange={(e) => field.onChange(e.target.checked ? 1 : 0)} // Update value to 1 or 0
+                  // {...field}
+                  // checked={field.value === 1}
+                  // onChange={(e) => field.onChange(e.target.checked ? 1 : 0)}
+                  checked={isFixed}
+                  onChange={(e) => setIsFixed(e.target.checked)}
                 />
               }
             />
