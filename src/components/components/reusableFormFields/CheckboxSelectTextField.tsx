@@ -143,7 +143,15 @@ function CheckboxSelectTextField(props) {
           control={control}
           defaultValue={false}
           render={({ field }) => (
-            <FormControlLabel control={<Checkbox {...field} checked={field.value} />} />
+            <FormControlLabel
+              control={
+                <Checkbox
+                  {...field}
+                  checked={field.value === 1}
+                  onChange={(e) => field.onChange(e.target.checked ? 1 : 0)} // Update value to 1 or 0
+                />
+              }
+            />
           )}
         />
         <Typography variant="subtitle1" sx={{ fontSize: '13px', marginRight: '8px' }}>

@@ -26,7 +26,13 @@ function CheckboxTextField(props) {
           defaultValue={false}
           render={({ field }) => (
             <FormControlLabel
-              control={<Checkbox {...field} checked={field.value} />}
+              control={
+                <Checkbox
+                  {...field}
+                  checked={field.value === 1}
+                  onChange={(e) => field.onChange(e.target.checked ? 1 : 0)} // Update value to 1 or 0
+                />
+              }
               label={checkboxLabel}
             />
           )}
@@ -38,7 +44,7 @@ function CheckboxTextField(props) {
 
       {/* Text Field */}
       <Controller
-        name={`${name}.price`}
+        name={`${name}.amount`}
         control={control}
         defaultValue=""
         render={({ field }) => (

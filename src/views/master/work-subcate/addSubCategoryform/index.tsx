@@ -331,9 +331,9 @@ const AddSubCtegoryForm = (props, disabled) => {
                   control={
                     <Checkbox
                       {...field}
-                      checked={field.value}
+                      checked={field.value === 1}
                       onChange={(e) => {
-                        field.onChange(e.target.checked)
+                        field.onChange(e.target.checked ? 1 : 0)
                         setIsAlertEnabled(e.target.checked) // Update state when checkbox is toggled
                       }}
                     />
@@ -362,7 +362,13 @@ const AddSubCtegoryForm = (props, disabled) => {
               defaultValue={false}
               render={({ field }) => (
                 <FormControlLabel
-                  control={<Checkbox {...field} checked={field.value} />}
+                  control={
+                    <Checkbox
+                      {...field}
+                      checked={field.value === 1}
+                      onChange={(e) => field.onChange(e.target.checked ? 1 : 0)}
+                    />
+                  }
                   label="Alert Status"
                 />
               )}

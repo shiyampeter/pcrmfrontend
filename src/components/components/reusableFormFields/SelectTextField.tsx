@@ -64,7 +64,7 @@ function SelectTextField(props) {
             {textLabel}
           </Typography>
           <Controller
-            name={`${name}.value`}
+            name={`${name}.count`}
             control={control}
             defaultValue=""
             render={({ field }) => (
