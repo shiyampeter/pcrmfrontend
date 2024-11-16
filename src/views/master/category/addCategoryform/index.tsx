@@ -99,20 +99,9 @@ const AddCategoryForm = (props, disabled) => {
   }
 
   // delete image
-  const handleDeleteImage = () => {
-    setValue('image', null)
-    setImages(null)
-  }
 
   useEffect(() => {
     essentialListApi()
-  }, [])
-
-  useEffect(() => {
-    if (initialData) {
-      const Img = initialData.image ? initialData.image : ''
-      setImages(Img)
-    }
   }, [])
 
   useEffect(() => {

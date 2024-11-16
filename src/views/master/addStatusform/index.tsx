@@ -10,11 +10,6 @@ import { LoadingButton } from '@mui/lab'
 import SelectField from '@/components/components/reusableFormFields/selectField'
 import TextFormField from '@/components/components/reusableFormFields/TextField'
 
-import {
-  workCategoryAdd,
-  workCategoryEdit,
-  workCategoryView,
-} from '@/redux/api/public/workCategoryService'
 import toast from 'react-hot-toast'
 import { workStatusAdd, workStatusEdit, workStatusView } from '@/redux/api/public/workStatusService'
 
