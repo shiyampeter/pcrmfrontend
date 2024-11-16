@@ -72,6 +72,7 @@ const VectorMaps = React.lazy(() => import('./../views/uielements/maps/VectorMap
 // Master
 const WorkCategory = React.lazy(() => import('../views/master/work-category'))
 const WorkSubCategory = React.lazy(() => import('../views/master/work-subcategory'))
+const WorkStatus = React.lazy(() => import('../views/master/work-status'))
 
 // Extended
 const ReactSelect = React.lazy(() => import('./../views/uielements/extended/ReactSelect'))
@@ -256,6 +257,12 @@ const masterRoutes: RoutesProps = {
       path: '/master/work-subcategory',
       name: 'WorkSubCategory',
       element: <WorkSubCategory />,
+      route: PrivateRoute,
+    },
+    {
+      path: '/master/work-status',
+      name: 'WorkStatus',
+      element: <WorkStatus />,
       route: PrivateRoute,
     },
   ],

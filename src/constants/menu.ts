@@ -84,6 +84,12 @@ const MENU_ITEMS: MenuItemTypes[] = [
         url: '/master/work-subcategory',
         parentKey: 'master',
       },
+      {
+        key: 'work-status',
+        label: 'Work Status',
+        url: '/master/work-status',
+        parentKey: 'master',
+      },
 
       // {
       //   key: 'pos',
@@ -1122,6 +1128,12 @@ const HORIZONTAL_MENU_ITEMS: MenuItemTypes[] = [
         key: 'work-subcategory',
         label: 'Work SubCategory',
         url: '/master/work-subcategory',
+        parentKey: 'master',
+      },
+      {
+        key: 'work-status',
+        label: 'Work Status',
+        url: '/master/work-status',
         parentKey: 'master',
       },
       // {
