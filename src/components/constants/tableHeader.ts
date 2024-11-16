@@ -102,6 +102,12 @@ export const CATEGORY_HEADER = [
   { label: 'Actions', align: 'left', id: 'actions' },
 ]
 
+export const STATUS_HEADER = [
+  { label: 'S.No', align: 'left', id: 'id' },
+  { label: 'Status Name', align: 'left', id: 'status_name' },
+
+  { label: 'Actions', align: 'left', id: 'actions' },
+]
 export const CATEGORY_SUB_HEADER = [
   { label: 'S.No', align: 'left', id: 'id' },
   { label: 'Category', align: 'left', id: 'category' },
