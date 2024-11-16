@@ -25,6 +25,12 @@ import CheckboxSelectTextField from '@/components/components/reusableFormFields/
 import CheckboxSelectTextFieldDays from '@/components/components/reusableFormFields/CheckboxSelectTextFieldDays'
 import { essentials } from '@/redux/api/public/commonService'
 import { useDebounce } from 'use-debounce'
+import {
+  workSubCategoryAdd,
+  workSubCategoryEdit,
+  workSubCategoryView,
+} from '@/redux/api/public/WorkSubCategoryService'
+import toast from 'react-hot-toast'
 // import { categoryForm } from '../../../../helpers/validate'
 // import {
 //   addCategoryData,
@@ -71,54 +77,43 @@ const AddSubCtegoryForm = (props, disabled) => {
     reset,
     formState: { errors, isSubmitting },
   } = useForm({
-    // defaultValues: type === 'add' ? {} : initialvalue,
+    defaultValues: type === 'add' ? {} : initialvalue,
     // resolver: yupResolver(categoryForm),
     mode: 'onChange',
   })
 
   // Add Directory Api
-  const handleAddCategory = async (values) => {
+  const handleAddCategory = async (values: any) => {
     console.log(values)
 
-    // const parameters = {
-    //   url: `${authEndPoints.category.categoryAdd}`,
-    //   data: values,
-    // };
     // try {
-    //   const response = await dispatch(addCategoryData(parameters)).unwrap();
-    //   onClick();
-    //   successAlert(response.message);
+    //   const response = await dispatch(workSubCategoryAdd(values)).unwrap()
+    //   onClick()
+    //   toast.success(response.message)
     // } catch (error) {
-    //   errorAlert(error.error);
-    //   console.log(errors);
+    //   toast.error(error.error)
+    //   console.log(errors)
     // }
   }
 
   const handleEditCategory = async (values) => {
-    // const parameters = {
-    //   url: `${authEndPoints.category.editCategory(initialvalue?.id)}`,
-    //   data: values,
-    // };
-    // try {
-    //   const response = await dispatch(editCategoryData(parameters)).unwrap();
-    //   onClick();
-    //   successAlert(response.message);
-    // } catch (error) {
-    //   errorAlert(error.error);
-    //   console.log(errors);
-    // }
+    try {
+      const response = await dispatch(workSubCategoryEdit(values)).unwrap()
+      onClick()
+      toast.success(response.message)
+    } catch (error) {
+      toast.error(error.error)
+      console.log(errors)
+    }
   }
 
   // view product
-  const viewCategoryList = async () => {
-    // const parameters = {
-    //   url: `${authEndPoints.category.categoryView(initialData)}`,
-    // };
-    // try {
-    //   const res = await dispatch(viewCategoryData(parameters)).unwrap();
-    // } catch (errors) {
-    //   errorAlert(errors?.error);
-    // }
+  const viewCategoryList = async (id) => {
+    try {
+      const res = await dispatch(workSubCategoryView(id)).unwrap()
+    } catch (errors) {
+      errorAlert(errors?.error)
+    }
   }
 
   //Essential Api
@@ -156,28 +151,28 @@ const AddSubCtegoryForm = (props, disabled) => {
 
   useEffect(() => {
     if (type === 'edit') {
-      viewCategoryList()
+      viewCategoryList(initialData)
     }
   }, [type])
 
-  // useEffect(() => {
-  //   if (type !== 'add') {
-  //     if (initialvalue) {
-  //       // const { date, start_time, end_time, created_by, created_at, ...others } = initialValue;
-  //       // const prevData = {
-  //       // 	...others,
-  //       // 	date: dayjs(date, "YYYY-MM-DD"),
-  //       // 	start_time: dayjs(start_time, "hh:mm A"),
-  //       // 	end_time: dayjs(end_time, "hh:mm A"),
-  //       // };
-  //       reset(initialvalue)
-  //     } else {
-  //       reset()
-  //     }
-  //   } else {
-  //     reset()
-  //   }
-  // }, [initialvalue])
+  useEffect(() => {
+    if (type !== 'add') {
+      if (initialvalue) {
+        // const { date, start_time, end_time, created_by, created_at, ...others } = initialValue;
+        // const prevData = {
+        // 	...others,
+        // 	date: dayjs(date, "YYYY-MM-DD"),
+        // 	start_time: dayjs(start_time, "hh:mm A"),
+        // 	end_time: dayjs(end_time, "hh:mm A"),
+        // };
+        reset(initialvalue)
+      } else {
+        reset()
+      }
+    } else {
+      reset()
+    }
+  }, [initialvalue])
   const data = [
     {
       id: 1,
@@ -216,7 +211,7 @@ const AddSubCtegoryForm = (props, disabled) => {
         <Grid container spacing={5} sx={{ mb: 2 }}>
           <Grid item xs={4} direction={'column'}>
             <Controller
-              name="work_name"
+              name="sub_work_cate_name"
               control={control}
               render={({ field }) => (
                 <Autocomplete
@@ -258,7 +253,7 @@ const AddSubCtegoryForm = (props, disabled) => {
               placeholder="Work Price"
               control={control}
               Controller={Controller}
-              name="myFielde" // this will be the key in form output
+              name="sub_work_work_price" // this will be the key in form output
             />
           </Grid>
           <Grid item xs={4} direction={'column'}>
@@ -268,7 +263,7 @@ const AddSubCtegoryForm = (props, disabled) => {
               placeholder="Online Price"
               control={control}
               Controller={Controller}
-              name="myFieldt" // this will be the key in form output
+              name="sub_work_online_price" // this will be the key in form output
             />
           </Grid>
           <Grid item xs={4}>
@@ -278,7 +273,7 @@ const AddSubCtegoryForm = (props, disabled) => {
               placeholder="Expense Price"
               control={control}
               Controller={Controller}
-              name="myFieldh" // this will be the key in form output
+              name="sub_work_expense_price" // this will be the key in form output
             />
           </Grid>
         </Grid>
@@ -306,7 +301,7 @@ const AddSubCtegoryForm = (props, disabled) => {
               Controller={Controller}
               textLabel="Discount Value"
               selectOptions={percentageAmountOptions}
-              name="myField1" // this will store data as { isFixed, type, value } in form output
+              name="sub_work_discount_price" // this will store data as { isFixed, type, value } in form output
             />
           </Grid>
           <Grid item xs={12} md={4} className="address-employee">
@@ -317,7 +312,7 @@ const AddSubCtegoryForm = (props, disabled) => {
               Controller={Controller}
               textLabel="Incentive Value"
               selectOptions={percentageAmountOptions}
-              name="myField2" // this will store data as { isFixed, type, value } in form output
+              name="sub_work_incentive_price" // this will store data as { isFixed, type, value } in form output
             />
           </Grid>
         </Grid>{' '}
@@ -333,18 +328,18 @@ const AddSubCtegoryForm = (props, disabled) => {
               Controller={Controller}
               selectOptions={timeOptions}
               textLabel="Validity  Value"
-              name="myFieldg" // this will store data as { isFixed, type, value } in form output
+              name="sub_work_validity" // this will store data as { isFixed, type, value } in form output
             />
           </Grid>
           <Grid item xs={6} md={4} className="address-employee">
             <CheckboxSelectTextField
-              label="Alter Before/After"
-              selectLabel="Alter Before/After"
+              label="Alert Before/After"
+              selectLabel="Alert Before/After"
               control={control}
               Controller={Controller}
               selectOptions={alterOptions}
-              textLabel="Incentive Value"
-              name="myFieldn" // this will store data as { isFixed, type, value } in form output
+              textLabel="No of Days"
+              name="sub_work_alert_days_type" // this will store data as { isFixed, type, value } in form output
             />
           </Grid>
         </Grid>
@@ -352,12 +347,12 @@ const AddSubCtegoryForm = (props, disabled) => {
         <Grid container spacing={2} sx={{ mb: 2 }}>
           <Grid item xs={6} md={4} className="address-employee">
             <SelectField
-              name="select_status"
+              name="status_id"
               control={control}
               label="Select Status"
               Controller={Controller}
               data={data}
-              error={errors?.category?.message}
+              error={errors?.status_id?.message}
               // disabled={type === "edit" && true}
             />
           </Grid>

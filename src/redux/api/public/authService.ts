@@ -3,7 +3,7 @@ import PUBLICSERVER from '../../../utils/helpers/Server'
 
 export const userLogin = createAsyncThunk('userLogin', async (formData: any, thunkAPI) => {
   try {
-    const response = await PUBLICSERVER.post(`login`, formData)
+    const response = await PUBLICSERVER.post(`/login`, formData)
     return response
   } catch (error) {
     return thunkAPI.rejectWithValue(error)
