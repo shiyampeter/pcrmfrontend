@@ -17,7 +17,7 @@ export const workSubCategoryEdit = createAsyncThunk(
   'workSubCategoryEdit',
   async (params: any, thunkAPI) => {
     try {
-      const response = await PUBLICSERVER.post(`/subWorkCategory/${id}`, params)
+      const response = await PUBLICSERVER.put(`/subWorkCategory/${params?.sub_work_id}`, params)
       return response
     } catch (error) {
       return thunkAPI.rejectWithValue(error)
@@ -41,7 +41,7 @@ export const workSubCategoryView = createAsyncThunk(
   'workSubCategoryView',
   async (params, thunkAPI) => {
     try {
-      const response = await PUBLICSERVER.get(`/subWorkCategory/${id}`)
+      const response = await PUBLICSERVER.get(`/subWorkCategory/${params}`)
       return response?.data
     } catch (error) {
       return thunkAPI.rejectWithValue(error)

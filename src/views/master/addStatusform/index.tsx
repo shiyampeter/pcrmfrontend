@@ -21,7 +21,7 @@ const AddStatusForm = (props, disabled) => {
   const [isLoading, setIsLoading] = useState(false)
 
   const dispatch = useDispatch()
-  const initialvalue = useSelector((state) => state?.workCategory?.workCategoryView?.data)
+  const initialvalue = useSelector((state) => state?.workStatus?.workStatusView?.data)
   console.log(initialvalue)
 
   const [essential, setEssential] = useState({
@@ -130,7 +130,7 @@ const AddStatusForm = (props, disabled) => {
         <Grid container spacing={5} sx={{ mb: 2 }}>
           <Grid item xs={6} direction={'column'}>
             <TextFormField
-              name="status_name"
+              name="status"
               control={control}
               Controller={Controller}
               label="Status Name"

@@ -642,3 +642,7 @@ table {
   padding: 0;
   cursor: pointer;
 }
+.New-Button{
+  background-color: #21a65b!important;
+  color:white!important
+}

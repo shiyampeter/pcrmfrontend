@@ -119,9 +119,9 @@ function WorkCategory() {
   }, [page, searchValue])
 
   return (
-    <Box sx={{ overflowY: 'auto', maxHeight: '600px' }}>
+    <Box sx={{ overflowY: 'auto', maxHeight: '500px', mb: '40px' }}>
       <Box className="indexBox">
-        <TopBreaccrumb title={'Categories'} to={`/admin/dashboard`} />
+        <TopBreaccrumb title={'Work Categories'} to={`/admin/dashboard`} />
         <Box sx={{ my: 3 }}>
           <Stack
             direction={{ lg: 'row', sm: 'column' }}
@@ -143,8 +143,8 @@ function WorkCategory() {
               onChange={(e) => onSearch(e)}
               cancelSearch={cancelSearch}
             />
-            <Button className="AddBtn" onClick={handleClickOpen}>
-              Add New Category
+            <Button className="New-Button" onClick={handleClickOpen}>
+              Add Work Category
             </Button>
           </Stack>
         </Box>
@@ -241,7 +241,7 @@ function WorkCategory() {
             aria-describedby="alert-dialog-slide-description">
             <DialogTitle>
               <Stack direction={'row'} alignItems={'center'} justifyContent={'space-between'}>
-                <Box> {singleData ? 'Edit Category' : 'Add Category'}</Box>
+                <Box> {singleData ? 'Edit Work Category' : 'Add Work Category'}</Box>
                 <IconButton onClick={handleClose}>
                   <CloseIcon />
                 </IconButton>

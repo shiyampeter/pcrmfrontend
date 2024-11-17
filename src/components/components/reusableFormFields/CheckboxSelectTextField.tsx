@@ -108,6 +108,8 @@ import {
   FormControlLabel,
   Select,
   MenuItem,
+  FormControl,
+  FormHelperText,
 } from '@mui/material'
 
 function CheckboxSelectTextField(props) {
@@ -117,7 +119,7 @@ function CheckboxSelectTextField(props) {
     control,
     name,
     error,
-    selectOptions = [], // Array of options passed from parent
+    selectOptions,
     variant = 'outlined',
     size = 'small',
     disabled,
@@ -126,45 +128,46 @@ function CheckboxSelectTextField(props) {
   } = props
 
   const [selectedType, setSelectedType] = useState('')
-    const [isFixed, setIsFixed] = useState(false)
+  const [isFixed, setIsFixed] = useState(false)
+  console.log(selectOptions, 'selected')
 
-
-  // Watch the value of the checkbox
-  const isFixed = useWatch({
+  // // Watch the value of the checkbox
+  const selectData = useWatch({
     control,
-    name: `${name}.isFixed`, // Watching the isFixed field
+    name: `${name}.type`, // Watching the isFixed field
     defaultValue: false,
   })
+  console.log(name, 'name')
 
   return (
     <Box display="flex" flexDirection="column" gap={1}>
       {/* Label and Checkbox in a row */}
       <Box display="flex" alignItems="center">
-        <Controller
-          name={`${name}.isFixed`}
+        {/* <Controller
+          name={'is_fixed'}
           control={control}
           defaultValue={false}
           render={({ field }) => (
             <FormControlLabel
-              control={
-                <Checkbox
-                  // {...field}
-                  // checked={field.value === 1}
-                  // onChange={(e) => field.onChange(e.target.checked ? 1 : 0)}
-                  checked={isFixed}
-                  onChange={(e) => setIsFixed(e.target.checked)}
-                />
-              }
+              control={ */}
+        <Checkbox
+          // {...field}
+          // checked={field.value === 1}
+          // onChange={(e) => field.onChange(e.target.checked ? 1 : 0)}
+          checked={isFixed}
+          onChange={(e) => setIsFixed(e.target.checked)}
+        />
+        {/* }
             />
           )}
-        />
+        /> */}
         <Typography variant="subtitle1" sx={{ fontSize: '13px', marginRight: '8px' }}>
           {label}
         </Typography>
       </Box>
 
       {/* Dynamic Select Field based on options from parent */}
-      <Controller
+      {/* <Controller
         name={`${name}.type`}
         control={control}
         defaultValue=""
@@ -180,22 +183,40 @@ function CheckboxSelectTextField(props) {
               field.onChange(e)
               setSelectedType(e.target.value)
             }}
-            disabled={!isFixed}
+            // disabled={!isFixed}
             sx={{ mb: 1, ...sx }}>
             <MenuItem value="" disabled>
               {selectLabel}
             </MenuItem>
-            {selectOptions.map((option) => (
-              <MenuItem key={option.value} value={option.value}>
-                {option.label}
-              </MenuItem>
+            {selectOptions?.map((option) => (
+              <MenuItem value={option.value}>{option.label}</MenuItem>
             ))}
           </Select>
+        )}
+      /> */}
+      <Controller
+        defaultValue={''}
+        name={`${name}.type`}
+        control={control}
+        render={({ field }) => (
+          <FormControl fullWidth error={error}>
+            <Typography variant="subtitle1" sx={{ fontSize: '13px' }}>
+              {label}
+            </Typography>
+            <Select {...field} size={'small'} disabled={disabled} className="new-textfield">
+              {selectOptions?.map((options, i) => (
+                <MenuItem value={options.value} key={i} className="new-textfield-menu">
+                  {options.label}
+                </MenuItem>
+              ))}
+            </Select>
+            <FormHelperText>{error}</FormHelperText>
+          </FormControl>
         )}
       />
 
       {/* Conditionally Render Text Field */}
-      {selectedType && (
+      {selectData && (
         <>
           {' '}
           <Typography variant="subtitle1" sx={{ fontSize: '13px', marginRight: '8px' }}>

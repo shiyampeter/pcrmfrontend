@@ -52,12 +52,11 @@ const AddSubCtegoryForm = (props, disabled) => {
   const [images, setImages] = useState('')
   const dispatch = useDispatch()
   const initialvalue = useSelector((state) => state?.subWorkCategory?.workSubCategoryView?.data)
-  // console.log(initialvalue)
+  console.log(initialvalue, 'initial')
 
   // const formLoading = useSelector((state) => state?.adminCategory?.viewCategory?.loading)
 
   const essential = useSelector((state) => state?.common?.essentials?.data)
-  console.log('essential', essential)
   // cancel search
   const cancelSearch = () => {
     setSearchKey('')
@@ -92,8 +91,8 @@ const AddSubCtegoryForm = (props, disabled) => {
       onClick()
       toast.success(response.message)
     } catch (error) {
-      toast.error(error.error)
-      console.log(errors)
+      // toast.error(error.error)
+      console.log(error)
     }
   }
 
@@ -110,10 +109,11 @@ const AddSubCtegoryForm = (props, disabled) => {
 
   // view product
   const viewCategoryList = async (id) => {
+    console.log(id, 'if')
     try {
       const res = await dispatch(workSubCategoryView(id)).unwrap()
     } catch (errors) {
-      errorAlert(errors?.error)
+      // toast.error(errors)
     }
   }
 
@@ -151,6 +151,7 @@ const AddSubCtegoryForm = (props, disabled) => {
   }, [])
 
   useEffect(() => {
+    console.log(initialData, 'initia')
     if (type === 'edit') {
       viewCategoryList(initialData)
     }
@@ -182,8 +183,8 @@ const AddSubCtegoryForm = (props, disabled) => {
   ]
 
   const percentageAmountOptions = [
-    { value: 'Percentage', label: 'Percentage' },
-    { value: 'Amount', label: 'Amount' },
+    { value: 'percentage', label: 'Percentage' },
+    { value: 'amount', label: 'Amount' },
   ]
   const alterOptions = [
     { value: 0, label: 'Before' },

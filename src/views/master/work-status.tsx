@@ -16,7 +16,7 @@ import {
 } from '@mui/material'
 import TopBreaccrumb from '@/components/components/TopBreadcrumb'
 import SearchInput from '@/components/components/searchInput'
-import TableHeader from './category/work-category/tableHeader'
+import TableHeader from './tableHeader'
 import TableRowsLoader from '@/components/components/TableLoader'
 import { useDebounce } from 'use-debounce'
 import CloseIcon from '@mui/icons-material/Close'
@@ -119,9 +119,9 @@ function WorkCategory() {
   }, [page, searchValue])
 
   return (
-    <Box sx={{ overflowY: 'auto', maxHeight: '600px' }}>
+    <Box sx={{ overflowY: 'auto', maxHeight: '500px' }}>
       <Box className="indexBox">
-        <TopBreaccrumb title={'Categories'} to={`/admin/dashboard`} />
+        <TopBreaccrumb title={'Status'} to={`/admin/dashboard`} />
         <Box sx={{ my: 3 }}>
           <Stack
             direction={{ lg: 'row', sm: 'column' }}
@@ -143,8 +143,8 @@ function WorkCategory() {
               onChange={(e) => onSearch(e)}
               cancelSearch={cancelSearch}
             />
-            <Button className="AddBtn" onClick={handleClickOpen}>
-              Add New Category
+            <Button className="New-Button" onClick={handleClickOpen}>
+              Add Status
             </Button>
           </Stack>
         </Box>
@@ -159,7 +159,7 @@ function WorkCategory() {
                   <TableRow>
                     <TableCell style={{ textAlign: 'center' }}>{i + 1}</TableCell>
 
-                    <TableCell style={{ textAlign: 'center' }}>{row.status_name}</TableCell>
+                    <TableCell style={{ textAlign: 'center' }}>{row?.status}</TableCell>
                     {/* <TableCell style={{ textAlign: 'center' }}>
                       {row.work_type == 0 ? 'Mini' : 'Online'}
                     </TableCell>
@@ -193,12 +193,12 @@ function WorkCategory() {
                         <EditIcon
                           sx={{ color: 'blue' }}
                           className="table-icons"
-                          onClick={() => editDirectory(row.work_id)}
+                          onClick={() => editDirectory(row?.id)}
                         />
                         <DeleteIcon
                           className="table-icons"
                           sx={{ color: 'red' }}
-                          onClick={() => deleteDirectory(row.work_id)}
+                          onClick={() => deleteDirectory(row?.id)}
                         />
                       </Stack>
                     </TableCell>
@@ -241,7 +241,7 @@ function WorkCategory() {
             aria-describedby="alert-dialog-slide-description">
             <DialogTitle>
               <Stack direction={'row'} alignItems={'center'} justifyContent={'space-between'}>
-                <Box> {singleData ? 'Edit Category' : 'Add Category'}</Box>
+                <Box> {singleData ? 'Edit Status' : 'Add Status'}</Box>
                 <IconButton onClick={handleClose}>
                   <CloseIcon />
                 </IconButton>

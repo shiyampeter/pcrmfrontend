@@ -15,7 +15,7 @@ function CheckboxTextField(props) {
     disabled,
     sx,
   } = props
-
+  console.log(name, 'name')
   return (
     <Box display="flex" flexDirection="column" gap={1}>
       {/* Label and Checkbox in a row */}

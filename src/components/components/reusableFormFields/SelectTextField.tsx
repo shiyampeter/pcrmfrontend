@@ -1,6 +1,14 @@
 import React, { useState } from 'react'
-import { Controller } from 'react-hook-form'
-import { TextField, Box, Typography, Select, MenuItem } from '@mui/material'
+import { Controller, useWatch } from 'react-hook-form'
+import {
+  TextField,
+  Box,
+  Typography,
+  Select,
+  MenuItem,
+  FormHelperText,
+  FormControl,
+} from '@mui/material'
 
 function SelectTextField(props) {
   const {
@@ -17,7 +25,12 @@ function SelectTextField(props) {
     textLabel,
   } = props
 
-  const [selectedType, setSelectedType] = useState('') // State to track selected dropdown value
+  // const [selectedType, setSelectedType] = useState('') // State to track selected dropdown value
+  const selectedType = useWatch({
+    control,
+    name: `${name}.type`, // Watching the isFixed field
+    defaultValue: false,
+  })
 
   return (
     <Box display="flex" flexDirection="column" gap={2}>
@@ -27,7 +40,7 @@ function SelectTextField(props) {
       </Typography>
 
       {/* Dynamic Select Field */}
-      <Controller
+      {/* <Controller
         name={`${name}.type`}
         control={control}
         defaultValue=""
@@ -55,6 +68,27 @@ function SelectTextField(props) {
             ))}
           </Select>
         )}
+      /> */}
+
+      <Controller
+        defaultValue={''}
+        name={`${name}.type`}
+        control={control}
+        render={({ field }) => (
+          <FormControl fullWidth error={error}>
+            <Typography variant="subtitle1" sx={{ fontSize: '13px' }}>
+              {label}
+            </Typography>
+            <Select {...field} size={'small'} className="new-textfield">
+              {selectOptions?.map((options, i) => (
+                <MenuItem value={options.value} key={i} className="new-textfield-menu">
+                  {options.label}
+                </MenuItem>
+              ))}
+            </Select>
+            <FormHelperText>{error}</FormHelperText>
+          </FormControl>
+        )}
       />
 
       {/* Conditionally Render Text Field */}
@@ -76,7 +110,7 @@ function SelectTextField(props) {
                 error={!!error}
                 helperText={error ? error.message : ''}
                 {...field}
-                disabled={disabled}
+                // disabled={disabled}
                 sx={sx}
               />
             )}

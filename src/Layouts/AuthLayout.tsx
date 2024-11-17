@@ -47,13 +47,12 @@ const AuthLayout = ({ children }: AuthLayoutProps) => {
         <Button
           onClick={handleCustomizer}
           variant="primary"
-          className="btn-lg btn-icon rounded-0 rounded-start-3"
-        >
+          className="btn-lg btn-icon rounded-0 rounded-start-3">
           <i className="fi fi-rr-settings fs-18" />
         </Button>
       </Stack>
 
-      <Stack
+      {/* <Stack
         className="support-livechat-btn position-fixed z-1"
         style={{ bottom: '2rem', right: '2rem' }}
       >
@@ -71,7 +70,7 @@ const AuthLayout = ({ children }: AuthLayoutProps) => {
             <span className="ms-2">Live Chat</span>
           </Button>
         )}
-      </Stack>
+      </Stack> */}
     </Suspense>
   )
 }

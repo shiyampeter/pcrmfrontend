@@ -98,8 +98,9 @@ function WorkSubCategory() {
     console.log(id)
     setDeleteModalOpen(true)
   }
-
+  console.log(singleData, 'single')
   const editDirectory = (row) => {
+    console.log(row, 'roe)')
     setSingleData(row)
     setOpen(true)
     setAddType('edit')
@@ -138,9 +139,9 @@ function WorkSubCategory() {
   }, [page, searchValue])
 
   return (
-    <Box>
+    <Box sx={{ overflowY: 'auto', maxHeight: '500px', mb: '40px' }}>
       <Box className="indexBox">
-        <TopBreaccrumb title={'Categories'} to={`/admin/dashboard`} />
+        <TopBreaccrumb title={'Sub Work Categories'} to={`/admin/dashboard`} />
         <Box sx={{ my: 3 }}>
           <Stack
             direction={{ lg: 'row', sm: 'column' }}
@@ -163,11 +164,12 @@ function WorkSubCategory() {
               cancelSearch={cancelSearch}
             />
             <Button
-              className="AddBtn"
+              className="New-Button"
               onClick={handleClickOpen}
+
               // sx={{ display: "flex", justifyContent: "flex-end" }}
             >
-              Add New Category
+              Add Work SubCategory
             </Button>
 
             {/* <FormControl size="small" className="directorySelect">
@@ -222,7 +224,11 @@ function WorkSubCategory() {
                       {row?.sub_work_validity?.count}{' '}
                     </TableCell>
                     <TableCell style={{ textAlign: 'center' }}>
-                      {row?.sub_work_alert_days_type == 0 ? 'Before' : 'After'}{' '}
+                      {row?.sub_work_alert_days_type == 0
+                        ? 'Before'
+                        : row?.sub_work_alert_days_type == 1
+                          ? 'After'
+                          : ''}{' '}
                     </TableCell>{' '}
                     <TableCell style={{ textAlign: 'center' }}>
                       {row?.sub_work_alert_days}{' '}
@@ -300,7 +306,7 @@ function WorkSubCategory() {
             }}>
             <DialogTitle>
               <Stack direction={'row'} alignItems={'center'} justifyContent={'space-between'}>
-                <Box> {singleData ? 'Edit Sub Category' : 'Add Sub Category'}</Box>
+                <Box> {singleData ? 'Edit Work SubCategory' : 'Add Work SubCategory'}</Box>
                 <IconButton onClick={handleClose}>
                   <CloseIcon />
                 </IconButton>

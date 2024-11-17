@@ -105,7 +105,6 @@ export const CATEGORY_HEADER = [
 export const STATUS_HEADER = [
   { label: 'S.No', align: 'left', id: 'id' },
   { label: 'Status Name', align: 'left', id: 'status_name' },
-
   { label: 'Actions', align: 'left', id: 'actions' },
 ]
 export const CATEGORY_SUB_HEADER = [
@@ -119,8 +118,8 @@ export const CATEGORY_SUB_HEADER = [
   { label: 'Incentive type', align: 'left', id: 'incentive_type' },
   { label: 'Validity Type', align: 'left', id: 'validity_type' },
   { label: 'Validity Count', align: 'left', id: 'validity_count' },
-  { label: 'Alter Type', align: 'left', id: 'alert_type' },
-  { label: 'Alter Days', align: 'left', id: 'alert_days' },
+  { label: 'Alert Type', align: 'left', id: 'alert_type' },
+  { label: 'Alert Days', align: 'left', id: 'alert_days' },
   { label: 'Status', align: 'left', id: 'status' },
   { label: 'Actions', align: 'left', id: 'actions' },
 ]
