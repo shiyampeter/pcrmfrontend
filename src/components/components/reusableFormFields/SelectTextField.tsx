@@ -33,11 +33,11 @@ function SelectTextField(props) {
   })
 
   return (
-    <Box display="flex" flexDirection="column" gap={2}>
-      {/* Label for Select Field */}
+    <Box display="flex" flexDirection="column">
+      {/* Label for Select Field
       <Typography variant="subtitle1" sx={{ fontSize: '13px', marginBottom: '8px' }}>
         {label}
-      </Typography>
+      </Typography> */}
 
       {/* Dynamic Select Field */}
       {/* <Controller
@@ -94,7 +94,7 @@ function SelectTextField(props) {
       {/* Conditionally Render Text Field */}
       {selectedType && (
         <>
-          <Typography variant="subtitle1" sx={{ fontSize: '13px', marginBottom: '8px' }}>
+          <Typography variant="subtitle1" sx={{ fontSize: '13px', marginBottom: '' }}>
             {textLabel}
           </Typography>
           <Controller

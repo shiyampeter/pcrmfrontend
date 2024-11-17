@@ -1,6 +1,6 @@
-import React from "react";
-import TextField from "@mui/material/TextField";
-import { Box, Typography } from "@mui/material";
+import React from 'react'
+import TextField from '@mui/material/TextField'
+import { Box, Typography } from '@mui/material'
 
 function TextFormField(props) {
   const {
@@ -15,22 +15,22 @@ function TextFormField(props) {
     variant,
     disabled,
     sx,
-  } = props;
+  } = props
   return (
     <>
       <Controller
-        defaultValue={""}
+        defaultValue={''}
         name={name}
         control={control}
         render={({ field }) => (
           <Box>
-            <Typography variant="subtitle1" sx={{ fontSize: "13px" }}>
+            <Typography variant="subtitle1" sx={{ fontSize: '13px' }}>
               {label}
             </Typography>
             <TextField
               fullWidth
               variant={variant && variant}
-              size={size ? size : "small"}
+              size={size ? size : 'small'}
               placeholder={placeholder}
               error={error}
               type={type}
@@ -45,7 +45,7 @@ function TextFormField(props) {
         )}
       />
     </>
-  );
+  )
 }
 
-export default TextFormField;
+export default TextFormField

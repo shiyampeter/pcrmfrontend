@@ -32,6 +32,8 @@ import DialogTitle from '@mui/material/DialogTitle'
 import toast from 'react-hot-toast'
 import { workStatusDelete, workStatusList } from '@/redux/api/public/workStatusService'
 import AddStatusForm from './addStatusform'
+import { useSelector } from 'react-redux'
+import { errorAlert, successAlert } from '@/helpers/global-function'
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />
 })
@@ -47,7 +49,13 @@ function WorkCategory() {
   const [singleData, setSingleData] = useState(null)
   const [addType, setAddType] = useState(null)
   const dispatch = useDispatch()
-
+  const stateValues = useSelector((state) => {
+    return {
+      deleteLoading: state.workStatus.workStatusDelete.loading,
+    }
+  })
+  const categoryListDataLoading = useSelector((state) => state.workStatus.workStatusList)
+  console.log(categoryListDataLoading, 'categoryListDataLoading')
   // cancel search
   const cancelSearch = () => {
     setSearchKey('')
@@ -97,11 +105,11 @@ function WorkCategory() {
   const delteApiFn = async () => {
     try {
       const response = await dispatch(workStatusDelete(delid)).unwrap()
-      toast.success(response.message)
+      successAlert(response.message)
       setDeleteModalOpen(false)
       categoryListApi()
-    } catch (errors) {
-      toast.error(errors?.message)
+    } catch (error) {
+      errorAlert(error?.message)
     }
   }
 
@@ -152,10 +160,10 @@ function WorkCategory() {
           <Table size="small" aria-label="a dense table" className="order-table-list">
             <TableHeader />
             <TableBody>
-              {categoryListData?.loading ? (
-                <TableRowsLoader rowsNum={5} colsNum={5} />
+              {categoryListDataLoading?.loading ? (
+                <TableRowsLoader rowsNum={3} colsNum={3} />
               ) : (
-                categoryListData?.data?.map((row, i) => (
+                categoryListDataLoading?.data?.data?.map((row, i) => (
                   <TableRow>
                     <TableCell style={{ textAlign: 'center' }}>{i + 1}</TableCell>
 
@@ -226,7 +234,7 @@ function WorkCategory() {
             title={'Delete Work Category'}
             content={'Are you sure want to delete this category?'}
             submit={delteApiFn}
-            // loading={stateValues.deleteLoading}
+            loading={stateValues.deleteLoading}
           />
         )}
 

@@ -1,104 +1,63 @@
-import { Box, Button, Checkbox, FormControlLabel, Grid, Stack, Typography } from '@mui/material'
-import React, { useEffect, useState } from 'react'
-import * as yup from 'yup'
-import { Controller, get, useFieldArray, useForm } from 'react-hook-form'
-import { yupResolver } from '@hookform/resolvers/yup'
+import { Box, Grid, Stack } from '@mui/material'
+import { useEffect } from 'react'
+import { Controller, useForm } from 'react-hook-form'
 
 import { useDispatch, useSelector } from 'react-redux'
 
-import { LoadingButton } from '@mui/lab'
-import SelectField from '@/components/components/reusableFormFields/selectField'
 import TextFormField from '@/components/components/reusableFormFields/TextField'
+import { LoadingButton } from '@mui/lab'
 
-import toast from 'react-hot-toast'
+import FormLoader from '@/components/components/formLoader'
+import { errorAlert, successAlert } from '@/helpers/global-function'
 import { workStatusAdd, workStatusEdit, workStatusView } from '@/redux/api/public/workStatusService'
 
 const AddStatusForm = (props, disabled) => {
   const { onClick, initialData = null, type } = props
 
-  const [showPassword, setShowPassword] = useState(false)
-
-  const [isLoading, setIsLoading] = useState(false)
-
   const dispatch = useDispatch()
   const initialvalue = useSelector((state) => state?.workStatus?.workStatusView?.data)
   console.log(initialvalue)
-
-  const [essential, setEssential] = useState({
-    cateLists: [],
-  })
+  const formLoading = useSelector((state) => state?.workStatus?.workStatusView?.loading)
 
   const {
-    register,
     handleSubmit,
     control,
-    setValue,
-    getValues,
-    watch,
     reset,
     formState: { errors, isSubmitting },
   } = useForm({
     defaultValues: type === 'add' ? {} : initialvalue,
-    // resolver: yupResolver(categoryForm),
+    resolver: yupResolver(workStatusSchema),
     mode: 'onChange',
   })
 
-  // Add Directory Api
   const handleAddCategory = async (values) => {
     console.log(values)
     try {
       const response = await dispatch(workStatusAdd(values)).unwrap()
-      toast.success(response.message)
+      successAlert(response.message)
       onClick()
     } catch (error) {
-      toast.error(error.message)
+      errorAlert(error.error)
     }
   }
 
   const handleEditCategory = async (values) => {
     try {
       const response = await dispatch(workStatusEdit(values)).unwrap()
-      toast.success(response.message)
+      successAlert(response.message)
       onClick()
     } catch (error) {
-      toast.error(error.message)
-      console.log(errors)
+      errorAlert(error.error)
     }
   }
 
-  // view product
   const viewCategoryList = async (id) => {
     try {
-      const res = await dispatch(workStatusView(id)).unwrap()
-    } catch (errors) {
-      toast.error(errors?.error)
+      await dispatch(workStatusView(id)).unwrap()
+    } catch (error) {
+      errorAlert(error.error)
     }
   }
-
-  //Essential Api
-  const essentialListApi = async () => {
-    // const value = "category";
-    // const parameters = {
-    //   url: `${authEndPoints.product.listCommon(value)}`,
-    // };
-    // try {
-    //   const response = await dispatch(commonListData(parameters)).unwrap();
-    //   setEssential(response.data);
-    // } catch (errors) {
-    //   errorAlert(errors?.error);
-    // }
-  }
-
-  // visibility
-  const handleTogglePasswordVisibility = () => {
-    setShowPassword(!showPassword)
-  }
-
-  // delete image
-
-  useEffect(() => {
-    essentialListApi()
-  }, [])
 
   useEffect(() => {
     if (type === 'edit') {
@@ -120,42 +79,42 @@ const AddStatusForm = (props, disabled) => {
 
   return (
     <Box sx={{ mx: 2 }}>
-      {/* {formLoading ? (
+      {formLoading ? (
         <FormLoader />
-      ) : ( */}
-      <form
-        onSubmit={
-          type === 'add' ? handleSubmit(handleAddCategory) : handleSubmit(handleEditCategory)
-        }>
-        <Grid container spacing={5} sx={{ mb: 2 }}>
-          <Grid item xs={6} direction={'column'}>
-            <TextFormField
-              name="status"
-              control={control}
-              Controller={Controller}
-              label="Status Name"
-              error={errors?.label?.message}
-            />
+      ) : (
+        <form
+          onSubmit={
+            type === 'add' ? handleSubmit(handleAddCategory) : handleSubmit(handleEditCategory)
+          }>
+          <Grid container spacing={5} sx={{ mb: 2 }}>
+            <Grid item xs={6} direction={'column'}>
+              <TextFormField
+                name="status"
+                control={control}
+                Controller={Controller}
+                label="Status Name"
+                error={errors?.status?.message}
+              />
+            </Grid>
           </Grid>
-        </Grid>
 
-        <Stack
-          direction={'row'}
-          alignItems={'flex-end'}
-          justifyContent={'flex-end'}
-          gap={5}
-          sx={{ p: 3 }}>
-          <LoadingButton
-            loadingPosition="center"
-            loading={isSubmitting}
-            variant="contained"
-            type="submit"
-            className="submitBtnn">
-            Save
-          </LoadingButton>
-        </Stack>
-      </form>
-      {/* )} */}
+          <Stack
+            direction={'row'}
+            alignItems={'flex-end'}
+            justifyContent={'flex-end'}
+            gap={5}
+            sx={{ p: 3 }}>
+            <LoadingButton
+              loadingPosition="center"
+              loading={isSubmitting}
+              variant="contained"
+              type="submit"
+              className="submitBtnn">
+              Save
+            </LoadingButton>
+          </Stack>
+        </form>
+      )}
     </Box>
   )
 }

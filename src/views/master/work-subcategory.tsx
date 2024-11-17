@@ -37,6 +37,7 @@ import {
 } from '@/redux/api/public/WorkSubCategoryService'
 import toast from 'react-hot-toast'
 import { essentials } from '@/redux/api/public/commonService'
+import { errorAlert, successAlert } from '@/helpers/global-function'
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />
 })
@@ -51,18 +52,16 @@ function WorkSubCategory() {
   const [singleData, setSingleData] = useState(null)
   const [addType, setAddType] = useState(null)
   const dispatch = useDispatch()
-  const subCategoryListData = useSelector(
-    (state) => state?.subWorkCategory?.workSubCategoryList?.data,
-  )
+  const subCategoryListData = useSelector((state) => state?.subWorkCategory?.workSubCategoryList)
 
   const [directoryPage, setDirectoryPage] = useState('admin')
   // const role = localStorage.getItem("roleName");
 
-  // const stateValues = useSelector((state) => {
-  //   return {
-  //     deleteLoading: state.adminCategory.deleteCategory.loading,
-  //   }
-  // })
+  const stateValues = useSelector((state) => {
+    return {
+      deleteLoading: state.subWorkCategory.workSubCategoryDelete.loading,
+    }
+  })
 
   // cancel search
   const cancelSearch = () => {
@@ -114,10 +113,10 @@ function WorkSubCategory() {
     try {
       const response = await dispatch(workSubCategoryDelete(delid)).unwrap()
       setDeleteModalOpen(false)
-      toast.success(response.message)
+      successAlert(response.message)
       categoryListApi()
-    } catch (errors) {
-      toast.error(response?.error)
+    } catch (error) {
+      errorAlert(error?.error)
     }
   }
 
@@ -190,9 +189,9 @@ function WorkSubCategory() {
             <TableHeader />
             <TableBody>
               {subCategoryListData?.loading ? (
-                <TableRowsLoader rowsNum={1} colsNum={3} />
+                <TableRowsLoader rowsNum={14} colsNum={8} />
               ) : (
-                subCategoryListData?.data?.map((row, i) => (
+                subCategoryListData?.data?.data?.map((row, i) => (
                   <TableRow>
                     {console.log(row)}
                     <TableCell style={{ textAlign: 'center' }}>{i + 1}</TableCell>
@@ -285,7 +284,7 @@ function WorkSubCategory() {
             title={'Delete Category'}
             content={'Are you sure want to delete this category?'}
             submit={delteApiFn}
-            // loading={stateValues.deleteLoading}
+            loading={stateValues.deleteLoading}
           />
         )}
 

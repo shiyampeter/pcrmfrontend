@@ -32,6 +32,7 @@ import DialogTitle from '@mui/material/DialogTitle'
 import { workCategoryDelete, workCategoryList } from '@/redux/api/public/workCategoryService'
 import Switch from '@mui/material/Switch'
 import toast from 'react-hot-toast'
+import { useSelector } from 'react-redux'
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />
 })
@@ -47,6 +48,13 @@ function WorkCategory() {
   const [singleData, setSingleData] = useState(null)
   const [addType, setAddType] = useState(null)
   const dispatch = useDispatch()
+  const stateValues = useSelector((state) => {
+    return {
+      deleteLoading: state.workCategory.workCategoryDelete.loading,
+    }
+  })
+
+  const categoryListDataLoading = useSelector((state) => state.workCategory.workCategoryList)
 
   // cancel search
   const cancelSearch = () => {
@@ -152,10 +160,10 @@ function WorkCategory() {
           <Table size="small" aria-label="a dense table" className="order-table-list">
             <TableHeader />
             <TableBody>
-              {categoryListData?.loading ? (
-                <TableRowsLoader rowsNum={5} colsNum={5} />
+              {categoryListDataLoading?.loading ? (
+                <TableRowsLoader rowsNum={5} colsNum={8} />
               ) : (
-                categoryListData?.data?.map((row, i) => (
+                categoryListDataLoading?.data?.data?.map((row, i) => (
                   <TableRow>
                     <TableCell style={{ textAlign: 'center' }}>{i + 1}</TableCell>
 
@@ -226,7 +234,7 @@ function WorkCategory() {
             title={'Delete Work Category'}
             content={'Are you sure want to delete this category?'}
             submit={delteApiFn}
-            // loading={stateValues.deleteLoading}
+            loading={stateValues.deleteLoading}
           />
         )}
 

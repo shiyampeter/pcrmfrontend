@@ -13,8 +13,7 @@ const LogoWhite = () => {
             width="100%"
             viewBox="0 0 400 400"
             enableBackground="new 0 0 400 400"
-            xmlSpace="preserve"
-          >
+            xmlSpace="preserve">
             <path
               fill="transparent"
               opacity={1}
@@ -101,7 +100,7 @@ z"
             />
           </svg>
         </div>
-        <div className="logo-text text-white">Window</div>
+        <div className="logo-text text-white">Prakaz</div>
       </div>
     </>
   )
