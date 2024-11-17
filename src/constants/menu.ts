@@ -28,18 +28,18 @@ const MENU_ITEMS: MenuItemTypes[] = [
         url: '/',
         parentKey: 'dashboards',
       },
-      {
-        key: 'analytics',
-        label: 'Analytics',
-        url: '/dashboards/analytics',
-        parentKey: 'dashboards',
-      },
-      {
-        key: 'crm',
-        label: 'CRM',
-        url: '/dashboards/crm',
-        parentKey: 'dashboards',
-      },
+      // {
+      //   key: 'analytics',
+      //   label: 'Analytics',
+      //   url: '/dashboards/analytics',
+      //   parentKey: 'dashboards',
+      // },
+      // {
+      //   key: 'crm',
+      //   label: 'CRM',
+      //   url: '/dashboards/crm',
+      //   parentKey: 'dashboards',
+      // },
       // {
       //   key: 'pos',
       //   label: 'POS',
@@ -88,6 +88,39 @@ const MENU_ITEMS: MenuItemTypes[] = [
         key: 'work-status',
         label: 'Work Status',
         url: '/master/work-status',
+        parentKey: 'master',
+      },
+
+      // {
+      //   key: 'pos',
+      //   label: 'POS',
+      //   url: '#!',
+      //   parentKey: 'dashboards',
+      // },
+      // {
+      //   key: 'nft',
+      //   label: 'NFT',
+      //   url: '#!',
+      //   parentKey: 'dashboards',
+      // },
+      // {
+      //   key: 'project',
+      //   label: 'Project',
+      //   url: '#!',
+      //   parentKey: 'dashboards',
+      // },
+    ],
+  },
+  {
+    key: 'lead',
+    label: 'Lead',
+    isTitle: false,
+    icon: 'fi fi-rr-dashboard',
+    children: [
+      {
+        key: 'jec-mini',
+        label: 'JEC Mini',
+        url: '/lead/jec-mini',
         parentKey: 'master',
       },
 

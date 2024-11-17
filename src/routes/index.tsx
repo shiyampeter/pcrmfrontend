@@ -74,6 +74,9 @@ const WorkCategory = React.lazy(() => import('../views/master/work-category'))
 const WorkSubCategory = React.lazy(() => import('../views/master/work-subcategory'))
 const WorkStatus = React.lazy(() => import('../views/master/work-status'))
 
+// Lead
+const JecMini = React.lazy(() => import('../views/lead/jec-mini'))
+
 // Extended
 const ReactSelect = React.lazy(() => import('./../views/uielements/extended/ReactSelect'))
 const SweetAlert2 = React.lazy(() => import('./../views/uielements/extended/SweetAlert2'))
@@ -263,6 +266,27 @@ const masterRoutes: RoutesProps = {
       path: '/master/work-status',
       name: 'WorkStatus',
       element: <WorkStatus />,
+      route: PrivateRoute,
+    },
+  ],
+}
+
+// mini
+const leadRoutes: RoutesProps = {
+  path: '/lead',
+  name: 'Lead',
+  header: 'Navigation',
+  children: [
+    {
+      path: '/',
+      name: 'Root',
+      element: <Ecommerce />,
+      route: PrivateRoute,
+    },
+    {
+      path: '/lead/jec-mini',
+      name: 'JecMini',
+      element: <JecMini />,
       route: PrivateRoute,
     },
   ],
@@ -1136,6 +1160,7 @@ const authProtectedRoutes = [
   // pagesRoutes,
   // componentsRoutes,
   masterRoutes,
+  leadRoutes,
 ]
 const publicRoutes = [
   ...authRoutes,
