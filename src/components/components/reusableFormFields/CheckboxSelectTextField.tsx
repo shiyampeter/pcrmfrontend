@@ -150,20 +150,20 @@ function CheckboxSelectTextField(props) {
           render={({ field }) => (
             <FormControlLabel
               control={ */}
-        <Checkbox
-          // {...field}
-          // checked={field.value === 1}
-          // onChange={(e) => field.onChange(e.target.checked ? 1 : 0)}
+        {/* <Checkbox
+          {...field}
+          checked={field.value === 1}
+          onChange={(e) => field.onChange(e.target.checked ? 1 : 0)}
           checked={isFixed}
           onChange={(e) => setIsFixed(e.target.checked)}
-        />
+        /> */}
         {/* }
             />
           )}
         /> */}
-        <Typography variant="subtitle1" sx={{ fontSize: '13px', marginRight: '8px' }}>
+        {/* <Typography variant="subtitle1" sx={{ fontSize: '13px', marginRight: '8px' }}>
           {label}
-        </Typography>
+        </Typography> */}
       </Box>
 
       {/* Dynamic Select Field based on options from parent */}

@@ -79,7 +79,7 @@ function SelectTextField(props) {
             <Typography variant="subtitle1" sx={{ fontSize: '13px' }}>
               {label}
             </Typography>
-            <Select {...field} size={'small'} className="new-textfield">
+            <Select {...field} size={'small'} className="new-textfield" disabled={disabled}>
               {selectOptions?.map((options, i) => (
                 <MenuItem value={options.value} key={i} className="new-textfield-menu">
                   {options.label}

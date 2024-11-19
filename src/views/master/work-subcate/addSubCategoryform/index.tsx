@@ -34,6 +34,7 @@ import SelectTextField from '@/components/components/reusableFormFields/SelectTe
 import { workSubCategorySchema } from '@/helpers/ValidationSchema'
 import FormLoader from '@/components/components/formLoader'
 import { errorAlert, successAlert } from '@/helpers/global-function'
+import { valid } from 'chroma-js'
 
 const AddSubCtegoryForm = (props, disabled) => {
   const { onClick, initialData = null, type } = props
@@ -74,6 +75,9 @@ const AddSubCtegoryForm = (props, disabled) => {
   })
   const statusAlert = watch('sub_work_alert_status')
   const statusAlertType = watch('sub_work_alert_days_type')
+  const validityType = watch('sub_work_validity_status')
+  console.log(statusAlert, 'hhhhh')
+  console.log(validityType, 'validityType')
   // Add Directory Api
   const handleAddCategory = async (values: any) => {
     try {
@@ -171,6 +175,7 @@ const AddSubCtegoryForm = (props, disabled) => {
     { value: 'year', label: 'Years' },
   ]
   const [isAlertEnabled, setIsAlertEnabled] = useState(false)
+  console.log(isAlertEnabled, 'isAler')
   return (
     <Box sx={{ mx: 2 }}>
       {formLoading ? (
@@ -306,7 +311,7 @@ const AddSubCtegoryForm = (props, disabled) => {
                         checked={field.value === 1}
                         onChange={(e) => {
                           field.onChange(e.target.checked ? 1 : 0)
-                          setIsAlertEnabled(e.target.checked) // Update state when checkbox is toggled
+                          // setIsAlertEnabled(e.target.checked) // Update state when checkbox is toggled
                         }}
                       />
                     }
@@ -323,7 +328,7 @@ const AddSubCtegoryForm = (props, disabled) => {
                 control={control} // Pass control from react-hook-form
                 name="sub_work_validity"
                 selectOptions={timeOptions}
-                disabled={!isAlertEnabled}
+                disabled={!validityType}
                 // error={formErrors.exampleField?.value}
               />
             </Grid>
