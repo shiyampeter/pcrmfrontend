@@ -25,7 +25,7 @@ const MENU_ITEMS: MenuItemTypes[] = [
       {
         key: 'ecommerce',
         label: 'eCommerce',
-        url: '/',
+        url: '/dashboards/default',
         parentKey: 'dashboards',
       },
       // {
@@ -118,10 +118,10 @@ const MENU_ITEMS: MenuItemTypes[] = [
     icon: 'fi fi-rr-dashboard',
     children: [
       {
-        key: 'jec-mini',
-        label: 'JEC Mini',
-        url: '/lead/jec-mini',
-        parentKey: 'master',
+        key: 'iec-mini',
+        label: 'IEC',
+        url: '/lead/iec-mini',
+        parentKey: 'lead',
       },
 
       // {

@@ -73,7 +73,7 @@ function WorkCategory() {
       console.log(res)
       setCategoryListData(res)
     } catch (errors) {
-      toast.error(errors?.error)
+      errorAlert(errors?.message)
     }
   }
 

@@ -75,7 +75,7 @@ const WorkSubCategory = React.lazy(() => import('../views/master/work-subcategor
 const WorkStatus = React.lazy(() => import('../views/master/work-status'))
 
 // Lead
-const JecMini = React.lazy(() => import('../views/lead/jec-mini'))
+const IecMini = React.lazy(() => import('../views/lead/iec-mini'))
 
 // Extended
 const ReactSelect = React.lazy(() => import('./../views/uielements/extended/ReactSelect'))
@@ -218,7 +218,7 @@ const dashboardRoutes: RoutesProps = {
   header: 'Navigation',
   children: [
     {
-      path: '/',
+      path: '/dashboards/default',
       name: 'Root',
       element: <Ecommerce />,
       route: PrivateRoute,
@@ -244,12 +244,12 @@ const masterRoutes: RoutesProps = {
   name: 'Master',
   header: 'Navigation',
   children: [
-    {
-      path: '/',
-      name: 'Root',
-      element: <Ecommerce />,
-      route: PrivateRoute,
-    },
+    // {
+    //   path: '/',
+    //   name: 'Root',
+    //   element: <Ecommerce />,
+    //   route: PrivateRoute,
+    // },
     {
       path: '/master/work-category',
       name: 'WorkCategory',
@@ -277,16 +277,16 @@ const leadRoutes: RoutesProps = {
   name: 'Lead',
   header: 'Navigation',
   children: [
+    // {
+    //   path: '/',
+    //   name: 'Root',
+    //   element: <Ecommerce />,
+    //   route: PrivateRoute,
+    // },
     {
-      path: '/',
-      name: 'Root',
-      element: <Ecommerce />,
-      route: PrivateRoute,
-    },
-    {
-      path: '/lead/jec-mini',
-      name: 'JecMini',
-      element: <JecMini />,
+      path: '/lead/iec-mini',
+      name: 'IecMini',
+      element: <IecMini />,
       route: PrivateRoute,
     },
   ],
@@ -796,7 +796,15 @@ const authRoutes: RoutesProps[] = [
       {
         path: '/auth/login',
         name: 'Login',
+        element: <Login />,
+        route: Route,
         children: [
+          {
+            path: '/',
+            name: 'Login',
+            element: <Login />,
+            route: Route,
+          },
           {
             path: '/auth/minimal/login',
             name: 'Login',

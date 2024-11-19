@@ -4,6 +4,7 @@ import workCategoryReducer from '../slice/public/workCategorySlice'
 import subWorkCategoryReducer from '../slice/public/workSubCategorySlice'
 import commonReducer from '../slice/public/commonSlice'
 import workStatusReducer from '../slice/public/workStatusSlice'
+import iecMiniReducer from '../slice/public/iecMiniSlice'
 
 export const rootReducer = combineReducers({
   auth: authReducer,
@@ -11,4 +12,5 @@ export const rootReducer = combineReducers({
   subWorkCategory: subWorkCategoryReducer,
   common: commonReducer,
   workStatus: workStatusReducer,
+  iecMini: iecMiniReducer,
 })

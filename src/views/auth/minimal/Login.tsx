@@ -20,7 +20,8 @@ const Login = () => {
   const [showPassword, setShowPassword] = useState<boolean>(false)
   const { isAuthenticated, saveSession } = useAuthContext()
   const redirectUrl = useMemo(
-    () => (location.state && location.state.from ? location.state.from.pathname : '/'),
+    () =>
+      location.state && location.state.from ? location.state.from.pathname : '/dashboards/default',
     [location.state],
   )
 

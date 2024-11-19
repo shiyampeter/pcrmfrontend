@@ -102,11 +102,32 @@ export const CATEGORY_HEADER = [
   { label: 'Actions', align: 'left', id: 'actions' },
 ]
 
+export const IECMINI_HEADER = [
+  { label: 'S.No', align: 'left', id: 'id' },
+  { label: 'Category Name', align: 'left', id: 'work_cate' },
+  { label: 'SubCategory Name', align: 'left', id: 'sub_cate' },
+  { label: 'Name', align: 'left', id: 'name' },
+  { label: 'Completed Status', align: 'left', id: 'status_name' },
+  { label: 'Work Type', align: 'left', id: 'work_type' },
+  { label: 'Status Name', align: 'left', id: 'status_name' },
+  { label: 'Mobile', align: 'left', id: 'mobile' },
+  { label: 'Amount', align: 'left', id: 'amount' },
+  { label: 'Expense', align: 'left', id: 'expense' },
+  { label: 'Office Expense', align: 'left', id: 'office_expense' },
+  { label: 'Discount', align: 'left', id: 'discount' },
+  { label: 'Profit', align: 'left', id: 'income' },
+  { label: 'Payment Status', align: 'left', id: 'payment_status' },
+  { label: 'Online Payment GoThrough', align: 'left', id: 'online_payment_go_through' },
+
+  { label: 'Actions', align: 'left', id: 'actions' },
+]
+
 export const STATUS_HEADER = [
   { label: 'S.No', align: 'left', id: 'id' },
   { label: 'Status Name', align: 'left', id: 'status_name' },
   { label: 'Actions', align: 'left', id: 'actions' },
 ]
+
 export const CATEGORY_SUB_HEADER = [
   { label: 'S.No', align: 'left', id: 'id' },
   { label: 'Category', align: 'left', id: 'category' },

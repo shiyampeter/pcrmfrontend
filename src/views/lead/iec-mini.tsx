@@ -1,45 +1,46 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect, useState } from 'react'
+import TableRowsLoader from '@/components/components/TableLoader'
+import TopBreaccrumb from '@/components/components/TopBreadcrumb'
+import SearchInput from '@/components/components/searchInput'
+import CloseIcon from '@mui/icons-material/Close'
 import {
   Box,
-  TableContainer,
-  Table,
-  TableBody,
-  TableRow,
-  TableCell,
-  Stack,
   Button,
   Dialog,
   IconButton,
-  Typography,
   Slide,
+  Stack,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableRow,
+  Typography,
 } from '@mui/material'
-import TopBreaccrumb from '@/components/components/TopBreadcrumb'
-import SearchInput from '@/components/components/searchInput'
-import TableHeader from './category/work-category/tableHeader'
-import TableRowsLoader from '@/components/components/TableLoader'
+import React, { useEffect, useState } from 'react'
 import { useDebounce } from 'use-debounce'
-import CloseIcon from '@mui/icons-material/Close'
 
-import { useDispatch } from 'react-redux'
 import TablePagination from '@/components/components/Pagination'
 import DeleteModal from '@/components/components/deleteModal'
-import EditIcon from '@mui/icons-material/Edit'
 import DeleteIcon from '@mui/icons-material/Delete'
-import AddCategoryForm from './category/addCategoryform'
+import EditIcon from '@mui/icons-material/Edit'
 import DialogTitle from '@mui/material/DialogTitle'
+import { useDispatch } from 'react-redux'
 
-import { workCategoryDelete, workCategoryList } from '@/redux/api/public/workCategoryService'
-import Switch from '@mui/material/Switch'
-import toast from 'react-hot-toast'
-import { useSelector } from 'react-redux'
+import TableHeader from '@/components/components/tableHeader'
+import { IECMINI_HEADER } from '@/components/constants/tableHeader'
 import { errorAlert, successAlert } from '@/helpers/global-function'
+import { iecMiniDelete, iecMiniList } from '@/redux/api/public/iecMiniService'
+import { useSelector } from 'react-redux'
+import AddIecForm from './addIecForm'
+import AddOnlineForm from './addOnlineForm'
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />
 })
 const label = { inputProps: { 'aria-label': 'Switch demo' } }
-function WorkCategory() {
+function IecMini() {
   const [open, setOpen] = React.useState(false)
+  const [online, setOnline] = React.useState(false)
   const [delid, setDelId] = useState(null)
   const [categoryListData, setCategoryListData] = useState([])
   const [searchKey, setSearchKey] = useState('')
@@ -51,30 +52,28 @@ function WorkCategory() {
   const dispatch = useDispatch()
   const stateValues = useSelector((state) => {
     return {
-      deleteLoading: state.workCategory.workCategoryDelete.loading,
+      deleteLoading: state.iecMini.iecMiniDelete.loading,
     }
   })
 
-  const categoryListDataLoading = useSelector((state) => state.workCategory.workCategoryList)
+  const categoryListDataLoading = useSelector((state) => state.iecMini.iecMiniList)
 
   // cancel search
   const cancelSearch = () => {
     setSearchKey('')
   }
-  console.log(delid)
   //on search
   const onSearch = (e) => {
     setSearchKey(e.target.value)
   }
 
   //list api
-  const categoryListApi = async () => {
+  const iecMiniListApi = async () => {
     try {
-      const res = await dispatch(workCategoryList({ page, search: searchValue })).unwrap()
-      console.log(res)
+      const res = await dispatch(iecMiniList({ page, search: searchValue })).unwrap()
       setCategoryListData(res)
     } catch (errors) {
-      errorAlert(errors?.error)
+      errorAlert(errors?.message)
     }
   }
 
@@ -88,14 +87,24 @@ function WorkCategory() {
     setAddType('add')
   }
 
+  const handleClickOnline = () => {
+    setSingleData(null)
+    setOnline(true)
+    setAddType('add')
+  }
+
   const deleteDirectory = (id) => {
     setDelId(id)
     setDeleteModalOpen(true)
   }
 
-  const editDirectory = (id) => {
+  const editDirectory = (id, work_type) => {
     setSingleData(id)
-    setOpen(true)
+    if (work_type == 'Online') {
+      setOnline(true)
+    } else {
+      setOpen(true)
+    }
     setAddType('edit')
   }
 
@@ -105,10 +114,10 @@ function WorkCategory() {
 
   const delteApiFn = async () => {
     try {
-      const response = await dispatch(workCategoryDelete(delid)).unwrap()
+      const response = await dispatch(iecMiniDelete(delid)).unwrap()
       successAlert(response.message)
       setDeleteModalOpen(false)
-      categoryListApi()
+      iecMiniListApi()
     } catch (errors) {
       errorAlert(errors?.message)
     }
@@ -116,50 +125,60 @@ function WorkCategory() {
 
   const handleClose = () => {
     setOpen(false)
+    setOnline(false)
   }
 
   const handleButtonClick = async () => {
     handleClose() // Call handleClose to close the form
-    await categoryListApi() // Call handleAddDirectory to add directory data
+    await iecMiniListApi() // Call handleAddDirectory to add directory data
   }
 
   useEffect(() => {
-    categoryListApi()
+    iecMiniListApi()
   }, [page, searchValue])
 
   return (
     <Box sx={{ overflowY: 'auto', maxHeight: '500px', mb: '40px' }}>
       <Box className="indexBox">
-        <TopBreaccrumb title={'Work Categories'} to={`/admin/dashboard`} />
+        <TopBreaccrumb title={'Iec List'} to={`/admin/dashboard`} />
         <Box sx={{ my: 3 }}>
           <Stack
             direction={{ lg: 'row', sm: 'column' }}
             // gap={2}
             // alignItems={"center"}
             justifyContent={'space-between'}>
-            <SearchInput
-              sx={{
-                border: '1px solid #303067',
-                borderRadius: '20px',
-                height: '32.69px',
-
-                '&.Mui-focused ': {
-                  border: '1px solid #6473ff',
-                },
-                width: { xs: '100%', sm: '340px' },
-              }}
-              value={searchKey || ''}
-              onChange={(e) => onSearch(e)}
-              cancelSearch={cancelSearch}
-            />
-            <Button className="New-Button" onClick={handleClickOpen}>
-              Add Work Category
-            </Button>
+            <Box>
+              <SearchInput
+                sx={{
+                  border: '1px solid #303067',
+                  borderRadius: '20px',
+                  height: '32.69px',
+                  display: 'flex',
+                  justifyContent: 'start',
+                  alignItems: 'center',
+                  '&.Mui-focused ': {
+                    border: '1px solid #6473ff',
+                  },
+                  width: { xs: '100%', sm: '340px' },
+                }}
+                value={searchKey || ''}
+                onChange={(e) => onSearch(e)}
+                cancelSearch={cancelSearch}
+              />
+            </Box>
+            <Box sx={{ display: 'flex', gap: '10px' }}>
+              <Button className="New-Button" onClick={handleClickOpen}>
+                Add Iec Mini
+              </Button>
+              <Button className="New-Button" onClick={handleClickOnline}>
+                Add Iec Online
+              </Button>
+            </Box>
           </Stack>
         </Box>
         <TableContainer className="rolesPageTable">
           <Table size="small" aria-label="a dense table" className="order-table-list">
-            <TableHeader />
+            <TableHeader typeHeader={IECMINI_HEADER} />
             <TableBody>
               {categoryListDataLoading?.loading ? (
                 <TableRowsLoader rowsNum={5} colsNum={8} />
@@ -168,20 +187,30 @@ function WorkCategory() {
                   <TableRow>
                     <TableCell style={{ textAlign: 'center' }}>{i + 1}</TableCell>
 
-                    <TableCell style={{ textAlign: 'center' }}>{row.work_name}</TableCell>
+                    <TableCell style={{ textAlign: 'center' }}>{row.work?.work_name}</TableCell>
                     <TableCell style={{ textAlign: 'center' }}>
-                      {row.work_type == 0 ? 'Mini' : 'Online'}
+                      {row.sub_work?.sub_work_cate_name}
                     </TableCell>
-                    <TableCell style={{ textAlign: 'center' }}>{row.work_tracking_no}</TableCell>
+                    <TableCell style={{ textAlign: 'center' }}>{row.iec_q_name}</TableCell>
+
+                    <TableCell style={{ textAlign: 'center' }}>{row.iec_complete}</TableCell>
+                    <TableCell style={{ textAlign: 'center' }}>{row.iec_q_work_type}</TableCell>
                     <TableCell style={{ textAlign: 'center' }}>
-                      {row.work_tracking_website}
+                      {row?.iec_complete == 0 ? 'Not Completed' : 'Completed'}
+                    </TableCell>
+                    <TableCell style={{ textAlign: 'center' }}>{row.iec_q_mobile}</TableCell>
+                    <TableCell style={{ textAlign: 'center' }}>{row.iec_q_amount}</TableCell>
+                    <TableCell style={{ textAlign: 'center' }}>{row.iec_q_expense}</TableCell>
+                    <TableCell style={{ textAlign: 'center' }}>
+                      {row.iec_q_office_expense}
+                    </TableCell>
+                    <TableCell style={{ textAlign: 'center' }}>{row.iec_q_discount}</TableCell>
+                    <TableCell style={{ textAlign: 'center' }}>{row.iec_q_income}</TableCell>
+                    <TableCell style={{ textAlign: 'center' }}>
+                      {row.iec_paid === 0 ? 'Not Paid' : 'Paid'}
                     </TableCell>
                     <TableCell style={{ textAlign: 'center' }}>
-                      <Switch
-                        checked={row.work_completed}
-                        onChange={() => handleSwitchChange(row.id)}
-                        {...label}
-                      />
+                      {row.iec_online_payment_gothrough}
                     </TableCell>
 
                     <TableCell align="center">
@@ -202,12 +231,12 @@ function WorkCategory() {
                         <EditIcon
                           sx={{ color: 'blue' }}
                           className="table-icons"
-                          onClick={() => editDirectory(row.work_id)}
+                          onClick={() => editDirectory(row.iec_q_id, row.iec_q_work_type)}
                         />
                         <DeleteIcon
                           className="table-icons"
                           sx={{ color: 'red' }}
-                          onClick={() => deleteDirectory(row.work_id)}
+                          onClick={() => deleteDirectory(row.iec_q_id)}
                         />
                       </Stack>
                     </TableCell>
@@ -232,8 +261,8 @@ function WorkCategory() {
           <DeleteModal
             open={deleteModalOpen}
             close={() => deleteDirectoryModalClose()}
-            title={'Delete Work Category'}
-            content={'Are you sure want to delete this category?'}
+            title={'Delete Iec'}
+            content={'Are you sure want to delete this iec?'}
             submit={delteApiFn}
             loading={stateValues.deleteLoading}
           />
@@ -250,13 +279,34 @@ function WorkCategory() {
             aria-describedby="alert-dialog-slide-description">
             <DialogTitle>
               <Stack direction={'row'} alignItems={'center'} justifyContent={'space-between'}>
-                <Box> {singleData ? 'Edit Work Category' : 'Add Work Category'}</Box>
+                <Box> {singleData ? 'Edit Iec ' : 'Add Iec'}</Box>
                 <IconButton onClick={handleClose}>
                   <CloseIcon />
                 </IconButton>
               </Stack>
             </DialogTitle>
-            <AddCategoryForm onClick={handleButtonClick} initialData={singleData} type={addType} />
+            <AddIecForm onClick={handleButtonClick} initialData={singleData} type={addType} />
+          </Dialog>
+        ) : null}
+
+        {online === true ? (
+          <Dialog
+            fullWidth={true}
+            maxWidth={'sm'}
+            open={online}
+            TransitionComponent={Transition}
+            keepMounted
+            onClose={handleClose}
+            aria-describedby="alert-dialog-slide-description">
+            <DialogTitle>
+              <Stack direction={'row'} alignItems={'center'} justifyContent={'space-between'}>
+                <Box> {singleData ? 'Edit Iec ' : 'Add Iec Online'}</Box>
+                <IconButton onClick={handleClose}>
+                  <CloseIcon />
+                </IconButton>
+              </Stack>
+            </DialogTitle>
+            <AddOnlineForm onClick={handleButtonClick} initialData={singleData} type={addType} />
           </Dialog>
         ) : null}
       </Box>
@@ -264,4 +314,4 @@ function WorkCategory() {
   )
 }
 
-export default WorkCategory
+export default IecMini

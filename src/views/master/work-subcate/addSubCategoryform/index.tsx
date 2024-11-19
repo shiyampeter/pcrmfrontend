@@ -40,7 +40,8 @@ const AddSubCtegoryForm = (props, disabled) => {
 
   const [searchKey, setSearchKey] = useState('')
   const [searchValue] = useDebounce(searchKey, 1000)
-
+  const [workCategory, setWorkCategory] = useState([])
+  const [status, setStatus] = useState([])
   const dispatch = useDispatch()
   const initialvalue = useSelector((state) => state?.subWorkCategory?.workSubCategoryView?.data)
   console.log(initialvalue, 'initial')
@@ -108,23 +109,27 @@ const AddSubCtegoryForm = (props, disabled) => {
   const essentialApi = async () => {
     try {
       const res = await dispatch(essentials({ type: 'workCategory', search: searchValue })).unwrap()
-      console.log(res, 'res')
+      setWorkCategory(res)
     } catch (error) {
-      errorAlert(error?.error)
+      errorAlert(error?.message)
+    }
+  }
+
+  const essentialStatusApi = async () => {
+    try {
+      const res = await dispatch(
+        essentials({ type: 'workSubCategoryStatus', search: searchValue }),
+      ).unwrap()
+      setStatus(res)
+    } catch (error) {
+      errorAlert(error?.message)
     }
   }
 
   useEffect(() => {
     essentialApi()
-    console.log('test')
+    essentialStatusApi()
   }, [type, searchValue])
-
-  useEffect(() => {
-    if (initialData) {
-      const Img = initialData.image ? initialData.image : ''
-      setImages(Img)
-    }
-  }, [])
 
   useEffect(() => {
     console.log(initialData, 'initia')
@@ -156,8 +161,8 @@ const AddSubCtegoryForm = (props, disabled) => {
     { value: 'amount', label: 'Amount' },
   ]
   const alterOptions = [
-    { value: 0, label: 'Before' },
-    { value: 1, label: 'After' },
+    { value: 1, label: 'Before' },
+    { value: 2, label: 'After' },
   ]
   const timeOptions = [
     { value: 'day', label: 'Days' },
@@ -190,16 +195,16 @@ const AddSubCtegoryForm = (props, disabled) => {
                 render={({ field }) => (
                   <Autocomplete
                     {...field}
-                    options={essential || []}
+                    options={workCategory || []}
                     getOptionLabel={(option) => option?.label || ''} // Display the label in the dropdown
-                    value={essential?.find((item) => item.value === field.value) || null} // Match selected value
+                    value={workCategory?.find((item) => item.value === field.value) || null} // Match selected value
                     onChange={(_, newValue) => {
                       field.onChange(newValue?.value || '') // Update form field with the selected value
                     }}
                     renderInput={(params) => (
                       <TextField
                         {...params}
-                        label="Select Work Category" // Label for the input
+                        // label="Select Work Category" // Label for the input
                         error={!!errors?.sub_work_cate_id} // Show error if validation fails
                         helperText={errors?.sub_work_cate_id?.message} // Display error message
                       />
@@ -213,9 +218,9 @@ const AddSubCtegoryForm = (props, disabled) => {
                 name="sub_work_cate_name"
                 control={control}
                 Controller={Controller}
-                label="Select Work Category Name"
+                label="Enter SubCategory Name"
                 error={errors?.sub_work_cate_name?.message}
-                sx={{ height: '39px' }}
+                sx={{ height: '45px!important' }}
               />
             </Grid>
           </Grid>
@@ -373,7 +378,7 @@ const AddSubCtegoryForm = (props, disabled) => {
                 control={control}
                 label="Select Status"
                 Controller={Controller}
-                data={data}
+                data={status}
                 error={errors?.status_id?.message}
                 // disabled={type === "edit" && true}
               />

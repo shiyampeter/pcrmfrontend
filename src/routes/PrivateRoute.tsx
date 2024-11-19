@@ -9,7 +9,7 @@ import { useAuthContext } from '@/common'
  */
 
 const PrivateRoute = ({ component: Component, roles, ...rest }: any) => {
-  const { isAuthenticated } = useAuthContext()
+  const { isAuthenticated } = localStorage.getItem('token')
   return (
     <Route
       {...rest}
@@ -24,7 +24,7 @@ const PrivateRoute = ({ component: Component, roles, ...rest }: any) => {
           )
         }
         if (isAuthenticated) {
-          return <Navigate to={{ pathname: '/' }} />
+          return <Navigate to={{ pathname: '/dashboards' }} />
         }
         return <Component {...props} />
       }}
