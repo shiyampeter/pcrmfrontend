@@ -152,7 +152,8 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
         updateLayout,
         updateHeader,
         updateSidebar,
-      }}>
+      }}
+    >
       {children}
     </ThemeContext.Provider>
   )

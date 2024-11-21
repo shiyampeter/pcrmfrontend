@@ -22,11 +22,13 @@ const Customizer = () => {
       onHide={handleCustomizer}
       placement="end"
       id="theme-settings-offcanvas"
-      style={{ width: '375px' }}>
+      style={{ width: '375px' }}
+    >
       <Offcanvas.Header
         className="d-flex align-items-center px-4 py-3 border-bottom"
         closeButton
-        style={{ height: '4.5rem' }}>
+        style={{ height: '4.5rem' }}
+      >
         <div>
           <h5 className="fw-bold mb-1">Preview Settings</h5>
           <small className="fs-13 fw-normal text-muted">Customize and preview in real time</small>
@@ -45,7 +47,8 @@ const Customizer = () => {
               type="button"
               className="w-100"
               id="reset-layout"
-              onClick={reset}>
+              onClick={reset}
+            >
               Reset
             </Button>
           </Col>

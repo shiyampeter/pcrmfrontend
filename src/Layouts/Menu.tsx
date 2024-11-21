@@ -72,7 +72,8 @@ const MenuItemWithChildren = ({
         className={`nav-link ${linkClassName} ${activeMenuItems!.includes(item.key) ? 'open' : ''}`}
         aria-expanded={open}
         data-menu-key={item.key}
-        onClick={toggleMenuItem}>
+        onClick={toggleMenuItem}
+      >
         {item.icon && <i className={item.icon} />}
         <span className="menu-arrow" />
         <span> {item.label}</span>
@@ -122,7 +123,8 @@ const MenuItemLink = ({ item, className }: SubMenus) => {
       to={item.url!}
       target={item.target}
       className={`nav-link-ref ${className}`}
-      data-menu-key={item.key}>
+      data-menu-key={item.key}
+    >
       {item.icon && <i className={item.icon} />}
       <span> {item.label}</span>
     </Link>

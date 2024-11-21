@@ -95,7 +95,8 @@ const AddCategoryForm = (props, disabled) => {
         <form
           onSubmit={
             type === 'add' ? handleSubmit(handleAddCategory) : handleSubmit(handleEditCategory)
-          }>
+          }
+        >
           <Grid container spacing={5} sx={{ mb: 2 }}>
             <Grid item xs={6} direction={'column'}>
               <TextFormField
@@ -167,13 +168,15 @@ const AddCategoryForm = (props, disabled) => {
             alignItems={'flex-end'}
             justifyContent={'flex-end'}
             gap={5}
-            sx={{ p: 3 }}>
+            sx={{ p: 3 }}
+          >
             <LoadingButton
               loadingPosition="center"
               loading={isSubmitting}
               variant="contained"
               type="submit"
-              className="submitBtnn">
+              className="submitBtnn"
+            >
               Save
             </LoadingButton>
           </Stack>

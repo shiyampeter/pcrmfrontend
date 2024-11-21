@@ -85,7 +85,8 @@ const GalleryOne = () => {
             <span className="fs-13 text-muted">23 Photos</span>
             <span
               className="d-none d-lg-flex bg-secondary bg-opacity-50 rounded-circle"
-              style={{ width: '0.25rem', height: '0.25rem' }}></span>
+              style={{ width: '0.25rem', height: '0.25rem' }}
+            ></span>
             <span className="fs-13 text-muted">26 Mar, 2024</span>
           </Stack>
         </Card.Footer>

@@ -81,7 +81,8 @@ const AccountAvatarCover = () => {
               cursor: 'pointer',
             }}
             className="d-flex align-items-center justify-content-center fs-24 border border-3 rounded overflow-hidden bg-secondary-subtle"
-            onClick={() => avatarImageUploader.current?.click()}>
+            onClick={() => avatarImageUploader.current?.click()}
+          >
             {avatarFile ? (
               <img
                 src={URL.createObjectURL(avatarFile)}
@@ -102,7 +103,8 @@ const AccountAvatarCover = () => {
             <Link
               to="#!"
               className="text-danger"
-              onClick={() => handleReset(setAvatarFile, avatarImageRef, avatarImageUploader)}>
+              onClick={() => handleReset(setAvatarFile, avatarImageRef, avatarImageUploader)}
+            >
               Reset
             </Link>
           </p>
@@ -129,7 +131,8 @@ const AccountAvatarCover = () => {
               cursor: 'pointer',
             }}
             className="d-flex align-items-center justify-content-center fs-24 border border-3 rounded overflow-hidden bg-secondary-subtle"
-            onClick={() => coverImageUploader.current?.click()}>
+            onClick={() => coverImageUploader.current?.click()}
+          >
             {coverFile ? (
               <img
                 src={URL.createObjectURL(coverFile)}
@@ -150,7 +153,8 @@ const AccountAvatarCover = () => {
             <Link
               to="#!"
               className="text-danger"
-              onClick={() => handleReset(setCoverFile, coverImageRef, coverImageUploader)}>
+              onClick={() => handleReset(setCoverFile, coverImageRef, coverImageUploader)}
+            >
               Reset
             </Link>
           </p>

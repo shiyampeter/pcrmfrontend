@@ -1,0 +1,8 @@
+import { jsx as _jsx, jsxs as _jsxs, Fragment as _Fragment } from "react/jsx-runtime";
+import PageBreadcrumbButton from '@/components/Common/PageBreadcrumbButton';
+import { Row, Col, Card } from 'react-bootstrap';
+import { NoUiSliderBasic, NoUiSliderKeyboard, NoUiSliderNonlinear, NoUiSliderPips, NoUiSliderSkipping, } from '@/components/UiElements/Forms/NoUiSlider';
+const NoUiSlider = () => {
+    return (_jsxs(_Fragment, { children: [_jsx(PageBreadcrumbButton, { title: "NoUiSlider", subName: "Forms", url: 'https://mmarkelov.github.io/react-nouislider/' }), _jsxs(Row, { className: "g-3 g-md-4", children: [_jsx(Col, { xs: 12, children: _jsxs(Card, { children: [_jsx(Card.Header, { children: _jsx(Card.Title, { children: "Basic" }) }), _jsx(Card.Body, { children: _jsx(NoUiSliderBasic, {}) })] }) }), _jsx(Col, { xs: 12, children: _jsxs(Card, { children: [_jsx(Card.Header, { children: _jsx(Card.Title, { children: "Non Linear" }) }), _jsx(Card.Body, { children: _jsx(NoUiSliderNonlinear, {}) })] }) }), _jsx(Col, { xs: 12, children: _jsxs(Card, { children: [_jsx(Card.Header, { children: _jsx(Card.Title, { children: "Keyboard Support" }) }), _jsx(Card.Body, { children: _jsx(NoUiSliderKeyboard, {}) })] }) }), _jsx(Col, { xs: 12, children: _jsxs(Card, { children: [_jsx(Card.Header, { children: _jsx(Card.Title, { children: "Clicking Pips" }) }), _jsx(Card.Body, { className: "pb-16", children: _jsx(NoUiSliderPips, {}) })] }) }), _jsx(Col, { xs: 12, children: _jsxs(Card, { children: [_jsx(Card.Header, { children: _jsx(Card.Title, { children: "Skipping" }) }), _jsx(Card.Body, { children: _jsx(NoUiSliderSkipping, {}) })] }) })] })] }));
+};
+export default NoUiSlider;

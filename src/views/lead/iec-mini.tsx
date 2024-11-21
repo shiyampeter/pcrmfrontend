@@ -146,7 +146,8 @@ function IecMini() {
             direction={{ lg: 'row', sm: 'column' }}
             // gap={2}
             // alignItems={"center"}
-            justifyContent={'space-between'}>
+            justifyContent={'space-between'}
+          >
             <Box>
               <SearchInput
                 sx={{
@@ -221,7 +222,8 @@ function IecMini() {
                           display: 'flex',
                           alignItems: 'center',
                           justifyContent: 'center',
-                        }}>
+                        }}
+                      >
                         {/* <Link
                           // to={`/admin/category/${row.unique_label}`}
                           to="">
@@ -276,7 +278,8 @@ function IecMini() {
             TransitionComponent={Transition}
             keepMounted
             onClose={handleClose}
-            aria-describedby="alert-dialog-slide-description">
+            aria-describedby="alert-dialog-slide-description"
+          >
             <DialogTitle>
               <Stack direction={'row'} alignItems={'center'} justifyContent={'space-between'}>
                 <Box> {singleData ? 'Edit Iec ' : 'Add Iec'}</Box>
@@ -297,7 +300,8 @@ function IecMini() {
             TransitionComponent={Transition}
             keepMounted
             onClose={handleClose}
-            aria-describedby="alert-dialog-slide-description">
+            aria-describedby="alert-dialog-slide-description"
+          >
             <DialogTitle>
               <Stack direction={'row'} alignItems={'center'} justifyContent={'space-between'}>
                 <Box> {singleData ? 'Edit Iec ' : 'Add Iec Online'}</Box>

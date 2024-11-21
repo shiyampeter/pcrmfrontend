@@ -25,7 +25,8 @@ const Navigation = () => {
         <SimpleBar
           id="leftside-menu-container"
           data-simplebar=""
-          style={{ height: 'calc(100%  - 4.5rem)' }}>
+          style={{ height: 'calc(100%  - 4.5rem)' }}
+        >
           {/* Sidemenu */}
           <SideBarContent />
           {/* Sidemenu Card */}

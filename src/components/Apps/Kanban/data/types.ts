@@ -11,7 +11,7 @@ export interface Task {
     comment: number
   }[]
 }
-[]
+;[]
 
 export interface ColumnsContent {
   id: string
@@ -19,7 +19,7 @@ export interface ColumnsContent {
   color: string
   tasks: Task[]
 }
-[]
+;[]
 
 export interface Column {
   id: string
@@ -27,7 +27,7 @@ export interface Column {
   color: string
   tasks: Task[]
 }
-[]
+;[]
 
 export interface ColumnEditModalProps {
   isOpen: boolean

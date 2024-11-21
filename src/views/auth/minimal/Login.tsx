@@ -89,7 +89,8 @@ const Login = () => {
               <span
                 className="btn btn-icon position-absolute translate-middle top-50"
                 style={{ right: '-1rem' }}
-                onClick={togglePasswordVisibility}>
+                onClick={togglePasswordVisibility}
+              >
                 <i className={`fi ${showPassword ? 'fi-rr-eye-crossed' : 'fi-rr-eye'}`}></i>
               </span>
             </Form.Group>
@@ -112,7 +113,8 @@ const Login = () => {
                 size="lg"
                 type="submit"
                 // disabled={loading}
-                className="text-white">
+                className="text-white"
+              >
                 {/* {loading ? (
                   <>
                     <span

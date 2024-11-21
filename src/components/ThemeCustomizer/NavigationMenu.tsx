@@ -15,7 +15,8 @@ const NavigationMenu = ({
     <>
       <h6
         className="fs-11 fw-bold text-dark text-uppercase mb-3"
-        style={{ letterSpacing: '0.5px' }}>
+        style={{ letterSpacing: '0.5px' }}
+      >
         Navigation Menu
       </h6>
       <Row className="g-3">
@@ -32,7 +33,8 @@ const NavigationMenu = ({
             <span className="radio-card-wrapper d-flex p-3 position-relative">
               <span
                 className="fs-11 fw-semibold text-muted text-uppercase d-block"
-                style={{ letterSpacing: '0.5px' }}>
+                style={{ letterSpacing: '0.5px' }}
+              >
                 Soft
               </span>
               <span className="check-icon me-2 end-0 top-50 translate-middle-y position-absolute z-1"></span>
@@ -52,7 +54,8 @@ const NavigationMenu = ({
             <span className="radio-card-wrapper d-flex p-3 position-relative">
               <span
                 className="fs-11 fw-semibold text-muted text-uppercase d-block"
-                style={{ letterSpacing: '0.5px' }}>
+                style={{ letterSpacing: '0.5px' }}
+              >
                 Solid
               </span>
               <span className="check-icon me-2 end-0 top-50 translate-middle-y position-absolute z-1"></span>

@@ -88,7 +88,8 @@ const Kanban: React.FC = () => {
       <Card>
         <Card.Header
           className="d-flex align-items-center justify-content-between"
-          style={{ height: '5rem' }}>
+          style={{ height: '5rem' }}
+        >
           <h4 className="fw-bold mb-0">Kanban Board</h4>
           <Stack direction="horizontal" gap={2}>
             <div className="avatar-group avatar-group-md d-none d-md-flex">

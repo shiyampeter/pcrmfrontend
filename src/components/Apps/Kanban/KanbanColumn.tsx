@@ -116,7 +116,8 @@ const KanbanColumn: React.FC<
         <div className="border border-top-0 rounded mb-3">
           <Stack
             direction="horizontal"
-            className={`ps-3 pe-2 py-2 gap-3 gap-md-4 bg-body-tertiary rounded border-top border-3 border-${selectedBorderColor}`}>
+            className={`ps-3 pe-2 py-2 gap-3 gap-md-4 bg-body-tertiary rounded border-top border-3 border-${selectedBorderColor}`}
+          >
             <h6 className="mb-0">
               {newColumnName} ({taskCount})
             </h6>
@@ -165,7 +166,8 @@ const KanbanColumn: React.FC<
         <Button
           variant=""
           className="btn-md bg-body-tertiary border w-100 mb-4"
-          onClick={handleAddTask}>
+          onClick={handleAddTask}
+        >
           <i className="fi fi-rr-plus fs-12"></i>
           <span className="ms-3">Add Task</span>
         </Button>

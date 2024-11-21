@@ -36,21 +36,24 @@ const Helpdesk = () => {
           as="a"
           className="arrow-none header-btn"
           role="button"
-          onClick={toggleDropDown}>
+          onClick={toggleDropDown}
+        >
           <i className="fi fi-rr-interrogation" />
         </Dropdown.Toggle>
         <Dropdown.Menu align="end" className="dropdown-xl py-0 px-0 overflow-hidden">
           <div
             className="p-2 border-top-0 border-start-0 border-end-0 border-dashed border bg-primary text-white text-center px-6 py-12"
             onClick={toggleDropDown}
-            style={BgCircleShapeStyle}>
+            style={BgCircleShapeStyle}
+          >
             <h4 className="fw-bold text-white mb-2">Help Center</h4>
             <p className="fs-13">
               This greeting is courteous and professional, setting a positive tone for your ticket.
             </p>
             <Button
               className="fs-10 fw-semibold py-2 px-3 bg-body text-dark text-uppercase rounded-pill"
-              style={{ letterSpacing: '1px' }}>
+              style={{ letterSpacing: '1px' }}
+            >
               Get Support
             </Button>
           </div>

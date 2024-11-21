@@ -61,7 +61,8 @@ function CheckboxSelectTextFieldDays(props) {
               setSelectedType(e.target.value) // update local state
             }}
             disabled={disabled}
-            sx={{ mb: 1, ...sx }}>
+            sx={{ mb: 1, ...sx }}
+          >
             <MenuItem value="" disabled>
               {selectLabel}
             </MenuItem>

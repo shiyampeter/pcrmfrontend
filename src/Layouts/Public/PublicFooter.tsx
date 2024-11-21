@@ -6,14 +6,16 @@ const PublicFooter = () => {
   return (
     <footer
       className="footer-public bg-body-tertiary hstack border-top"
-      style={{ minHeight: '4rem' }}>
+      style={{ minHeight: '4rem' }}
+    >
       <Container className="d-flex align-items-center">
         <Copyright />
         <Stack
           direction="horizontal"
           gap={3}
           className="ms-auto d-none d-sm-flex"
-          style={{ lineHeight: 'normal' }}>
+          style={{ lineHeight: 'normal' }}
+        >
           <Link to="../docs/index.html">Docs</Link>
           <Link to="../docs/changelog.html">Changelog</Link>
           <Link to="../docs/support.html">Support</Link>

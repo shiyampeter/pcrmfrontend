@@ -41,7 +41,8 @@ const KanbanTask: React.FC<TaskProps> = ({ id, content, index, onDelete }) => {
             {...provided.draggableProps}
             {...provided.dragHandleProps}
             className="mb-3"
-            onClick={openTaskDetailsModal}>
+            onClick={openTaskDetailsModal}
+          >
             <Card.Body>
               <h6 className="mb-3">{content[0]?.tasktitle}</h6>
               <p className="fw-light">{content[0]?.taskdesc}</p>
@@ -52,7 +53,8 @@ const KanbanTask: React.FC<TaskProps> = ({ id, content, index, onDelete }) => {
                       <Badge
                         key={index}
                         bg=""
-                        className={`bg-${badge.toLowerCase()}-subtle text-${badge.toLowerCase()}`}>
+                        className={`bg-${badge.toLowerCase()}-subtle text-${badge.toLowerCase()}`}
+                      >
                         {badge}
                       </Badge>
                     ))}

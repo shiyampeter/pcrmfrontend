@@ -74,7 +74,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
               isAuthenticated: Boolean(user),
               saveSession,
               removeSession,
-            }}>
+            }}
+          >
             {children}
           </AuthContext.Provider>
         </Suspense>

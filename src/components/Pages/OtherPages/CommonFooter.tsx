@@ -23,10 +23,12 @@ const CommonFooter = () => {
       <Card.Footer className="px-4 px-6 py-12 py-lg-16">
         <div
           className="mb-6 mx-auto mx-md-0 text-center text-md-start"
-          style={{ maxWidth: '425px' }}>
+          style={{ maxWidth: '425px' }}
+        >
           <div
             className="mx-auto mx-md-0 border border-2 border-primary rounded-pill mb-4"
-            style={{ width: '3rem' }}></div>
+            style={{ width: '3rem' }}
+          ></div>
           <h6 className="fw-bold">WRAPCODERS INC.</h6>
           <p className="fw-light mb-4">
             We're here to bring financial stability, improve the economy. Leave money issue with us
@@ -38,7 +40,8 @@ const CommonFooter = () => {
             <Stack
               gap={4}
               direction="horizontal"
-              className="flex-wrap justify-content-center justify-content-md-start">
+              className="flex-wrap justify-content-center justify-content-md-start"
+            >
               {links.map(({ to, text }, idx) => (
                 <Link key={idx} to={to}>
                   {text}
@@ -50,7 +53,8 @@ const CommonFooter = () => {
             <Stack
               gap={1}
               direction="horizontal"
-              className="justify-content-center justify-content-md-end">
+              className="justify-content-center justify-content-md-end"
+            >
               {socialMediaIcons.map(({ iconClass }, idx) => (
                 <Button key={idx} variant="" className="btn-icon">
                   <i className={iconClass}></i>

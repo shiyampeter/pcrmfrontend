@@ -75,7 +75,8 @@ const IntegrationsConnect: React.FC = () => {
                   <Stack gap={3} direction="horizontal">
                     <div
                       className="p-2 border rounded bg-secondary-subtle"
-                      style={{ width: '3rem', height: '3rem' }}>
+                      style={{ width: '3rem', height: '3rem' }}
+                    >
                       <Image src={item.image} alt="" className="img-fluid" />
                     </div>
                     <div>
@@ -112,7 +113,8 @@ const IntegrationsConnect: React.FC = () => {
                 <Stack gap={3} direction="horizontal">
                   <div
                     className="p-2 border rounded bg-secondary-subtle"
-                    style={{ width: '3rem', height: '3rem' }}>
+                    style={{ width: '3rem', height: '3rem' }}
+                  >
                     <Image src={selectedIntegration.image} alt="" className="img-fluid" />
                   </div>
                   <div>
@@ -126,7 +128,8 @@ const IntegrationsConnect: React.FC = () => {
                       selectedIntegration.status === 'Verified'
                         ? 'border-success text-success'
                         : 'border-danger text-danger'
-                    }`}>
+                    }`}
+                  >
                     {selectedIntegration.status}
                   </span>
                 </div>
@@ -146,7 +149,8 @@ const IntegrationsConnect: React.FC = () => {
             variant="danger"
             className="text-white"
             onClick={handleUninstallModal}
-            disabled={isSaving}>
+            disabled={isSaving}
+          >
             {isSaving ? (
               <>
                 <Spinner as="span" animation="border" size="sm" role="status" aria-hidden="true" />

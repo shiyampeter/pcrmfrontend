@@ -16,7 +16,8 @@ const SidenavType = ({
     <div id="sidebar-size">
       <h6
         className="fs-11 fw-bold text-dark text-uppercase mb-3"
-        style={{ letterSpacing: '0.5px' }}>
+        style={{ letterSpacing: '0.5px' }}
+      >
         Sidenav Type
       </h6>
       <Row className="g-3">
@@ -33,7 +34,8 @@ const SidenavType = ({
             <span className="radio-card-wrapper d-flex p-3 position-relative">
               <span
                 className="fs-11 fw-semibold text-muted text-uppercase d-block"
-                style={{ letterSpacing: '0.5px' }}>
+                style={{ letterSpacing: '0.5px' }}
+              >
                 Default
               </span>
               <span className="check-icon me-2 end-0 top-50 translate-middle-y position-absolute z-1"></span>
@@ -53,7 +55,8 @@ const SidenavType = ({
             <span className="radio-card-wrapper d-flex p-3 position-relative">
               <span
                 className="fs-11 fw-semibold text-muted text-uppercase d-block"
-                style={{ letterSpacing: '0.5px' }}>
+                style={{ letterSpacing: '0.5px' }}
+              >
                 Compact
               </span>
               <span className="check-icon me-2 end-0 top-50 translate-middle-y position-absolute z-1"></span>
@@ -73,7 +76,8 @@ const SidenavType = ({
             <span className="radio-card-wrapper d-flex p-3 position-relative">
               <span
                 className="fs-11 fw-semibold text-muted text-uppercase d-block"
-                style={{ letterSpacing: '0.5px' }}>
+                style={{ letterSpacing: '0.5px' }}
+              >
                 Iconbar
               </span>
               <span className="check-icon me-2 end-0 top-50 translate-middle-y position-absolute z-1"></span>
@@ -93,7 +97,8 @@ const SidenavType = ({
             <span className="radio-card-wrapper d-flex p-3 position-relative">
               <span
                 className="fs-11 fw-semibold text-muted text-uppercase d-block"
-                style={{ letterSpacing: '0.5px' }}>
+                style={{ letterSpacing: '0.5px' }}
+              >
                 Overlay
               </span>
               <span className="check-icon me-2 end-0 top-50 translate-middle-y position-absolute z-1"></span>
@@ -113,7 +118,8 @@ const SidenavType = ({
             <span className="radio-card-wrapper d-flex p-3 position-relative">
               <span
                 className="fs-11 fw-semibold text-muted text-uppercase d-block"
-                style={{ letterSpacing: '0.5px' }}>
+                style={{ letterSpacing: '0.5px' }}
+              >
                 Detach
               </span>
               <span className="check-icon me-2 end-0 top-50 translate-middle-y position-absolute z-1"></span>

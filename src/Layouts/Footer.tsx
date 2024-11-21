@@ -11,7 +11,8 @@ const Footer = () => {
           direction="horizontal"
           gap={3}
           className="ms-auto d-none d-sm-flex"
-          style={{ lineHeight: 'normal' }}>
+          style={{ lineHeight: 'normal' }}
+        >
           <Link to="../docs/index.html">Documentation</Link>
           <Link to="../docs/changelog.html">Changelog</Link>
           <Link to="../docs/support.html">Support</Link>

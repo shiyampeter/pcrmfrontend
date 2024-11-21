@@ -57,7 +57,8 @@ const TaskDetailsModal: React.FC<TaskDetailsModalProps> = ({
                 <Badge
                   key={index}
                   bg=""
-                  className={`bg-${badge.toLowerCase()}-subtle text-${badge.toLowerCase()}`}>
+                  className={`bg-${badge.toLowerCase()}-subtle text-${badge.toLowerCase()}`}
+                >
                   {badge.toUpperCase()}
                 </Badge>
               ))}
@@ -111,7 +112,8 @@ const TaskDetailsModal: React.FC<TaskDetailsModalProps> = ({
           variant="danger"
           className="text-white"
           onClick={handleDelete}
-          disabled={isDeleting}>
+          disabled={isDeleting}
+        >
           {isDeleting ? (
             <>
               <Spinner as="span" animation="border" size="sm" role="status" aria-hidden="true" />

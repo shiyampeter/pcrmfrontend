@@ -1,0 +1,8 @@
+import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
+import Loading from '@/components/Misc/Loading';
+import { ListGroup, Offcanvas } from 'react-bootstrap';
+import dataActivity from '@/components/Pages/UserProfile/Activity/data/dataActivity';
+const NotificationOffcanvas = ({ show, handleClose }) => {
+    return (_jsxs(Offcanvas, { show: show, placement: "end", onHide: handleClose, className: "activity-offcanvas", style: { width: '100%', maxWidth: '768px' }, children: [_jsx(Offcanvas.Header, { className: "d-flex align-items-center px-4 border-bottom", style: { height: '4.5rem' }, closeButton: true, children: _jsxs(Offcanvas.Title, { children: [_jsx("span", { className: "fs-18 fw-semibold d-block", children: "Recent Activity" }), _jsx("span", { className: "fs-12 fw-light text-muted d-block", children: "Last activity 42 minutes ago" })] }) }), _jsx(Offcanvas.Body, { className: "p-0 border-top-0 border-bottom-0", children: _jsxs(ListGroup, { className: "list-group-timeline list-group list-group-flush ms-8", children: [dataActivity.map(({ icon, content }, idx) => (_jsxs(ListGroup.Item, { className: "list-timeline-item border-start border-dashed border-bottom-0 ps-8 mb-2", children: [_jsx("div", { className: "list-timeline-icon avatar avatar-md border position-absolute bg-body-tertiary", style: { left: '-1.25rem' }, children: _jsx("i", { className: `${icon}` }) }), _jsx("div", { className: "list-timeline-content", dangerouslySetInnerHTML: { __html: content } })] }, idx))), _jsx(ListGroup.Item, { className: "list-timeline-item border-start border-dashed border-bottom-0 ps-8", children: _jsx(Loading, {}) })] }) })] }));
+};
+export default NotificationOffcanvas;

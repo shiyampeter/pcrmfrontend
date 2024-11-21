@@ -135,7 +135,8 @@ function WorkCategory() {
             direction={{ lg: 'row', sm: 'column' }}
             // gap={2}
             // alignItems={"center"}
-            justifyContent={'space-between'}>
+            justifyContent={'space-between'}
+          >
             <SearchInput
               sx={{
                 border: '1px solid #303067',
@@ -191,7 +192,8 @@ function WorkCategory() {
                           display: 'flex',
                           alignItems: 'center',
                           justifyContent: 'center',
-                        }}>
+                        }}
+                      >
                         {/* <Link
                           // to={`/admin/category/${row.unique_label}`}
                           to="">
@@ -246,7 +248,8 @@ function WorkCategory() {
             TransitionComponent={Transition}
             keepMounted
             onClose={handleClose}
-            aria-describedby="alert-dialog-slide-description">
+            aria-describedby="alert-dialog-slide-description"
+          >
             <DialogTitle>
               <Stack direction={'row'} alignItems={'center'} justifyContent={'space-between'}>
                 <Box> {singleData ? 'Edit Status' : 'Add Status'}</Box>

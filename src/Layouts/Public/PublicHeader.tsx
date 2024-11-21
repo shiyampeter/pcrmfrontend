@@ -33,7 +33,8 @@ const PublicHeader = () => {
     <>
       <header
         className="header-public bg-body-tertiary hstack sticky-top border-bottom"
-        style={{ minHeight: '4.5rem' }}>
+        style={{ minHeight: '4.5rem' }}
+      >
         <div className="container">
           <Navbar expand="lg" className="w-100 bg-body-tertiary justify-content-between">
             <Navbar.Brand>
@@ -52,7 +53,8 @@ const PublicHeader = () => {
                 <Link
                   to="/"
                   className="btn btn-primary btn-md ms-0 ms-md-4 mt-4 mb-2 mb-md-0 mt-md-0 flex-shrink-0"
-                  style={{ width: 'fit-content' }}>
+                  style={{ width: 'fit-content' }}
+                >
                   <i className="fi fi-rr-eye"></i>
                   <span className="ms-2">Live Preview</span>
                 </Link>

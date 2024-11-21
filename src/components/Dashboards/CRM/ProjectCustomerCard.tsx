@@ -155,7 +155,8 @@ const ProjectCustomerCard = () => {
               <Stack direction="horizontal" gap={3}>
                 <div
                   className="bg-success-subtle text-success border border-success border-opacity-10 rounded hstack justify-content-center"
-                  style={{ width: '3rem', height: '3rem' }}>
+                  style={{ width: '3rem', height: '3rem' }}
+                >
                   <i className="fi fi-rr-users fs-5"></i>
                 </div>
                 <div>
@@ -176,7 +177,8 @@ const ProjectCustomerCard = () => {
               <Stack direction="horizontal" gap={3}>
                 <div
                   className="bg-danger-subtle text-danger border border-danger border-opacity-10 rounded hstack justify-content-center"
-                  style={{ width: '3rem', height: '3rem' }}>
+                  style={{ width: '3rem', height: '3rem' }}
+                >
                   <i className="fi fi-rr-briefcase fs-5"></i>
                 </div>
                 <div>

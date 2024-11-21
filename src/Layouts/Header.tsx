@@ -120,7 +120,8 @@ const Header = ({ toggleMenu, navOpen }: HeaderProps) => {
               className={`navbar-toggle ${navOpen ? 'open' : ''}`}
               data-bs-toggle="collapse"
               data-bs-target="#topnav-menu-content"
-              onClick={toggleMenu}>
+              onClick={toggleMenu}
+            >
               <div className="lines">
                 <span />
                 <span />

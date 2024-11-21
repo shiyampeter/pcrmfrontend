@@ -37,7 +37,8 @@ function SelectField({
                 if (onChangeCallback) {
                   onChangeCallback(event.target.value) // Call the custom callback
                 }
-              }}>
+              }}
+            >
               {data?.map((options, i) => (
                 <MenuItem value={options.value} key={i} className="new-textfield-menu">
                   {options.label}

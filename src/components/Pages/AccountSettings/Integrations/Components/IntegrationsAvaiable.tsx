@@ -55,7 +55,8 @@ const IntegrationsAvaiable: React.FC = () => {
                   <Stack gap={3} direction="horizontal">
                     <div
                       className="p-2 border rounded bg-secondary-subtle"
-                      style={{ width: '3rem', height: '3rem' }}>
+                      style={{ width: '3rem', height: '3rem' }}
+                    >
                       <Image src={item.image} alt="" className="img-fluid" />
                     </div>
                     <div>
@@ -69,7 +70,8 @@ const IntegrationsAvaiable: React.FC = () => {
                         item.status === 'Verified'
                           ? 'border-success text-success'
                           : 'border-danger text-danger'
-                      }`}>
+                      }`}
+                    >
                       {item.status}
                     </span>
                   </div>
@@ -91,7 +93,8 @@ const IntegrationsAvaiable: React.FC = () => {
           <Stack gap={3} direction="horizontal" className="mb-6">
             <div
               className="p-2 border rounded bg-secondary-subtle"
-              style={{ width: '3rem', height: '3rem' }}>
+              style={{ width: '3rem', height: '3rem' }}
+            >
               <Image src={selectedIntegration?.image} alt="" className="img-fluid" />
             </div>
             <div>
@@ -109,7 +112,8 @@ const IntegrationsAvaiable: React.FC = () => {
             variant="success"
             className="text-white"
             onClick={handleInstallModal}
-            disabled={isSaving}>
+            disabled={isSaving}
+          >
             {isSaving ? (
               <>
                 <Spinner as="span" animation="border" size="sm" role="status" aria-hidden="true" />

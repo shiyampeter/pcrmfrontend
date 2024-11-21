@@ -146,7 +146,8 @@ function WorkSubCategory() {
             direction={{ lg: 'row', sm: 'column' }}
             // gap={2}
             // alignItems={"center"}
-            justifyContent={'space-between'}>
+            justifyContent={'space-between'}
+          >
             <SearchInput
               sx={{
                 border: '1px solid #303067',
@@ -241,7 +242,8 @@ function WorkSubCategory() {
                           display: 'flex',
                           alignItems: 'center',
                           justifyContent: 'center',
-                        }}>
+                        }}
+                      >
                         {/* <Link
                           // to={`/admin/category/${row.unique_label}`}
                           to="">
@@ -302,7 +304,8 @@ function WorkSubCategory() {
                 width: '100%',
                 maxWidth: '1000px!important',
               },
-            }}>
+            }}
+          >
             <DialogTitle>
               <Stack direction={'row'} alignItems={'center'} justifyContent={'space-between'}>
                 <Box> {singleData ? 'Edit Work SubCategory' : 'Add Work SubCategory'}</Box>

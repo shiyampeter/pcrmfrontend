@@ -1,7 +1,7 @@
-import React from "react";
-import TextField from "@mui/material/TextField";
-import { Box, Typography } from "@mui/material";
-import { SixK } from "@mui/icons-material";
+import React from 'react'
+import TextField from '@mui/material/TextField'
+import { Box, Typography } from '@mui/material'
+import { SixK } from '@mui/icons-material'
 
 function MobileField(props) {
   const {
@@ -17,22 +17,22 @@ function MobileField(props) {
     disabled,
     InputProps,
     sx,
-  } = props;
+  } = props
   return (
     <>
       <Controller
-        defaultValue={""}
+        defaultValue={''}
         name={name}
         control={control}
         render={({ field }) => (
           <Box>
-            <Typography variant="subtitle1" sx={{ fontSize: "13px" }}>
+            <Typography variant="subtitle1" sx={{ fontSize: '13px' }}>
               {label}
             </Typography>
             <TextField
               fullWidth
               variant={variant && variant}
-              size={size ? size : "small"}
+              size={size ? size : 'small'}
               placeholder={placeholder}
               error={error}
               type={type}
@@ -48,7 +48,7 @@ function MobileField(props) {
         )}
       />
     </>
-  );
+  )
 }
 
-export default MobileField;
+export default MobileField

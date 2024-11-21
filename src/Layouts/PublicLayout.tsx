@@ -53,7 +53,8 @@ const PublicLayout = ({ children }: PublicLayoutProps) => {
         <Button
           onClick={handleCustomizer}
           variant="primary"
-          className="btn-lg btn-icon rounded-0 rounded-start-3">
+          className="btn-lg btn-icon rounded-0 rounded-start-3"
+        >
           <i className="fi fi-rr-settings fs-18" />
         </Button>
       </Stack>

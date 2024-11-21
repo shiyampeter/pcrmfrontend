@@ -184,7 +184,8 @@ const AddSubCtegoryForm = (props, disabled) => {
         <form
           onSubmit={
             type === 'add' ? handleSubmit(handleAddCategory) : handleSubmit(handleEditCategory)
-          }>
+          }
+        >
           <Typography sx={{ fontSize: '20px', fontWeight: 'bold', mb: 2 }}>
             Category Section
           </Typography>
@@ -394,13 +395,15 @@ const AddSubCtegoryForm = (props, disabled) => {
             alignItems={'flex-end'}
             justifyContent={'flex-end'}
             gap={5}
-            sx={{ p: 3 }}>
+            sx={{ p: 3 }}
+          >
             <LoadingButton
               loadingPosition="center"
               loading={isSubmitting}
               variant="contained"
               type="submit"
-              className="submitBtnn">
+              className="submitBtnn"
+            >
               Save
             </LoadingButton>
           </Stack>

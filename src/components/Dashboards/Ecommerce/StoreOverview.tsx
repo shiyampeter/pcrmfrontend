@@ -56,7 +56,8 @@ const StoreOverview = () => {
                   <Stack direction="horizontal" className="pd-5">
                     <div
                       className={`d-flex align-items-center justify-content-center rounded bg-${color}-subtle text-${color}`}
-                      style={{ width: '3.5rem', height: '3.5rem' }}>
+                      style={{ width: '3.5rem', height: '3.5rem' }}
+                    >
                       <i className={`fi ${icon} fs-2`}></i>
                     </div>
                     <div className="ms-auto text-end">

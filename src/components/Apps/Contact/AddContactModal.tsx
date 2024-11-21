@@ -128,7 +128,8 @@ const AddContactModal: React.FC<AddContactModalProps> = ({ show, onHide, onAddCo
                       cursor: 'pointer',
                     }}
                     className="d-flex align-items-center justify-content-center fs-24 border border-3 rounded overflow-hidden bg-secondary-subtle"
-                    onClick={() => avatarImageUploader.current?.click()}>
+                    onClick={() => avatarImageUploader.current?.click()}
+                  >
                     {avatarFile ? (
                       <img
                         src={URL.createObjectURL(avatarFile)}
@@ -151,7 +152,8 @@ const AddContactModal: React.FC<AddContactModalProps> = ({ show, onHide, onAddCo
                       className="text-danger"
                       onClick={() =>
                         handleReset(setAvatarFile, avatarImageRef, avatarImageUploader)
-                      }>
+                      }
+                    >
                       Reset
                     </Link>
                   </p>
@@ -288,13 +290,15 @@ const AddContactModal: React.FC<AddContactModalProps> = ({ show, onHide, onAddCo
             variant="primary"
             onClick={handleAddContact}
             className={`text-white ${loading ? 'disabled' : ''}`}
-            disabled={loading}>
+            disabled={loading}
+          >
             {loading ? (
               <>
                 <span
                   className="spinner-border spinner-border-sm me-2"
                   role="status"
-                  aria-hidden="true"></span>
+                  aria-hidden="true"
+                ></span>
                 Adding...
               </>
             ) : (
