@@ -11,7 +11,6 @@ import {
   Button,
   Dialog,
   IconButton,
-  Typography,
   Slide,
 } from '@mui/material'
 import TopBreaccrumb from '@/components/components/TopBreadcrumb'
@@ -20,7 +19,7 @@ import SearchInput from '@/components/components/searchInput'
 import TableRowsLoader from '@/components/components/TableLoader'
 import { useDebounce } from 'use-debounce'
 import CloseIcon from '@mui/icons-material/Close'
-import VisibilityIcon from '@mui/icons-material/Visibility'
+
 import { useDispatch, useSelector } from 'react-redux'
 import TablePagination from '@/components/components/Pagination'
 import DeleteModal from '@/components/components/deleteModal'
@@ -28,15 +27,14 @@ import EditIcon from '@mui/icons-material/Edit'
 import DeleteIcon from '@mui/icons-material/Delete'
 
 import DialogTitle from '@mui/material/DialogTitle'
-import { Link } from 'react-router-dom'
+
 import AddSubCtegoryForm from './work-subcate/addSubCategoryform'
 import TableHeader from './work-subcate/work-subcategory/tableHeader'
 import {
   workSubCategoryDelete,
   workSubCategoryList,
 } from '@/redux/api/public/WorkSubCategoryService'
-import toast from 'react-hot-toast'
-import { essentials } from '@/redux/api/public/commonService'
+
 import { errorAlert, successAlert } from '@/helpers/global-function'
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />
@@ -146,8 +144,7 @@ function WorkSubCategory() {
             direction={{ lg: 'row', sm: 'column' }}
             // gap={2}
             // alignItems={"center"}
-            justifyContent={'space-between'}
-          >
+            justifyContent={'space-between'}>
             <SearchInput
               sx={{
                 border: '1px solid #303067',
@@ -242,8 +239,7 @@ function WorkSubCategory() {
                           display: 'flex',
                           alignItems: 'center',
                           justifyContent: 'center',
-                        }}
-                      >
+                        }}>
                         {/* <Link
                           // to={`/admin/category/${row.unique_label}`}
                           to="">
@@ -304,8 +300,7 @@ function WorkSubCategory() {
                 width: '100%',
                 maxWidth: '1000px!important',
               },
-            }}
-          >
+            }}>
             <DialogTitle>
               <Stack direction={'row'} alignItems={'center'} justifyContent={'space-between'}>
                 <Box> {singleData ? 'Edit Work SubCategory' : 'Add Work SubCategory'}</Box>

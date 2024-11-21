@@ -1,5 +1,4 @@
-import configureBackend from './common/api/backend'
-import { AuthProvider, ThemeProvider } from './common/context'
+import { ThemeProvider } from './common/context'
 import ThemeRoutes from './routes/Routes'
 
 // Flaticons

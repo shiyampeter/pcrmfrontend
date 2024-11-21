@@ -38,7 +38,7 @@ body {
 }
 
 :root {
-  --toastify-color-success: #bc0775 !important;
+  --toastify-color-success: red !important;
 }
 
 p,
@@ -642,7 +642,7 @@ table {
   padding: 0;
   cursor: pointer;
 }
-.New-Button{
-  background-color: #21a65b!important;
-  color:white!important
+.New-Button {
+  background-color: #21a65b !important;
+  color: white !important;
 }
